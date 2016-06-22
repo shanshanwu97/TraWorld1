@@ -1,23 +1,45 @@
 <template name="layout">
 	<div class="container">
-		<ul class="nav nav-pills">
+		<ul class="nav nav-tabs nav-justified">
+        <li>
+          <img src="images/logo.png" width="130%" >
+        </li>
   			<li role="presentation">
-  				<a href="{{pathFor 'home'}}">Home</a>
-  			</li>
+          <a href="{{pathFor 'home'}}">
+            <span class="glyphicon glyphicon-home" aria-hidden="true">
+            </span>
+             Home
+           </a>
+         </li>
+         <li role="presentation">
+          <a href="{{pathFor 'itineraries'}}">Add Your Own</a>
+        </li>
   			<li role="presentation">
-  				<a href="/about">About</a>
+          <a href="{{pathFor 'about'}}">About</a>
+        </li>
+  			<li role="presentation">
+          <a href="{{pathFor 'comments'}}">Comments</a>
+        </li>
+        <li role="presentation">
+          <a href="{{pathFor 'itdisplay'}}">Itineraries</a>
+        </li>
+        
+       <!--  <li role="search bar">
+        
+          <div class="input-group">  
+              <input type="text" class="form-control" placeholder="I want to go to....">
+                <span class="input-group-btn">
+                  <button class="btn btn-info js-go" type="button">Go!</button>
+                </span>
+          
+        </li> -->
+  			<li role= "presentation">
+  				{{> loginButtons}} <!--put that template on every page-->
   			</li>
- 			 <li role="presentation">
- 			 	<a href="/comments">Comments</a>
- 			 </li>
-			<li role="presentation">
- 			 	<a href="/showRides">Available Carpooling Rides</a>
- 			 </li>
- 			 <li>
- 			 	{{> loginButtons}}
- 			 </li>
 		</ul>
+
 	{{> yield}}
 
 	</div>
+
 </template>
