@@ -1,9 +1,8 @@
 <template name="groupCampPost">
-	<div class="page-header">
+	<div class="jumbotron">
 		<h1>Group Camp</h1>
+		<h3>Design your trip!</h3>
 	</div>
-
-	<h2>Design your trip!</h2>
 
 	<form>
           <!-- USER ID -->
@@ -37,10 +36,10 @@
      	    	<input type="departure" class="form-control js-depart"  placeholder="mm/dd/yyyy">
 	  	</fieldset>
 
-          <!-- GROUP SIZE -->
+          <!-- MINIMUM GROUP SIZE -->
 	  	<fieldset class="form-group">
-     	    	<label for="travellers">Amount of Travellers</label>
-     	    	<input type="travel" class="form-control js-trv"  placeholder="Enter in digits">
+     	    	<label for="travellers">Minimum Group Size</label>
+     	    	<input type="travel" class="form-control js-min"  placeholder="Enter in digits">
 	  	</fieldset>
 
           <!-- EXPENSES -->
@@ -64,6 +63,6 @@
      	            <button type="button" class="btn btn-default addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Additional Files<i class="fa fa-plus"></i></button>
 	 	 </fieldset>
 
-	     <button class="js-submit btn btn-info">Submit</button>
+	     <button class="js-submit btn btn-danger">Submit</button> <br>
 	</form>
 </template>
