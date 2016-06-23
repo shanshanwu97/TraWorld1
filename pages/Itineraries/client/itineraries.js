@@ -1,3 +1,4 @@
+Session.set("userinput",0);
 Template.itineraries.helpers({
 	trips:function(){
 		// const dest= $(".js-dest").val();
@@ -20,8 +21,10 @@ Template.itineraries.events({
 		{createdBy:name, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, description: desc
 
 		}
+		Session.set("userinput",trip);
 		console.dir(trip);
 		Trips.insert(trip);
+		Router.go('itdisplay');
 	
 	}
 })
