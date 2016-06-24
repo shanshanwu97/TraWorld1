@@ -8,6 +8,7 @@ Template.itineraries.helpers({
 
 Template.itineraries.events({
 	"click .js-submit": function(event){
+		event.preventDefault();
 		console.log("hey u clicked");
 		const name = $(".js-name").val();
 		const dest = $(".js-desti").val().toLowerCase();
@@ -22,8 +23,10 @@ Template.itineraries.events({
 
 		}
 		Session.set("userinput",trip);
-		console.dir(trip);
-		Trips.insert(trip);
+
+		//console.dir(trip);
+		Meteor.call("insertTrip", trip);
+		// Trips.insert(trip);
 		Router.go('itdisplay');
 	
 	}
