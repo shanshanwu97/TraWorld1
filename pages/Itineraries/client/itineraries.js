@@ -26,8 +26,10 @@ Template.itineraries.events({
 
 			}
 			Session.set("userinput",trip);
+			console.dir(trip);
 			Meteor.call("insertTrip", trip);
 			Router.go('itdisplay');
+
 		}
 	}
 

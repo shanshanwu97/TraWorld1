@@ -1,4 +1,4 @@
-Session.set("budget", "");
+Session.set("budget", "Show All");
 
 Template.searchresults.onCreated(function(){
 	this.state= new ReactiveDict();
@@ -48,6 +48,7 @@ Template.searchresults.helpers({
 		var bud= Session.get("budget");
 		if (Session.get("budget")=="Show All"){
 		return Trips.find({destination: loc},{sort:{datecreated: -1}});
+		console.log("show all");
 	}else if(Session.get("budget")=="Over $5000"){
 		return Trips.find({$and: [{destination: loc},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
 	}else{
