@@ -28,3 +28,4 @@ session
 reactive-dict
 dburles:google-maps
 mdg:geolocation
+froala:editor-reactive
