@@ -64,13 +64,29 @@
 				</a>
 	          </li>
 
-			<!-- LOG IN (Add href) -->
+
+			{{#if currentUser}}
+			<li role="presentation">
+				<a href="#" class="logout">
+					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					<h6>Logout</h6>
+				</a>
+			</li>
+			{{else}}
 			<li role="presentation">
 				<a href="{{pathFor 'account'}}">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<h6>Me</h6>
+					<h6>Register</h6>
 				</a>
 			</li>
+
+			{{/if}}
+
+
+
+
+
+
 
 	          <!--  <li role="search bar">
 
