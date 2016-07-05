@@ -16,6 +16,14 @@
 			<br>
 		</div>
 	</div>
+	<div>
+    	{{> froalaReactive getFEContext}}
+    	{{> froalaReactive _onbeforeSave=onsave.before inlineMode=false _value=getText}}
+  	</div>
+  	 <div>          
+  	 	<a href="/editor/:_id"></a>
+        </div>
+      
 </template>
 
 <!-- <ul>

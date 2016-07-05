@@ -32,6 +32,9 @@ ejson@1.0.11
 email@1.0.12
 es5-shim@4.5.10
 fastclick@1.0.11
+fortawesome:fontawesome@4.4.0_1
+froala:editor@2.3.3
+froala:editor-reactive@2.3.3
 geojson-utils@1.0.8
 google@1.1.11
 hot-code-push@1.0.4
