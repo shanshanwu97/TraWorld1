@@ -7,6 +7,8 @@ Template.groupCampPost.helpers({
 
 Template.groupCampPost.events({
 	"click .js-submit": function(event){
+		console.log("Submitted!");
+
 		GroupCampTrips.insert({
 			author: $(".js-author").val(),
 			timestamp: new Date(),
@@ -14,13 +16,13 @@ Template.groupCampPost.events({
 			title: $(".js-title").val(),
 			description: $(".js-description").val(),
 
-			destination: $(".js-destination").val().toLowerCase(),
+			destination: $(".js-destination").val(), //.toLowerCase(),
 			from: $(".js-from").val(),
 			to: $(".js-to").val(),
 
 			travelers: [],
 			threshold: $(".js-threshold").val(),
-			conclusion: $(".js-conclusion").val()
+			cost: $(".js-cost").val()
 		});
 	}
 })

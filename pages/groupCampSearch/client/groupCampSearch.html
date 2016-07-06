@@ -10,20 +10,40 @@
 
      {{#each trip in Trips}}
           <div class="row bg-danger">
-               <div class="col-md-9">
+               <div class="col-md-10">
                     <h3>{{trip.title}}</h3>
                     <em>{{trip.description}}</em>
                </div>
 
-               <div class="col-md-3">
+               <div class="col-md-2">
                     <button class = "btn-sm btn-danger btn-block">
                          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                          Add Me!
                     </button>
-                    <h6>
-                         <em>@{{trip.createdBy}}</em> on {{trip.dateCreated}}   <br>
-                         In <em>{{trip.destination}}</em> from <em>{{trip.depart}}</em> to <em>{{trip.arrival}}</em>
-                    </h6>
+                    <small>
+                         {{#if trip.destination}}
+                              In <em>{{trip.destination}}</em>
+                         {{/if}}
+
+                         {{#if trip.from}}
+                              from <em>{{trip.from}}</em>
+                         {{/if}}
+
+
+                         {{#if trip.to}}
+                              to <em>{{trip.to}}</em>
+                         {{/if}}
+
+                         <br><br>
+
+                         {{#if trip.author}}
+                              <em>@{{trip.author}}</em>
+                         {{/if}}
+
+                         {{#if trip.timestamp}}
+                              on <em>{{trip.timestamp}}</em>
+                         {{/if}}
+                    </small>
 
                </div>
           </div> <br><br>
