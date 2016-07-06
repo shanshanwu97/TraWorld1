@@ -30,37 +30,3 @@ Template.home.events({
 		
 	}
 })
-// Tempplate.home.helpers({
-// 	resultsdata: function(){return Dest}
-// })
-Template.home.onCreated(function(){
-	this.state= new ReactiveDict();
-	this.state.setDefault({
-		color:"bg-info",
-		counter: 0,
-
-	});
-	console.log("creating the template");
-	console.dir(this.state);
-});
-Template.home.helpers({
-	theColor: function(){
-		const instance = Template.instance();
-		return instance.state.get("color");
-	},
-	theCounter: function(){
-		const instance= Template.instance();
-		return instance.state.get("counter");
-	}
-})
-Template.home.events({
-	"change .js-color": function(event, instance){
-		console.log($(".js-color").val());
-		const newColor= instance.$(".js-color").val();
-		instance.state.set("color", newColor);
-	},
-	"click .js-pusher":function(event, instance){
-		const newCounter=instance.state.get("counter");
-		instance.state.set("counter", newCounter+1);
-	},
-})
