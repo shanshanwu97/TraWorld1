@@ -26,3 +26,6 @@ accounts-google
 ian:accounts-ui-bootstrap-3
 session
 reactive-dict
+dburles:google-maps
+mdg:geolocation
+froala:editor-reactive

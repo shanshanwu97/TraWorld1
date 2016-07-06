@@ -2,6 +2,7 @@
 	<div class="container">
 		<ul class="nav nav-tabs nav-justified">
 
+
 			<!-- LOGO -->
 	        	<li>
 	          	<img src="images/logo.png" width="150%" >
@@ -16,7 +17,7 @@
 	          </li>
 
 		    <!-- PAST ITINERARY SEARCH RESULTS-->
-		     <li role="presentation" title="Past Trip Itineraries">
+		     <li role="presentation">
 				<a href="{{pathFor 'itdisplay'}}">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 				</a>
@@ -58,26 +59,17 @@
 	          </li>
 
 			<!-- LOG IN (Add href) -->
-			<li>
-				<a href="" title="Me">
+			<li role="presentation">
+				<a href="{{pathFor 'account'}}">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				</a>
 			</li>
 
-	          <!--  <li role="search bar">
-
-	          <div class="input-group">
-	              <input type="text" class="form-control" placeholder="I want to go to....">
-	                <span class="input-group-btn">
-	                  <button class="btn btn-info js-go" type="button">Go!</button>
-	                </span>
-
-
-			<br>
-  			<li role= "presentation">
-				<span class="glyphicon glyphicon-user" aria-hidden="true">{{> loginButtons}}</span>
-  			</li>
-			</li> -->
+	          <li role="search bar">
+	  			<li role= "presentation">
+					<span class="glyphicon glyphicon-user" aria-hidden="true">{{> loginButtons}}</span>
+	  			</li>
+			</li>
 		</ul>
 
 	{{> yield}}
