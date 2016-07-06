@@ -1,3 +1,31 @@
 <template name="groupCampSearch">
-     <h1>GROUP CAMP SEARCH ...</h1>
+     <div class="page-header">
+		<h1>
+			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
+			Group Camp
+		</h1>
+	</div>
+
+	<h3>Find a Group Camp trip!</h3> <br>
+
+     {{#each trip in Trips}}
+          <div class="row bg-danger">
+               <div class="col-md-9">
+                    <h3>{{trip.title}}</h3>
+                    <em>{{trip.description}}</em>
+               </div>
+
+               <div class="col-md-3">
+                    <button class = "btn-sm btn-danger btn-block">
+                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                         Add Me!
+                    </button>
+                    <h6>
+                         <em>@{{trip.createdBy}}</em> on {{trip.dateCreated}}   <br>
+                         In <em>{{trip.destination}}</em> from <em>{{trip.depart}}</em> to <em>{{trip.arrival}}</em>
+                    </h6>
+
+               </div>
+          </div> <br><br>
+     {{/each}}
 </template>
