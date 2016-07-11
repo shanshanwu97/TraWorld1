@@ -11,8 +11,7 @@
 			<!-- HOME -->
 	  		<li role="presentation" title="Home">
 		          <a href="{{pathFor 'home'}}">
-		          	<span class="glyphicon glyphicon-home" aria-hidden="true">
-					</span>
+		          	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 		          </a>
 	          </li>
 
@@ -58,18 +57,8 @@
 				</a>
 	          </li>
 
-			<!-- LOG IN (Add href) -->
-			<li role="presentation">
-				<a href="{{pathFor 'account'}}">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-				</a>
-			</li>
 
-	          <li role="search bar">
-	  			<li role= "presentation">
-					<span class="glyphicon glyphicon-user" aria-hidden="true">{{> loginButtons}}</span>
-	  			</li>
-			</li>
+	          {{> loginButtons}}
 		</ul>
 
 	{{> yield}}
