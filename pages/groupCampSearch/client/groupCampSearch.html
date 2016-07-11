@@ -34,6 +34,10 @@
                               to <em>{{trip.to}}</em>
                          {{/if}}
 
+                         {{#if trip.cost}}
+                              for <em>${{trip.cost}}</em>
+                         {{/if}}
+
                          <br><br>
 
                          {{#if trip.author}}
@@ -43,9 +47,49 @@
                          {{#if trip.timestamp}}
                               on <em>{{trip.timestamp}}</em>
                          {{/if}}
+
+                         <br><br>
+
+                         <p class="text-right">
+                              <a href="/GroupCampDetails/{{trip._id}}">
+                                   <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+                              </a>
+                         </p>
                     </small>
 
                </div>
           </div> <br><br>
      {{/each}}
+</template>
+
+<template name="GroupCampDetails">
+     <div class="page-header">
+          <h1>{{title}}</h1>
+     </div>
+
+     <h2><small><em>{{description}}</em></small></h2>
+     <br><br>
+
+     {{#if destination}}
+          In <em>{{destination}}</em>
+     {{/if}}
+
+     {{#if from}}
+          from <em>{{from}}</em>
+     {{/if}}
+
+
+     {{#if to}}
+          to <em>{{to}}</em>
+     {{/if}}
+
+     <br><br>
+
+     {{#if author}}
+          <em>@{{author}}</em>
+     {{/if}}
+
+     {{#if timestamp}}
+          on <em>{{timestamp}}</em>
+     {{/if}}
 </template>
