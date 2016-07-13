@@ -39,20 +39,34 @@ Template.searchresults.events({
 		instance.state.set("budget", refineResult);
 		Session.set("budget", refineResult);
 	},
+		"click .js-addfav ":function(event){
+		console.log("clicked on the +"); //debug
+		console.dir(this);
+		window.alert("Added to favorite!");
+		var blog= Trips.findOne({_id: this.fav._id});
+		console.dir(blog);
+		const fav =
+		{user: Meteor.userId(),
+		addedAt: new Date(),
+		favadded: blog
+		}
+		Meteor.call("addFav", fav);
+		//Comments.remove(this.comment._id);  //callback->this <--removes object created
+	},
 
 })
 Template.searchresults.helpers({
 	// searchdata: function(){return DestSearched.find({}, {sort:{searches:-1}});},
 	resultData: function(){
 		let loc = Session.get("results");
+		console.log(loc);
 		var bud= Session.get("budget");
 		if (Session.get("budget")=="Show All"){
-		return Trips.find({destination: loc},{sort:{datecreated: -1}});
-		console.log("show all");
+		return Trips.find({destination: {$elemMatch:{value:loc}}},{sort:{datecreated: -1}});
 	}else if(Session.get("budget")=="Over $5000"){
-		return Trips.find({$and: [{destination: loc},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
+		return Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
 	}else{
-		return Trips.find({$and: [{destination: loc},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
+		return Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
 	}
 	},
 })
