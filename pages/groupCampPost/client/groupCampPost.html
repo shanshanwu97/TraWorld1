@@ -3,17 +3,18 @@
 		<h1>
 			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
 			Group Camp
+			<small>Design Your Trip</small>
 		</h1>
 	</div>
 
-	<h3>Design your Group Camp trip!</h3> <br>
+
 
 	<form>
 
 		<!-- TITLE -->
 		<label>Title</label>
 		<div class="input-group">
-			<div class="input-group-addon"><span class="glyphicon glyphicon-star" aria-hidden="true"></span></div>
+			<div class="input-group-addon"><span class="glyphicon glyphicon-tent" aria-hidden="true"></span></div>
 			<input type="text" class="js-title form-control" placeholder="Name of Group Camp Trip">
 		</div>	<br>
 
@@ -73,7 +74,26 @@
 
           <!-- DESCRIPTION -->
 	 	<label>Description</label>
-		<textarea class="js-description form-control" rows=5></textarea>		<br><br>
+		<textarea class="js-description form-control" rows=2></textarea>		<br>
+
+		<div class="row">
+			<div class="col-md-6">
+				<!-- LINK -->
+				<label>Link <small>URL</small></label>
+				<div class="input-group">
+		               <div class="input-group-addon"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></div>
+		               <input type="text" class="js-link form-control">
+		          </div>
+			</div>
+			<div class="col-md-6">
+				<!-- Picture -->
+				<label>Picture <small>URL</small></label>
+				<div class="input-group">
+		               <div class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
+		               <input type="text" class="js-picture form-control">
+		          </div>
+			</div>
+		</div>	<br><br>
 
 	     <button class="js-submit btn btn-danger form-control">Submit</button> <br>
 	</form>
