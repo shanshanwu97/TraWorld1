@@ -21,7 +21,8 @@ Template.signup.events({
       password: p
     }, function(error) {
       if(error) { // if registration fails
-        console.log(error.reason); // console log reason
+        console.log(error.reason);
+        window.alert(error.reason); // console log reason
         return;
       } else {
         Router.go('/'); // else go to feed page
