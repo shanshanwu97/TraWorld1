@@ -3,4 +3,7 @@ Template.groupCampSearch.helpers({
           return GroupCampTrips.find({});
      },
 
+     getTravelerCount: function(){
+          return 0;
+     }
 })
