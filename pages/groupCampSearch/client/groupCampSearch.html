@@ -93,4 +93,16 @@
      {{#if timestamp}}
           on <em>{{timestamp}}</em>
      {{/if}}
+
+     {{#if link}}
+          <br><br>
+          <a href={{link}}>Click Here</a> for more.
+     {{/if}}
+
+     {{#if picture}}
+          <br><br><br>
+          <p class="text-center">
+               <img src={{picture}}>
+          </p>
+     {{/if}}
 </template>

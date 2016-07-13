@@ -22,7 +22,10 @@ Template.groupCampPost.events({
 
 			travelers: [],
 			threshold: $(".js-threshold").val(),
-			cost: $(".js-cost").val()
+			cost: $(".js-cost").val(),
+
+			link: $(".js-link").val(),
+			picture: $(".js-picture").val()
 		});
 	}
 })

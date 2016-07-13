@@ -25,7 +25,10 @@ Meteor.startup(function() {
 
 			travelers: [],
 			threshold: 35,
-			cost: "2,500"
+			cost: "2,500",
+
+               link: "http://www.gohawaii.com/en/",
+               picture: "https://aos.iacpublishinglabs.com/question/aq/700px-394px/hawaii-known_2209a286881fab48.jpg?domain=cx.aos.ask.com"
           });
 
           GroupCampTrips.insert({
@@ -41,7 +44,10 @@ Meteor.startup(function() {
 
 			travelers: [],
 			threshold: 20,
-			cost: "5,000"
+			cost: "5,000",
+
+               link: "http://www.valthorens.com/en/home-page.1.html",
+               picture: "http://www.ski-i.com/pub/img/resort/66/glisse_b_longo_ot_val_thorens_6_default.18703.jpg"
           });
 
           GroupCampTrips.insert({
@@ -57,7 +63,9 @@ Meteor.startup(function() {
 
 			travelers: [],
 			threshold: 25,
-			cost: "50"
+			cost: "50",
+
+               picture: "http://vermontfurnitureblog.com/wp-content/uploads/2014/08/Vermont-Wood-Man.jpg"
           });
 
      }
