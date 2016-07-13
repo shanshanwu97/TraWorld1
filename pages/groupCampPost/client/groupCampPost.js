@@ -14,6 +14,7 @@ Template.groupCampPost.events({
 			timestamp: new Date(),
 
 			title: $(".js-title").val(),
+			message: $(".js-message").val(),
 			description: $(".js-description").val(),
 
 			destination: $(".js-destination").val(), //.toLowerCase(),
