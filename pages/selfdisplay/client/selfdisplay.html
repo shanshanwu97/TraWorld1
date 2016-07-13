@@ -1,0 +1,18 @@
+<template name="selfdisplay">
+	<div class= "container">
+		<input class="your-upload-class" type="file">
+ 			 <table class="table table-condensed">
+        <tbody>
+        {{#each theFiles}}
+        <tr>
+    <td>{{uploadedAt}}</td><td>{{original.name}}</td><td><a
+ href="{{url}}">link</a></td><td>{{#if 
+isUploaded}}uploaded{{/if}}</td><td><button 
+id="deleteFileButton">delete</button></td>
+        </tr>
+        {{/each}}
+        </tbody>
+      </table>
+
+	</div>
+</template>

@@ -29,3 +29,8 @@ reactive-dict
 dburles:google-maps
 mdg:geolocation
 froala:editor-reactive
+http
+underscore
+less
+cfs:standard-packages
+cfs:filesystem
