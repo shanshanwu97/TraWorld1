@@ -1,10 +1,10 @@
 <template name="searchresults">
-  
+	<div class= "container">
   <h1>Search Results</h1>
   <div class={{refineSearch}}>
     Budget:
     <select class="js-refine">
-      <option>Show All</option>
+      <option selected="selected">Show All</option>
       <option>Under $500</option>
       <option>Under $1000</option>
       <option>Under $2000</option>
@@ -16,16 +16,25 @@
   </div>
   <ul>
     {{#each r in resultData}}
-    <li>
-    <div class="panel panel-success">
-      <div class="panel-body">
-          <a href="/showsearch/{{r._id}}"><h3>{{r.title}}</h3></a>
-        </div>
-         <div class="panel-footer">by {{r.createdBy}} on {{r.datecreated}}
+      <li>
+        <div class="panel panel-success">
+         {{> addFav fav=r}}
          </div>
-      </div>
-    </li>
-    
+  </li>
     {{/each}}
   </ul>
-  </template>
+</div>
+</template>
+<template name="addFav">
+  <div name="container-fluid">
+  <div class="panel-body">
+        <div>
+          <a href="/showsearch/{{fav._id}}"><h3>{{fav.title}}</h3></a>
+          <p align="right"><span class="js-addfav glyphicon glyphicon-heart-empty" aria-hidden="true"></span>Add to Favorite</p>
+        </div>
+      </div>
+      <div class="panel-footer">by <a href="/showuser/{{fav.createdBy}}">{{fav.username}} </a>on {{fav.datecreated}}
+      </div>
+    </div>
+    
+</template>
