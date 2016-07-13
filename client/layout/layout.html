@@ -1,6 +1,9 @@
 <template name="layout">
 	<div class="container">
-		<ul class="nav nav-tabs nav-justified">
+
+		<h1 class="text-center text-danger">TraWorld</h1>
+		{{#if currentUser}}
+		<ul class="nav nav-justified">
 
 
 			<!-- LOGO -->
@@ -17,13 +20,6 @@
 	          </li>
 
 		    <!-- PAST ITINERARY SEARCH RESULTS-->
-		     <!-- <li role="presentation">
-				<a href="{{pathFor 'itdisplay'}}">
-					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
-					<h6>Past Trips</h6>
-				</a>
-			</li> -->
-
 			<!-- PAST ITINERARY POST -->
 	          <li role="presentation">
 	     		<a href="{{pathFor 'itineraries'}}">
@@ -70,46 +66,31 @@
 				</a>
 	          </li>
 
+						<li role="presentation">
+							<a href="#" class="logout">
+								<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+								<h6>Logout</h6>
+							</a>
+						</li>
+					</ul>
 
-			{{#if currentUser}}
-			<li role="presentation">
-				<a href="#" class="logout">
-					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<h6>Logout</h6>
-				</a>
-			</li>
 			{{else}}
-			<li role="presentation">
-				<a href="{{pathFor 'account'}}">
+			  <ul class="nav nav-tabs">
+					<li  class="pull-right" role="presentation">
+						<a href="{{pathFor 'login'}}">
+							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							<h6>Sign in</h6>
+						</a>
+					</li>
+			<li  class="pull-right" role="presentation">
+				<a href="{{pathFor 'signup'}}">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-					<h6>Register</h6>
+					<h6>Sign up</h6>
 				</a>
 			</li>
+		</ul>
 
 			{{/if}}
-
-
-
-
-
-
-
-	          <!--  <li role="search bar">
-
-	          <div class="input-group">
-	              <input type="text" class="form-control" placeholder="I want to go to....">
-	                <span class="input-group-btn">
-	                  <button class="btn btn-info js-go" type="button">Go!</button>
-	                </span>
-
-
-			<br>
->>>>>>> a6a5df51bde3bc382d10541b1fe852368c392678
-  			<li role= "presentation">
-				<span class="glyphicon glyphicon-user" aria-hidden="true">{{> loginButtons}}</span>
-  			</li>
-			</li> -->
-		</ul>
 
 	{{> yield}}
 
