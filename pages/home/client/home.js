@@ -10,7 +10,7 @@ Template.home.events({
 	"click .js-gogo": function(event){
 		event.preventDefault();
 		const destination=$(".js-loca").val().toLowerCase();
-		
+
 		Router.go('searchresults');
 		Session.set("results", destination);
 		// Meteor.call("search", destination);
@@ -21,12 +21,14 @@ Template.home.events({
 			searches: 1
 			}
 			DestSearched.insert(search_obj);
-			
+
 		}else{
 			console.dir("Destination search incremented");
 			DestSearched.update({_id:DestSearched.findOne({location:destination})._id},{$inc:{searches: 1}});
 		}
-		
-		
-	}
+
+
+	},
+
+
 })
