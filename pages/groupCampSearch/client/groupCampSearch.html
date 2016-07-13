@@ -11,12 +11,12 @@
 
      {{#each trip in Trips}}
           <div class="row bg-danger">
-               <div class="col-md-7">
+               <div class="col-md-6">
                     <h1>{{trip.title}}</h1>
                     <em>{{trip.message}}</em>
                </div>
 
-               <div class="col-md-2">
+               <div class="col-md-3">
                     <img src={{trip.picture}} class="img-thumbnail">
                </div>
 
@@ -43,19 +43,18 @@
                               for <em>${{trip.cost}}</em>
                          {{/if}}
 
-                         <br><br>
-
                          {{#if trip.author}}
-                              <em>@{{trip.author}}</em>
+                              by <em>{{trip.author}}</em>
                          {{/if}}
 
-                         {{#if trip.timestamp}}
-                              on <em>{{trip.timestamp}}</em>
-                         {{/if}}
-
-                         <br><br>
+                         .
 
                          <p class="text-right">
+                              <small>
+                                   {{#if trip.threshold}}
+                                        {{getTravelerCount}} / {{trip.threshold}}
+                                   {{/if}}
+                              </small> &nbsp;
                               <a href="/GroupCampDetails/{{trip._id}}">
                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                               </a>
