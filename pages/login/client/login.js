@@ -9,6 +9,7 @@ Template.login.events({
     if(error) {
       event.preventDefault();
       console.log(error.reason);
+      window.alert(error.reason);
       return;
     } else {
       Router.go("/");
