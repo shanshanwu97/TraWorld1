@@ -1,0 +1,72 @@
+<template name="groupCampPost">
+	<div class="page-header">
+		<h1>
+			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
+			Group Camp
+		</h1>
+	</div>
+
+	<h3>Design your Group Camp trip!</h3> <br>
+
+	<form>
+          <!-- Author -->
+	 	<fieldset class="form-group">
+	   		<label for="userid">User ID</label>
+	    	     <input class="form-control js-author" placeholder="Enter UserID">
+	  	</fieldset>
+
+          <!-- TITLE -->
+	  	<fieldset class="form-group">
+     	    	<label for="title">Title</label>
+     	    	<input class="form-control js-title">
+	  	</fieldset>
+
+          <!-- DESTINATION -->
+	  	<fieldset class="form-group">
+     	    	<label for="destination">Destination</label>
+     	    	<input type="destination" class="form-control js-destination">
+            	<button type="button" class="btn btn-default addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span>Add Additional Destinations<i class="fa fa-plus"></i></button>
+	  	</fieldset>
+
+          <!-- FROM -->
+	  	<fieldset class="form-group">
+     	    	<label for="depart">Departure Date</label>
+     	    	<input type="departure" class="form-control js-from"  placeholder="mm/dd/yyyy">
+	  	</fieldset>
+
+		<!-- To -->
+	  	<fieldset class="form-group">
+	   		<label for="arrival">Arrival Date</label>
+	    	     <input type="arrival" class="form-control js-to"  placeholder="mm/dd/yyyy">
+	 	</fieldset>
+
+          <!-- THRESHOLD -->
+	  	<fieldset class="form-group">
+     	    	<label for="travellers">Minimum Group Size</label>
+     	    	<input type="travel" class="form-control js-threshold"  placeholder="Enter in digits">
+	  	</fieldset>
+
+          <!-- COST -->
+	  	<fieldset class="form-group">
+     	    	<label for="expense">Approximate Expense</label>
+     	    	<input type="expense" class="form-control js-cost"  placeholder="ex. $500 - (includes airfare, transportaion, food, lodging,etc)">
+	  	</fieldset>
+
+          <!-- DESCRIPTION -->
+	 	<fieldset class="form-group">
+     	    	<label for="description">Description</label>
+     	    	<textarea class="form-control js-description" id="exampleTextarea" rows="3"></textarea>
+	  	</fieldset>
+
+          <!-- ATTACHMENTS -->
+	  	<fieldset class="form-group">
+     	    	<label for="exampleInputFile">Insert Image/File</label>
+     	    	<input type="file" class="form-control-file" id="exampleInputFile"><small class="text-muted">File size must not exceed 5MB.</small><br>
+     	    	<label for="description">Add Description for the File</label>
+     	    	<textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
+     	            <button type="button" class="btn btn-default addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Additional Files<i class="fa fa-plus"></i></button>
+	 	 </fieldset>
+
+	     <button class="js-submit btn btn-danger form-control">Submit</button> <br>
+	</form>
+</template>
