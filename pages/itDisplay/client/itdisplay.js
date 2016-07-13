@@ -1,4 +1,5 @@
 Template.itdisplay.helpers({
+<<<<<<< HEAD
 	
 	trips:function(){
 	 return Session.get("userinput");
@@ -33,5 +34,10 @@ Template.itdisplay.helpers({
       },
     }
   },
+=======
+	trips:function(){
+	 return Session.get("userinput");
+	}
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 
 })
