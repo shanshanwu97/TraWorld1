@@ -11,12 +11,16 @@
 
      {{#each trip in Trips}}
           <div class="row bg-danger">
-               <div class="col-md-10">
+               <div class="col-md-7">
                     <h1>{{trip.title}}</h1>
                     <em>{{trip.description}}</em>
                </div>
 
                <div class="col-md-2">
+                    <img src={{trip.picture}} class="img-thumbnail">
+               </div>
+
+               <div class="col-md-3">
                     <button class = "btn-sm btn-danger btn-block">
                          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                          Add Me!
@@ -62,6 +66,7 @@
           </div> <br><br>
      {{/each}}
 </template>
+
 
 <template name="GroupCampDetails">
      <div class="page-header">
