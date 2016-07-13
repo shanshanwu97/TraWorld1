@@ -3,6 +3,10 @@
 		<h1>
 			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
 			Group Camp
+<<<<<<< HEAD
+=======
+               <small>Find Your Trip</small>
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 		</h1>
 	</div>
 
@@ -10,12 +14,25 @@
 
      {{#each trip in Trips}}
           <div class="row bg-danger">
+<<<<<<< HEAD
                <div class="col-md-10">
                     <h3>{{trip.title}}</h3>
                     <em>{{trip.description}}</em>
                </div>
 
                <div class="col-md-2">
+=======
+               <div class="col-md-6">
+                    <h1>{{trip.title}}</h1>
+                    <em>{{trip.message}}</em>
+               </div>
+
+               <div class="col-md-3">
+                    <img src={{trip.picture}} class="img-thumbnail">
+               </div>
+
+               <div class="col-md-3">
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
                     <button class = "btn-sm btn-danger btn-block">
                          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                          Add Me!
@@ -38,6 +55,7 @@
                               for <em>${{trip.cost}}</em>
                          {{/if}}
 
+<<<<<<< HEAD
                          <br><br>
 
                          {{#if trip.author}}
@@ -51,6 +69,20 @@
                          <br><br>
 
                          <p class="text-right">
+=======
+                         {{#if trip.author}}
+                              by <em>{{trip.author}}</em>
+                         {{/if}}
+
+                         .
+
+                         <p class="text-right">
+                              <small>
+                                   {{#if trip.threshold}}
+                                        {{getTravelerCount}} / {{trip.threshold}}
+                                   {{/if}}
+                              </small> &nbsp;
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
                               <a href="/GroupCampDetails/{{trip._id}}">
                                    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
                               </a>
@@ -62,12 +94,25 @@
      {{/each}}
 </template>
 
+<<<<<<< HEAD
 <template name="GroupCampDetails">
      <div class="page-header">
           <h1>{{title}}</h1>
      </div>
 
      <h2><small><em>{{description}}</em></small></h2>
+=======
+
+<template name="GroupCampDetails">
+     <div class="page-header">
+          <h1>
+               {{title}} <br>
+               <small>{{message}}</small>
+          </h1>
+     </div>
+
+     <em>{{description}}</em>
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
      <br><br>
 
      {{#if destination}}
@@ -92,4 +137,19 @@
      {{#if timestamp}}
           on <em>{{timestamp}}</em>
      {{/if}}
+<<<<<<< HEAD
+=======
+
+     {{#if link}}
+          <br><br>
+          <a href={{link}}>Click Here</a> for more.
+     {{/if}}
+
+     {{#if picture}}
+          <br><br><br>
+          <p class="text-center">
+               <img src={{picture}}>
+          </p>
+     {{/if}}
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 </template>
