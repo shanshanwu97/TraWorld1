@@ -7,21 +7,22 @@ Template.groupCampPost.helpers({
 
 Template.groupCampPost.events({
 	"click .js-submit": function(event){
-		console.log("hey u clicked");
-		const name = $(".js-name").val();
-		const dest = $(".js-desti").val().toLowerCase();
-		const arrive = $(".js-arrive").val();
-		const depart = $(".js-depart").val();
-		const min = $(".js-min").val();
-		const expenses = $(".js-ex").val();
-		const desc= $(".js-descript").val();
-		const titleOf=$(".js-title").val();
-		const trip=
-		{createdBy:name, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, minGroupSize: min, expenses: expenses, description: desc
+		console.log("Submitted!");
 
-		}
-		console.dir(trip);
-		GroupCampTrips.insert(trip);
+		GroupCampTrips.insert({
+			author: $(".js-author").val(),
+			timestamp: new Date(),
 
+			title: $(".js-title").val(),
+			description: $(".js-description").val(),
+
+			destination: $(".js-destination").val(), //.toLowerCase(),
+			from: $(".js-from").val(),
+			to: $(".js-to").val(),
+
+			travelers: [],
+			threshold: $(".js-threshold").val(),
+			cost: $(".js-cost").val()
+		});
 	}
 })
