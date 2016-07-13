@@ -1,0 +1,96 @@
+<template name="userprofiles">
+	<div class="container">
+		<div class="page-header">
+			<h1>My Profile</h1>
+		</div>
+		{{#if currentUser}}
+			{{#if profexist}}
+			<form>
+				Upload profile picture: <input class="your-upload-class" type="file">
+			 	<fieldset class="form-group">
+			   		<label for="firstname">Name:</label>
+			    	<input type="firstname" class="form-control js-name" id="prof" placeholder ="First Name, Last Name">
+			  	</fieldset>
+			  	<fieldset class="form-group">
+			    	<label for="email">Email: </label>
+			    	<input type="email" class="form-control js-email" id="profem">
+			  	</fieldset>
+			  	<fieldset class="form-group">
+			   		<label for="location">Current Location:</label>
+			    	<input type="location" class="form-control js-loc"  placeholder="city, state, country" id="profloc">
+			 	</fieldset>
+			  <button class="js-submitinfo btn btn-info" id="submitbut">Submit</button> 
+			</form>
+			{{else}}
+				{{> profiledisplay}}
+			{{/if}}
+		{{else}}
+		Please log in to create profile!
+		{{/if}}
+	</div>
+</template>
+<template name= "profiledisplay">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3 bg-info">
+		<div style="width:100%;  overflow:hidden">
+        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%"> </a>
+      </div>
+      <div>
+      <span class="js-changepic glyphicon glyphicon-pencil" aria-hidden="true"> </span>Change Profile Picture</div>
+		<h4>Name:</h4> {{profile.name}}<br>
+		<h4>Email:</h4> {{profile.email}} <br>
+		<h4>Location:</h4> {{profile.location}} <br>
+		 <button class="js-submitedit btn btn-info" >Edit Profile</button> 
+ 		<br>
+ 	</div>
+ 	<div class="col-md-8 bg-warning">
+ 		<h1> {{profile.name}}</h1>
+ 		<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <li role="presentation" class="active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    <li role="presentation"><a href="#fav" aria-controls="profile" role="tab" data-toggle="tab">Favorites</a></li>
+    <li role="presentation"><a href="#public" aria-controls="messages" role="tab" data-toggle="tab">Public Itineraries</a></li>
+    <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content">
+    <div role="tabpanel" class="tab-pane active" id="home">...</div>
+    <div role="tabpanel" class="tab-pane" id="profile">...</div>
+    <div role="tabpanel" class="tab-pane" id="messages">...</div>
+    <div role="tabpanel" class="tab-pane" id="settings">...</div>
+  </div>
+
+</div>
+
+
+ 	</div> 
+ </div>
+
+	</div>
+</template>
+<template name="editprofile">
+	<div class="container">
+		<div class="page-header">
+			<h1>Edit Profile</h1>
+		</div>
+		<form>
+			 	<fieldset class="form-group">
+			   		<label for="firstname">Name:</label>
+			    	<input type="firstname" class="form-control js-cname" id="prof" value="{{hi.name}}">
+			  	</fieldset>
+			  	<fieldset class="form-group">
+			    	<label for="email">Email: </label>
+			    	<input type="email" class="form-control js-cemail" id="profem" value="{{hi.email}}">
+			  	</fieldset>
+			  	<fieldset class="form-group">
+			   		<label for="location">Current Location:</label>
+			    	<input type="location" class="form-control js-cloc"  placeholder="city, state, country" id="profloc" value="{{hi.location}}">
+			 	</fieldset>
+			  <button class="js-submitin btn btn-info" id="submitbut">Submit</button> 
+			</form>
+	</div>
+</template>
