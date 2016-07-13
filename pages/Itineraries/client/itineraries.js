@@ -10,23 +10,42 @@ Template.itineraries.events({
 	"click .js-submit": function(event){
 		event.preventDefault();
 		console.log("hey u clicked");
+<<<<<<< HEAD
+		const name = $(".js-name").val();
+		const dest = $(".js-desti").val().toLowerCase();
+=======
 		const desti=$(".js-dest1").val().toLowerCase();
 		var dest = [{
 			uniqid:Math.floor(Math.random() * 100000),
 			value: desti}];
 		var dest2=Session.get("inputs");
 		dest= dest.concat(dest2);
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 		const arrive = $(".js-arrive").val();
 		const depart = $(".js-depart").val();
 		const amount = $(".js-trv").val();
 		if (!isNumeric($(".js-ex").val())){
 			alert("Please enter a valid number!");
+<<<<<<< HEAD
+=======
 		}else if (!($(".js-title").val())){
 			alert("Please enter a valid title!");
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 		}else{
 			const expenses = Number($(".js-ex").val());
 			const desc= $(".js-descript").val();
 			const titleOf=$(".js-title").val();
+<<<<<<< HEAD
+			const trip=
+			{createdBy:name, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, description: desc
+
+			}
+			Session.set("userinput",trip);
+			console.dir(trip);
+			Meteor.call("insertTrip", trip);
+			Router.go('itdisplay');
+
+=======
 			const username=Meteor.users.findOne({_id:Meteor.userId()},{fields:{userName:1}});
 			const ur=username&&username.userName;
 			const img=$(".js-img").val();
@@ -38,12 +57,16 @@ Template.itineraries.events({
 			Session.set("userinput",trip);
 			Meteor.call("insertTrip", trip);
 			Router.go('itdisplay');
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 		}
 	}
 
 })
 function isNumeric(n) {
   return !isNaN(parseFloat(n)) && isFinite(n);
+<<<<<<< HEAD
+}
+=======
 };
 //client only code
 Template.itineraries.onCreated(function() {
@@ -84,3 +107,4 @@ Template.input.events({
     console.log(Session.get('inputs'));
   }
 });
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986

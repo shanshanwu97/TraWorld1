@@ -39,6 +39,8 @@ Template.searchresults.events({
 		instance.state.set("budget", refineResult);
 		Session.set("budget", refineResult);
 	},
+<<<<<<< HEAD
+=======
 		"click .js-addfav ":function(event){
 		console.log("clicked on the +"); //debug
 		console.dir(this);
@@ -53,12 +55,26 @@ Template.searchresults.events({
 		Meteor.call("addFav", fav);
 		//Comments.remove(this.comment._id);  //callback->this <--removes object created
 	},
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 
 })
 Template.searchresults.helpers({
 	// searchdata: function(){return DestSearched.find({}, {sort:{searches:-1}});},
 	resultData: function(){
 		let loc = Session.get("results");
+<<<<<<< HEAD
+		var bud= Session.get("budget");
+		if (Session.get("budget")=="Show All"){
+		return Trips.find({destination: loc},{sort:{datecreated: -1}});
+		console.log("show all");
+	}else if(Session.get("budget")=="Over $5000"){
+		return Trips.find({$and: [{destination: loc},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
+	}else{
+		return Trips.find({$and: [{destination: loc},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
+	}
+	},
+})
+=======
 		console.log(loc);
 		var bud= Session.get("budget");
 		if (Session.get("budget")=="Show All"){
@@ -70,3 +86,4 @@ Template.searchresults.helpers({
 	}
 	},
 })
+>>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
