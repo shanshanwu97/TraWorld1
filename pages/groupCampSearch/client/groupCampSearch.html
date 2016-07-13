@@ -13,7 +13,7 @@
           <div class="row bg-danger">
                <div class="col-md-7">
                     <h1>{{trip.title}}</h1>
-                    <em>{{trip.description}}</em>
+                    <em>{{trip.message}}</em>
                </div>
 
                <div class="col-md-2">
@@ -70,10 +70,13 @@
 
 <template name="GroupCampDetails">
      <div class="page-header">
-          <h1>{{title}}</h1>
+          <h1>
+               {{title}} <br>
+               <small>{{message}}</small>
+          </h1>
      </div>
 
-     <h2><small><em>{{description}}</em></small></h2>
+     <em>{{description}}</em>
      <br><br>
 
      {{#if destination}}
