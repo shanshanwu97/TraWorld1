@@ -1,7 +1,6 @@
 Session.set("results", "0");
 Template.home.helpers({
 	searchdata: function(){return DestSearched.find({}, {sort:{searches:-1}});},
-<<<<<<< HEAD
 	// resultData: function(){
 	// 	let loc = Session.get("results");
 	// 	return Trips.find({destination: loc},{sort:{datecreated: -1}});
@@ -29,8 +28,7 @@ Template.home.events({
 		}
 		
 		
-	}
-=======
+	},
 	msg:function(){return Settings.findOne({user:Meteor.userId()})},
 	usersearch:function(){
 		//return Session.get("prefer");
@@ -57,5 +55,4 @@ Template.home.events({
 		Meteor.call("removefav",blog);  //callback->this <--removes object created
 	}
 
->>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 })

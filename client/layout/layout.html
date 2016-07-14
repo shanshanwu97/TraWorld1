@@ -24,11 +24,11 @@
 				</a>
 
 
-		          </a>
+		         
 	          </li>
 
 		    <!-- PAST ITINERARY SEARCH RESULTS-->
-		     <li role="presentation">
+		     <!-- <li role="presentation">
 				<a href="{{pathFor 'itdisplay'}}">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>
 				</a>
@@ -36,7 +36,7 @@
 
 				</a>
 
-	          </li>
+	          </li> -->
 
 		    <!-- NOT SUPPOSED TO APPEAR-->
 
@@ -62,13 +62,11 @@
 			<li role="presentation" title="Current Group Camps">
 				<a href="{{pathFor 'groupCampSearch'}}">
 
-					<span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-				</a>
+					
 
 					<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
 					<h6><small>Find Group Camps</small></h6>
 				</a>
-
 
 			</li>
 
@@ -76,13 +74,12 @@
 	 	     <li role="presentation" title="Design a New Group Camp">
 	 			<a href="{{pathFor 'groupCampPost'}}">
 
-					<span class="glyphicon glyphicon-fire" aria-hidden="true"></span> +
-				</a>
+
+				
 
 					<span class="glyphicon glyphicon-tent" aria-hidden="true"></span> +
 					<h6><small>Design a Group Camp</small></h6>
 				</a>
-
 
 	 	     </li>
 
@@ -109,28 +106,24 @@
 					<h6>Google Maps API</h6>
 				</a>
 	          </li>
-
-
-
-
-	          {{> loginButtons}}
-		</ul>
-
-
-			<!--
->>>>>>> b1bfe6c6a70d2b034114ba1867b36be7656b3090
-	           <li role="presentation">
+			<li role="presentation">
 	     		<a href="{{pathFor 'userprofiles'}}">
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 				</a>
 	          </li>
-
 			<li role="presentation">
 				<a href="#" class="logout">
 					<h6>Logout</h6>
 				</a>
 			</li>
-			-->
+			
+
+
+
+			
+	           
+
+			
 		</ul>
 
 
@@ -152,6 +145,7 @@
 		</ul>
 
 			{{/if}}
+		</ul>
 
 	{{> yield}}
 
