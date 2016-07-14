@@ -1,12 +1,11 @@
 <template name="itdisplay">
-<<<<<<< HEAD
+
 	
 	<div class="row">
 		<div class="col-md-12  col-md-offset-0  bg-info">
 			<h1>{{trips.title}}</h1>
 			<h4>{{trips.createdBy}}</h4>
 			<h3><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{trips.destination}}</h3>
-=======
 	<div class="container">
 	<div class="jumbotron" style="background-image: url({{trips.image}});  background-size: 100% 100%;"><br><br><br><br><br>
 	</div>
@@ -22,7 +21,6 @@
 				{{/each}}
 			</div>
 			</ul></h3>
->>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
 			<div class="panel panel-default">
   				<div class="panel-body">
     			<h4><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Arrival: {{trips.arrival}}</h4>
@@ -34,7 +32,7 @@
 			<br>
 		</div>
 	</div>
-<<<<<<< HEAD
+
 	<div>
     	{{> froalaReactive getFEContext}}
     	{{> froalaReactive _onbeforeSave=onsave.before inlineMode=false _value=getText}}
@@ -43,9 +41,9 @@
   	 	<a href="/editor/:_id"></a>
         </div>
       
-=======
+
 </div>
->>>>>>> d3d9a3f27f2615a71b2098f13b6d49b09c156986
+</div></div>
 </template>
 
 <!-- <ul>
