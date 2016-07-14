@@ -29,3 +29,6 @@ dburles:google-maps
 mdg:geolocation
 froala:editor-reactive
 accounts-password
+cfs:filesystem
+less
+cfs:standard-packages
