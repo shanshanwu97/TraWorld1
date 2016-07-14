@@ -21,6 +21,9 @@ autopublish             # Publish all data to the clients (for prototyping)
 insecure                # Allow all DB writes from clients (for prototyping)
 iron:router
 twbs:bootstrap
+
+accounts-password
+
 accounts-google
 ian:accounts-ui-bootstrap-3
 session
@@ -28,7 +31,10 @@ reactive-dict
 dburles:google-maps
 mdg:geolocation
 froala:editor-reactive
+
 accounts-password
+
 cfs:filesystem
 less
 cfs:standard-packages
+
