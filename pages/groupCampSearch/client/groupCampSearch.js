@@ -9,7 +9,7 @@ Template.groupCampSearch.helpers({
 
      getTags: function(trip) {
           return trip.tags.toString();
-     }
+     },
 });
 
 Template.GroupCampDetails.helpers({
