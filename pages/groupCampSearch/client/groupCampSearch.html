@@ -7,24 +7,34 @@
           </h1>
      </div>
 
-     <h3>Find a Group Camp trip!</h3> <br>
+     <form class="form-inline">
+          <div class="input-group">
+               <div class="input-group-addon"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
+               <input type="text" class="js-searchTag form-control" size="20">
+          </div>
+          &nbsp;&nbsp;
 
-     {{#each trip in Trips}}
+          <button class="js-searchTags form-control btn-danger">Search by Tag</button>
+          &nbsp;&nbsp;
+          <button class="js-seeAll form-control btn-danger">See All</button>
+     </form>
+
+     <br>
+
+     {{#each trip in getTrips}}
           <div class="row bg-danger">
                <div class="col-md-6">
                     <h1>{{trip.title}}</h1>
                     <em>{{trip.message}}</em>
 
-                    {{#if trip.tags}}
-                         <h6><small>
-                              <ul class="nav nav-pills">
-                                   {{#each tag in trip.tags}}
-                                        <li> • {{tag}} </li>
-                                   {{/each}}
-                                   <li> • </li>
-                              </ul>
-                         </small></h6>
-                    {{/if}}
+                    <h6><small>
+                         <ul class="nav nav-pills">
+                              {{#each tag in trip.tags}}
+                                   <li> • {{tag}} </li>
+                              {{/each}}
+                              <li> • </li>
+                         </ul>
+                    </small></h6>
 
                </div>
 
