@@ -15,7 +15,17 @@
                     <h1>{{trip.title}}</h1>
                     <em>{{trip.message}}</em>
 
-                    <h6><small>{{getTags trip}}</small></h6>
+                    {{#if trip.tags}}
+                         <h6><small>
+                              <ul class="nav nav-pills">
+                                   {{#each tag in trip.tags}}
+                                        <li> • {{tag}} </li>
+                                   {{/each}}
+                                   <li> • </li>
+                              </ul>
+                         </small></h6>
+                    {{/if}}
+
                </div>
 
                <div class="col-md-3">
