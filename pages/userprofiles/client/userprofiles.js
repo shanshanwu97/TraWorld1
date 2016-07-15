@@ -3,20 +3,14 @@ Template.profiledisplay.helpers({
 	profile:function(){
 		// const dest= $(".js-dest").val();
 		return UserProfiles.find();
+	},
+	propic:function(){
+		var user =UserProfiles.findOne({user:Meteor.userId()});
+		return user&&user.propic;
+
 	}
 })
 Template.userprofiles.events({
-	"click .js-submit": function(event){
-		event.preventDefault();
-		console.log("hey u clicked");
-		const msg = $(".js-greeting").val();
-		const pre = $(".js-prefer").val();
-		const setting=
-			{user:Meteor.userId(), greetingmsg:msg, preferloc:pre};			
-			Meteor.call("submitsettings", setting);
-
-		
-	},
 	"click .js-check": function(event){
 		event.preventDefault();
 		const urname=$(".js-username").val();
@@ -47,18 +41,37 @@ Template.userprofiles.events({
 	"click .js-submitinfo": function(event){
 		event.preventDefault();
 		console.log("hey u clicked");
-		const fname = $(".js-name").val();
-
-		const email = $(".js-email").val();
 		const loc = $(".js-loc").val();
-		const amount = $(".js-trv").val();
-		
+		var imgpath=Session.get("propic");
 			const prof=
-			{user:Meteor.userId(), name:fname, email:email, location:loc}; 
+			{user:Meteor.userId(), location:loc, propic:imgpath}; 
 			Meteor.call("insertProf", prof);
 			Router.go('profiledisplay');
 			
-	},
-	 
+},
+      'change .your-upload-class': function (event, template) {
+    console.log("uploading...")
+    FS.Utility.eachFile(event, function (file) {
+      console.log("each file...");
+      var yourFile = new FS.File(file);
+      yourFile.creatorId = Meteor.userId(); // todo
+      var imgfile=YourFileCollection.insert(yourFile, function (err, fileObj) {
+        console.log("callback for the insert, err: ", err);
+        if (!err) {
+          console.log("inserted without error");
+        }
+        else {
+          console.log("there was an error", err);
+        }
+        
+      });
+      Session.set("propic",imgfile);
+    });
+  }
+});
 
-})
+Template.userprofiles.helpers({
+  theFiles: function () {
+    return YourFileCollection.find();
+  }
+});

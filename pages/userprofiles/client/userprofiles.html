@@ -16,6 +16,9 @@
 			   		<label for="location">Current Location:</label>
 			    	<input type="location" class="form-control js-loc"  placeholder="city, state, country" id="profloc">
 			 	</fieldset>
+			 	<label for="location">Profile Picture:</label>
+			 	<input class="your-upload-class" type="file">
+
 			  <button class="js-submitinfo btn btn-info" id="submitbut">Submit</button> 
 
 			</form>
@@ -29,11 +32,20 @@
 		<div class="page-header">
 			<h1>My Profile</h1>
 		</div>
-		Name: {{profile.name}}<span class='glyphicon glyphicon-pencil js-editname' aria-hidden='true'></span><br>
-		Email: {{profile.email}} <span class='glyphicon glyphicon-pencil js-editemail' aria-hidden='true'></span><br>
+		<div class="row">
+			<div class= "col-md-3 bg-info">
+				<div class="imageView">
+      <div>
+        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" alt="" class="thumbnail" /></a>
+      </div>
+  </div>
+		Name: {{profile.name}}<br>
+		Email: {{profile.email}} <br>
 		Location: {{profile.location}} <span class='glyphicon glyphicon-pencil js-editloc' aria-hidden='true'></span><br>
 		 <button class="js-submitedit btn btn-info" >Submit</button> 
+		</div>
  		<br>
+ 	</div>
 
 	</div>
 </template>
