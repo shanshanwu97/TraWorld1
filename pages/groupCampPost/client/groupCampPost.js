@@ -10,6 +10,7 @@ Template.groupCampPost.events({
 
 		tags = $(".js-tags").val().split(",");
 		for (i = 0; i < tags.length; i++) 	{tags[i] = tags[i].trim();}
+		tags = tags.sort();
 
 		GroupCampTrips.insert({
 			author: $(".js-author").val(),
@@ -20,7 +21,7 @@ Template.groupCampPost.events({
 			description: $(".js-description").val(),
 			tags: tags,
 
-			destination: $(".js-destination").val(), //.toLowerCase(),
+			destination: $(".js-destination").val(),
 			from: $(".js-from").val(),
 			to: $(".js-to").val(),
 
