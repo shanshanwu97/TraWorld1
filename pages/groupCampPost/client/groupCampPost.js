@@ -1,13 +1,12 @@
 Template.groupCampPost.helpers({
 	trips:function(){
-		// const dest= $(".js-dest").val();
 		return GroupCampTrips.find();
 	}
 })
 
 Template.groupCampPost.events({
 	"click .js-submit": function(event){
-		console.log("Submitted!");
+		event.preventDefault();
 
 		tags = $(".js-tags").val().split(",");
 		for (i = 0; i < tags.length; i++) 	{tags[i] = tags[i].trim();}
@@ -32,5 +31,7 @@ Template.groupCampPost.events({
 			link: $(".js-link").val(),
 			picture: $(".js-picture").val()
 		});
+
+		Router.go("groupCampSearch");
 	}
 })
