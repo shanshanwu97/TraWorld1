@@ -61,8 +61,8 @@ Meteor.startup(function() {
 			timestamp: new Date(),
 
 			title: "Lost in the Woods",
-			description: "Strangers will bond, explore the deep dark woods, and engage in general camp realted activities.",
-			message: "Strangers will bond, explore the deep dark woods, and engage in general cmp realted activities.",
+			description: "Strangers will bond, explore the deep dark woods, and engage in general camp related activities.",
+			message: "Strangers will bond, explore the deep dark woods, and engage in general camp related activities.",
                tags: ["woods", "vermont", "camping"],
 
 
