@@ -19,6 +19,7 @@ Meteor.startup(function() {
 			title: "Trip to Hawaii",
 			description: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
 			message: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
+               tags: ["hawaii", "beach"],
 
 			destination: "Honalulu, Hawaii",
 			from: "June 01, 2016",
@@ -39,6 +40,7 @@ Meteor.startup(function() {
 			title: "Hit the Slopes!",
 			description: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure",
 			message: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure",
+               tags: ["france", "val thorens", "skiing", ],
 
 
 			destination: "Val Thorens, France",
@@ -59,10 +61,9 @@ Meteor.startup(function() {
 			timestamp: new Date(),
 
 			title: "Lost in the Woods",
-
-			description: "Strangers will bond, explore the deep dark woods, and engage in general cmp realted activities.",
-
+			description: "Strangers will bond, explore the deep dark woods, and engage in general camp realted activities.",
 			message: "Strangers will bond, explore the deep dark woods, and engage in general cmp realted activities.",
+               tags: ["woods", "vermont", "camping"],
 
 
 			destination: "Burlington, Vermont",
