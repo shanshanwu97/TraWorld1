@@ -1,7 +1,9 @@
 Template.groupCampPost.helpers({
 	trips:function(){
 		return GroupCampTrips.find();
-	}
+	},
+
+	getUserName: function() {return Meteor.user().userName;}
 })
 
 Template.groupCampPost.events({
@@ -13,7 +15,7 @@ Template.groupCampPost.events({
 		tags = tags.sort();
 
 		GroupCampTrips.insert({
-			author: $(".js-author").val(),
+			author: Meteor.user().userName,
 			timestamp: new Date(),
 
 			title: $(".js-title").val(),
