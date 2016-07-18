@@ -1,12 +1,13 @@
 
 Template.profiledisplay.helpers({
-	profile:function(){
+	pro:function(){
 		// const dest= $(".js-dest").val();
-		return UserProfiles.find();
+		return UserProfiles.findOne({user:Meteor.userId});
 	},
 	propic:function(){
 		var user =UserProfiles.findOne({user:Meteor.userId()});
-		return user&&user.propic;
+		const id= user&&user.propic&&user.propic._id
+		return YourFileCollection.findOne({_id:id});
 
 	}
 })
@@ -41,10 +42,10 @@ Template.userprofiles.events({
 	"click .js-submitinfo": function(event){
 		event.preventDefault();
 		console.log("hey u clicked");
-		const loc = $(".js-loc").val();
+		const loc = $(".js-locat").val();
 		var imgpath=Session.get("propic");
 			const prof=
-			{user:Meteor.userId(), location:loc, propic:imgpath}; 
+			{user:Meteor.userId(), loc:loc, propic:imgpath}; 
 			Meteor.call("insertProf", prof);
 			Router.go('profiledisplay');
 			

@@ -14,7 +14,7 @@
 	  			</fieldset>
 			  	<fieldset class="form-group">
 			   		<label for="location">Current Location:</label>
-			    	<input type="location" class="form-control js-loc"  placeholder="city, state, country" id="profloc">
+			    	<input type="location" class="form-control js-locat"  placeholder="city, state, country" id="profloc">
 			 	</fieldset>
 			 	<label for="location">Profile Picture:</label>
 			 	<input class="your-upload-class" type="file">
@@ -36,12 +36,12 @@
 			<div class= "col-md-3 bg-info">
 				<div class="imageView">
       <div>
-        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" alt="" class="thumbnail" /></a>
+        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%" alt=""></a>
       </div>
   </div>
 		Name: {{profile.name}}<br>
 		Email: {{profile.email}} <br>
-		Location: {{profile.location}} <span class='glyphicon glyphicon-pencil js-editloc' aria-hidden='true'></span><br>
+		Location: {{profile.location}} <br>
 		 <button class="js-submitedit btn btn-info" >Submit</button> 
 		</div>
  		<br>
