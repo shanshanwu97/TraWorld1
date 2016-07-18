@@ -1,42 +1,87 @@
-Template.groupCampSearch.onCreated(function() {
-     this.state = new ReactiveDict();
-     this.state.setDefault({"searchedTag": null});
-});
+// Group Camp Search
+     Template.groupCampSearch.onCreated(function() {
+          this.state = new ReactiveDict();
+          this.state.setDefault({"searchedTag": null});
+     });
+
+     Template.groupCampSearch.helpers({
+          getTrips: function(){
+               const instance = Template.instance();
+               console.log("searchedTag: " + instance.state.get("searchedTag"));
+               if (instance.state.get("searchedTag"))
+                    return GroupCampTrips.find({tags: instance.state.get("searchedTag")});
+               else
+                    return GroupCampTrips.find({});
+          }
+     });
+
+     Template.groupCampSearch.events({
+          "click .js-searchTags": function(event, instance) {
+               event.preventDefault();
+               searchedTag = $(".js-searchTag").val().toLowerCase().trim();
+               instance.state.set("searchedTag", searchedTag);
+          },
+
+          "click .js-seeAll": function(event, instance) {
+               event.preventDefault();
+               instance.state.set("searchedTag", null);
+          },
+     });
 
 
-Template.groupCampSearch.helpers({
-     getTrips: function(){
-          const instance = Template.instance();
-          console.log("searchedTag: " + instance.state.get("searchedTag"));
-          if (instance.state.get("searchedTag"))
-               return GroupCampTrips.find({tags: instance.state.get("searchedTag")});
-          else
-               return GroupCampTrips.find({});
-     },
+// Group Camp Listing
 
-     getTravelerCount: function(){
-          return 0;
-     },
-});
+     Template.GroupCampListing.onCreated(function() {
+          this.state = new ReactiveDict();
+          this.state.setDefault({"going": false});
+     });
+
+     Template.GroupCampListing.helpers({
+          amGoing: function(){
+               travelers = this.trip.travelers;
+               var index = travelers.indexOf(Meteor.user().userName);
+
+               if (Session.get("amGoing") == undefined) {
+                    return false;
+               }
+               else {
+                    return Session.get("amGoing");
+               }
+          },
+
+          getTravelerCount: function(){
+               travelers = this.travelers;
+               return 0;
+          }
+     });
+
+     Template.GroupCampListing.events({
+          "click .js-changeAmGoing": function() {
+               travelers = this.trip.travelers;
+               var index = travelers.indexOf(Meteor.user().userName);
+
+               if (index == -1) {
+                    travelers.push(Meteor.user().userName);
+                    console.log("added me");
+                    console.log(travelers.toString());
+
+                    Session.set("amGoing",true)
+               }
+               else {
+                    travelers.splice(index, 1);
+                    console.log("removed me");
+                    console.log(travelers.toString());
+
+                    Session.set("amGoing",false);
+               }
+          }
+     });
 
 
-Template.groupCampSearch.events({
-     "click .js-searchTags": function(event, instance) {
-          event.preventDefault();
-          searchedTag = $(".js-searchTag").val().toLowerCase().trim();
-          instance.state.set("searchedTag", searchedTag);
-     },
+// Group Camp Details
 
-     "click .js-seeAll": function(event, instance) {
-          event.preventDefault();
-          instance.state.set("searchedTag", null);
-     }
-});
-
-
-
-Template.GroupCampDetails.helpers({
-     getTags: function(trip) {
-          return tags.toString();
-     }
-});
+     Template.GroupCampDetails.helpers({
+          getTags: function(trip) {
+               return tags.toString();
+          }
+     });

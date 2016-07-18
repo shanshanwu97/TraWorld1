@@ -22,71 +22,88 @@
      <br>
 
      {{#each trip in getTrips}}
-          <div class="row bg-danger">
-               <div class="col-md-6">
-                    <a href="/GroupCampDetails/{{trip._id}}">
-                         <h1>{{trip.title}}</h1>
-                    </a>
+          {{> GroupCampListing trip = trip}}
+     {{/each}}
+</template>
 
-                    <em>{{trip.message}}</em>
 
-                    <h6><small>
-                         <ul class="nav nav-pills">
-                              {{#each tag in trip.tags}}
-                                   <li> • {{tag}} </li>
-                              {{/each}}
-                              <li> • </li>
-                         </ul>
-                    </small></h6>
 
-               </div>
+<template name="GroupCampListing">
+     <div class="row bg-danger">
+          <div class="col-md-6">
+               <a href="/GroupCampDetails/{{trip._id}}">
+                    <h1>{{trip.title}}</h1>
+               </a>
 
-               <div class="col-md-3">
-                    <img src={{trip.picture}} class="img-thumbnail">
-               </div>
+               <em>{{trip.message}}</em>
 
-               <div class="col-md-3">
-                    <button class = "btn-sm btn-danger btn-block">
+               <h6><small>
+                    <ul class="nav nav-pills">
+                         {{#each tag in trip.tags}}
+                              <li> • {{tag}} </li>
+                         {{/each}}
+                         <li> • </li>
+                    </ul>
+               </small></h6>
+
+          </div>
+
+          <div class="col-md-3">
+               <img src={{trip.picture}} class="img-thumbnail">
+          </div>
+
+          <div class="col-md-3">
+
+               {{#if amGoing}}
+                    <button class = "js-changeAmGoing btn-sm btn-danger btn-block">
+                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
+                         Remove Me!
+                    </button>
+               {{else}}
+                    <button class = "js-changeAmGoing btn-sm btn-warning btn-block">
                          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
                          Add Me!
                     </button>
-                    <small>
-                         {{#if trip.destination}}
-                              In <em>{{trip.destination}}</em>
-                         {{/if}}
-
-                         {{#if trip.from}}
-                              from <em>{{trip.from}}</em>
-                         {{/if}}
+               {{/if}}
 
 
-                         {{#if trip.to}}
-                              to <em>{{trip.to}}</em>
-                         {{/if}}
+               <small>
+                    {{#if trip.destination}}
+                         In <em>{{trip.destination}}</em>
+                    {{/if}}
 
-                         {{#if trip.cost}}
-                              for <em>${{trip.cost}}</em>
-                         {{/if}}
+                    {{#if trip.from}}
+                         from <em>{{trip.from}}</em>
+                    {{/if}}
 
-                         {{#if trip.author}}
-                              by <em>@{{trip.author}}</em>
-                         {{/if}}
 
-                         .
+                    {{#if trip.to}}
+                         to <em>{{trip.to}}</em>
+                    {{/if}}
 
-                         <p class="text-right">
-                              <small>
-                                   {{#if trip.threshold}}
-                                        {{getTravelerCount trip}} / {{trip.threshold}}
-                                   {{/if}}
-                              </small>
-                         </p>
-                    </small>
+                    {{#if trip.cost}}
+                         for <em>${{trip.cost}}</em>
+                    {{/if}}
 
-               </div>
-          </div> <br><br>
-     {{/each}}
+                    {{#if trip.author}}
+                         by <em>@{{trip.author}}</em>
+                    {{/if}}
+
+                    .
+
+                    <p class="text-right">
+                         <small>
+                              {{#if trip.threshold}}
+                                   {{getTravelerCount trip}} / {{trip.threshold}}
+                              {{/if}}
+                         </small>
+                    </p>
+               </small>
+
+          </div>
+     </div> <br><br>
 </template>
+
 
 
 <template name="GroupCampDetails">
