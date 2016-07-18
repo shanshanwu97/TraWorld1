@@ -61,12 +61,22 @@ Template.searchresults.helpers({
 		let loc = Session.get("results");
 		console.log(loc);
 		var bud= Session.get("budget");
+		var find="0";
 		if (Session.get("budget")=="Show All"){
-		return Trips.find({destination: {$elemMatch:{value:loc}}},{sort:{datecreated: -1}});
+		find= Trips.find({destination: {$elemMatch:{value:loc}}},{sort:{datecreated: -1}});
 	}else if(Session.get("budget")=="Over $5000"){
-		return Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
+		find= Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
 	}else{
-		return Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
+		find= Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
 	}
+		Session.set("numResults", find.count());
+		return find;
 	},
+	checkIt: function(){
+		if (Session.get("numResults")<=0){
+			return true;
+		}else{
+			return false;
+		}
+	}
 })

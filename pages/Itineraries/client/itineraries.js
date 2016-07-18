@@ -7,7 +7,7 @@ Template.itineraries.helpers({
 })
 
 Template.itineraries.events({
-	"click .js-submit": function(event){
+	"submit form": function(){
 		event.preventDefault();
 		console.log("hey u clicked");
 
