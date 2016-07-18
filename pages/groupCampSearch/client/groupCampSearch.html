@@ -54,17 +54,12 @@
 
           <div class="col-md-3">
 
-               {{#if amGoing}}
-                    <button class = "js-changeAmGoing btn-sm btn-danger btn-block">
+
+                    <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
                          <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                         Remove Me!
+                         <span class="amGoing-text-{{trip._id}}">Add Me!</span>
                     </button>
-               {{else}}
-                    <button class = "js-changeAmGoing btn-sm btn-warning btn-block">
-                         <span class="glyphicon glyphicon-fire" aria-hidden="true"></span>
-                         Add Me!
-                    </button>
-               {{/if}}
+
 
 
                <small>

@@ -65,14 +65,16 @@
                     console.log("added me");
                     console.log(travelers.toString());
 
-                    Session.set("amGoing",true)
+                    $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-danger');
+                    $('.amGoing-text-' + this.trip._id).html('Remove Me!');
                }
                else {
                     travelers.splice(index, 1);
                     console.log("removed me");
                     console.log(travelers.toString());
 
-                    Session.set("amGoing",false);
+                    $('.amGoing-color-' + this.trip._id).removeClass('btn-danger').addClass('btn-warning');
+                    $('.amGoing-text-' + this.trip._id).html('Add Me!');
                }
           }
      });
