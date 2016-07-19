@@ -7,6 +7,13 @@
           </h1>
      </div>
 
+     {{#if getUserName}}
+     {{else}}
+          <span class="label label-warning">
+               You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles"> User Profiles </a> page to select one.
+          </span>  <br><br>
+     {{/if}}
+
      <form class="form-inline">
           <div class="input-group">
                <div class="input-group-addon"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
@@ -37,14 +44,15 @@
 
                <em>{{trip.message}}</em>
 
-               <h6><small>
-                    <ul class="nav nav-pills">
-                         {{#each tag in trip.tags}}
-                              <li> • {{tag}} </li>
-                         {{/each}}
-                         <li> • </li>
-                    </ul>
-               </small></h6>
+               <h6>
+                    {{#each tag in trip.tags}}
+                         {{#if isSearchedTag tag}}
+                              <span class="label label-info">{{tag}}</span>
+                         {{else}}
+                              <span class="label label-default">{{tag}}</span>
+                         {{/if}}
+                    {{/each}}
+               </h6>
 
           </div>
 
@@ -54,10 +62,20 @@
 
           <div class="col-md-3">
 
-
-                    <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
-                         <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                    </button>
+               {{#if getUserName}}
+                    {{#if isMine}}
+                    {{else}}
+                         {{#if amGoing}}
+                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-danger btn-block">
+                                   <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                              </button>
+                         {{else}}
+                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
+                                   <span class="amGoing-text-{{trip._id}}">Add Me!</span>
+                              </button>
+                         {{/if}}
+                    {{/if}}
+               {{/if}}
 
 
 
@@ -80,7 +98,12 @@
                     {{/if}}
 
                     {{#if trip.author}}
-                         by <em>@{{trip.author}}</em>
+                         by
+                         {{#if isMine}}
+                              <span class="label label-primary">Me</span>
+                         {{else}}
+                              <span class="label label-info">{{trip.author}}</span>
+                         {{/if}}
                     {{/if}}
 
                     .

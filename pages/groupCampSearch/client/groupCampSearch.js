@@ -1,30 +1,25 @@
 // Group Camp Search
-     Template.groupCampSearch.onCreated(function() {
-          this.state = new ReactiveDict();
-          this.state.setDefault({"searchedTag": null});
-     });
-
      Template.groupCampSearch.helpers({
           getTrips: function(){
-               const instance = Template.instance();
-               console.log("searchedTag: " + instance.state.get("searchedTag"));
-               if (instance.state.get("searchedTag"))
-                    return GroupCampTrips.find({tags: instance.state.get("searchedTag")});
+               if (Session.get("searchedTag"))
+                    return GroupCampTrips.find({tags: Session.get("searchedTag")});
                else
                     return GroupCampTrips.find({});
-          }
+          },
+
+          getUserName: function() {return Meteor.user().userName;}
      });
 
      Template.groupCampSearch.events({
           "click .js-searchTags": function(event, instance) {
                event.preventDefault();
                searchedTag = $(".js-searchTag").val().toLowerCase().trim();
-               instance.state.set("searchedTag", searchedTag);
+               Session.set("searchedTag", searchedTag);
           },
 
           "click .js-seeAll": function(event, instance) {
                event.preventDefault();
-               instance.state.set("searchedTag", null);
+               Session.set("searchedTag", null);
           },
      });
 
@@ -41,17 +36,29 @@
                travelers = this.trip.travelers;
                var index = travelers.indexOf(Meteor.user().userName);
 
-               if (Session.get("amGoing") == undefined) {
+               if (index == -1)
                     return false;
-               }
-               else {
-                    return Session.get("amGoing");
-               }
+               else
+                    return true;
           },
 
           getTravelerCount: function(){
-               travelers = this.travelers;
-               return 0;
+               travelers = this.trip.travelers;
+               return travelers.length;
+          },
+
+          getUserName: function() {return Meteor.user().userName;},
+
+          isMine: function() {
+               author = this.trip.author;
+               if (author == Meteor.user().userName)
+                    return true;
+               else
+                    return false;
+          },
+
+          isSearchedTag: function(tag)    {
+               return (Session.get("searchedTag") == tag);
           }
      });
 
@@ -62,6 +69,7 @@
 
                if (index == -1) {
                     travelers.push(Meteor.user().userName);
+
                     console.log("added me");
                     console.log(travelers.toString());
 
