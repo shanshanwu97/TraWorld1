@@ -5,6 +5,8 @@
                     return GroupCampTrips.find({tags: Session.get("searchedTag")});
                else if (Session.get("searchBy") == "mine")
                     return GroupCampTrips.find({author: Meteor.user().userName});
+               else if (Session.get("searchBy") == "going")
+                    return GroupCampTrips.find({travelers: Meteor.user().userName});
                else
                     return GroupCampTrips.find({});
           },
@@ -29,6 +31,12 @@
           "click .js-seeMine": function() {
                event.preventDefault();
                Session.set("searchBy", "mine");
+               Session.set("searchedTag", null);
+          },
+
+          "click .js-seeAmGoing": function() {
+               event.preventDefault();
+               Session.set("searchBy", "going");
                Session.set("searchedTag", null);
           }
      });
@@ -94,6 +102,10 @@
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
                     $('.amGoing-text-' + this.trip._id).html('Add Me!');
                }
+          },
+
+          "click .js-cancel": function() {
+               
           }
      });
 
