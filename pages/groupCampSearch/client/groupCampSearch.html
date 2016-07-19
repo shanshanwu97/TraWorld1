@@ -24,8 +24,10 @@
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;
           <button class="js-seeAll form-control btn-default">See All</button>
-          <button class="js-seeMine form-control btn-default">See My Trips</button>
-          <button class="js-seeSignedUp form-control btn-default">See Trips I'm Going On</button>
+          {{#if getUserName}}
+               <button class="js-seeMine form-control btn-default btn-sm">See My Trips</button>
+               <button class="js-seeAmGoing form-control btn-default btn-sm">See Trips I'm Going On</button>
+          {{/if}}
      </form>
 
      <br>
