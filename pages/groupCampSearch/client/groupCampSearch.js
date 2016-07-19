@@ -73,7 +73,7 @@
                     console.log("added me");
                     console.log(travelers.toString());
 
-                    $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-danger');
+                    $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-default');
                     $('.amGoing-text-' + this.trip._id).html('Remove Me!');
                }
                else {
@@ -81,7 +81,7 @@
                     console.log("removed me");
                     console.log(travelers.toString());
 
-                    $('.amGoing-color-' + this.trip._id).removeClass('btn-danger').addClass('btn-warning');
+                    $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
                     $('.amGoing-text-' + this.trip._id).html('Add Me!');
                }
           }

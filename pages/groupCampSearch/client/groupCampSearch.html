@@ -1,6 +1,6 @@
 <template name="groupCampSearch">
      <div class="page-header">
-          <h1>
+          <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
                Group Camp
                <small>Find Your Trip</small>
@@ -9,9 +9,9 @@
 
      {{#if getUserName}}
      {{else}}
-          <span class="label label-warning">
-               You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles"> User Profiles </a> page to select one.
-          </span>  <br><br>
+          <div class="alert alert-warning alert-dismissible" role="alert">
+               You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles"> User Profiles </a> page to claim one.
+          </div>
      {{/if}}
 
      <form class="form-inline">
@@ -29,7 +29,9 @@
      <br>
 
      {{#each trip in getTrips}}
-          {{> GroupCampListing trip = trip}}
+          <div class="alert alert-danger" role="alert">
+               {{> GroupCampListing trip = trip}}
+          </div>
      {{/each}}
 </template>
 
@@ -47,7 +49,7 @@
                <h6>
                     {{#each tag in trip.tags}}
                          {{#if isSearchedTag tag}}
-                              <span class="label label-info">{{tag}}</span>
+                              <span class="label label-danger">{{tag}}</span>
                          {{else}}
                               <span class="label label-default">{{tag}}</span>
                          {{/if}}
@@ -64,9 +66,10 @@
 
                {{#if getUserName}}
                     {{#if isMine}}
+                         <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
                     {{else}}
                          {{#if amGoing}}
-                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-danger btn-block">
+                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
                                    <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
                               </button>
                          {{else}}
@@ -118,7 +121,7 @@
                </small>
 
           </div>
-     </div> <br><br>
+     </div>
 </template>
 
 

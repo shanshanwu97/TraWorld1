@@ -13,7 +13,7 @@ Meteor.startup(function() {
      if (GroupCampTrips.find().count() == 0) {
 
           GroupCampTrips.insert({
-               author: "Me",
+               author: "Someone",
 			timestamp: new Date(),
 
 			title: "Trip to Hawaii",
@@ -34,7 +34,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Me",
+               author: "Someone",
 			timestamp: new Date(),
 
 			title: "Hit the Slopes!",
@@ -57,7 +57,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Me",
+               author: "Someone",
 			timestamp: new Date(),
 
 			title: "Lost in the Woods",
