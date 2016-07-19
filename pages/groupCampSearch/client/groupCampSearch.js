@@ -1,8 +1,10 @@
 // Group Camp Search
      Template.groupCampSearch.helpers({
           getTrips: function(){
-               if (Session.get("searchedTag"))
+               if (Session.get("searchBy") == "tag")
                     return GroupCampTrips.find({tags: Session.get("searchedTag")});
+               else if (Session.get("searchBy") == "mine")
+                    return GroupCampTrips.find({author: Meteor.user().userName});
                else
                     return GroupCampTrips.find({});
           },
@@ -14,13 +16,21 @@
           "click .js-searchTags": function(event, instance) {
                event.preventDefault();
                searchedTag = $(".js-searchTag").val().toLowerCase().trim();
+               Session.set("searchBy", "tag");
                Session.set("searchedTag", searchedTag);
           },
 
           "click .js-seeAll": function(event, instance) {
                event.preventDefault();
+               Session.set("searchBy", null);
                Session.set("searchedTag", null);
           },
+
+          "click .js-seeMine": function() {
+               event.preventDefault();
+               Session.set("searchBy", "mine");
+               Session.set("searchedTag", null);
+          }
      });
 
 
