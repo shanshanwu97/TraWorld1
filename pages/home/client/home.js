@@ -52,6 +52,12 @@ Template.home.events({
 		window.alert("You are about to delete this itinerary!");
 		var blog= UserFavorites.findOne({_id: this.user});
 		Meteor.call("removefav",blog);  //callback->this <--removes object created
+	},
+	"click .js-createit":function(event){
+		Router.go('itineraries');
+	},
+	"click .js-creategroup":function(event){
+		Router.go('groupCampPost');
 	}
 
 })

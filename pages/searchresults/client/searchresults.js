@@ -15,6 +15,9 @@ Template.searchresults.helpers({
 		return instance.state.get("budget");
 	},
 })
+Template.addFav.helpers({
+	
+})
 Template.searchresults.events({
 	"change .js-refine": function(event, instance){
 		console.log($(".js-refine").val());
