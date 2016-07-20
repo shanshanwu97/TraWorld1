@@ -174,6 +174,72 @@ input:-moz-placeholder {
 input::-webkit-input-placeholder {
 	color: #999;
 }
+input[type=speak] {
+	-webkit-appearance: textfield;
+	-webkit-box-sizing: content-box;
+	font-family: inherit;
+	font-size: 100%;
+}
+input::-webkit-search-decoration,
+input::-webkit-search-cancel-button {
+	display: none; 
+}
+
+
+input[type=speak] {
+	background: #ededed url(images/search-icon-white-one-hi.png) no-repeat 9px center;
+	background-color: rgba(0,0,0,0.1);
+	border: solid 1px #ccc;
+	padding: 9px 10px 9px 48px;
+	height: 40px;
+	width: 50px;
+	font-size: 30px;
+	color: white;
+	
+	-webkit-border-radius: 10em;
+	-moz-border-radius: 10em;
+	border-radius: 10em;
+	
+	-webkit-transition: all .5s;
+	-moz-transition: all .5s;
+	transition: all .5s;
+
+}
+input[type=speak]:focus {
+	width: 200px;
+	background-color: rgba(0,0,0,0.1);
+	border-color: white;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+}
+#searchbar{
+	display:inline-block;
+}
+#speakbut{
+	background:  url(images/microphone-512.png) no-repeat 9px center;
+	background-color: rgba(0,0,0,0.1);
+	border: solid 1px #ccc;
+	padding: 9px 10px 22px 48px;
+	height: 60px;
+	width: 50px;
+	font-size: 30px;
+	color: white;
+	border-radius: 10em;
+}
+#speakbut:focus {
+	width: 200px;
+	background-color: rgba(0,0,0,0.1);
+	border-color: white;
+	
+	-webkit-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	-moz-box-shadow: 0 0 5px rgba(109,207,246,.5);
+	box-shadow: 0 0 5px rgba(109,207,246,.5);
+
+}
+
+
 strong{
 	font-family: 'Gloria Hallelujah', cursive;
 	font-size: 30px;

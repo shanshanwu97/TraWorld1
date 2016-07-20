@@ -99,4 +99,71 @@ Template.input.events({
     Session.set('data', inputs);
   }
 });
+Template.home.events({
+"click .js-speak": function(event){
+      console.log("clicked it");
+      $(".js-speak").html("Listening...");
+   // https://shapeshed.com/html5-speech-recognition-api/
+      const recognition = new webkitSpeechRecognition();
+      recognition.lang = 'en-US' 
+      recognition.onresult = function(event) {
+          console.dir(event);
+          $(".js-speak").html("Got it!");
+          Session.set("searchit",event.results[0][0].transcript);
+          $(".js-loca").val(Session.get("searchit"));
+         send();
+          
+//        execute(Session.get("transcript")); 
+        };
+        $(".js-loca").val("");
+    recognition.start();
+   //      console.log("starting the recognizer")
+
+    
+   },   
+})
+
+function send() {
+  var text =  Session.get("searchit");
+  $.ajax({
+    type: "POST",
+    url: baseUrl + "query/",
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    headers: {
+      "Authorization": "Bearer " + accessToken,
+      "ocp-apim-subscription-key": subscriptionKey
+    },
+    data: JSON.stringify({ q: text, lang: "en" }),  
+    success: function(data) {
+        //  setResponse(JSON.stringify(data, undefined, 2));
+        //  r= JSON.parse(results);
+        //  console.dir(data.result.speech);
+      setResponse(data.result.speech);
+      var utterThis = new SpeechSynthesisUtterance(data.result.speech);
+    //  "ocp-apim-subscription-key": subscriptionKey
+    },
+    data: JSON.stringify({ q: text, lang: "en" }),  
+    success: function(data) {
+      //setResponse(JSON.stringify(data, undefined, 2));
+        //  r= JSON.parse(results);
+        //  console.dir(data.result.speech);
+      console.dir(data)
+      setResponse(data.result.speech);
+
+      var utterThis = new SpeechSynthesisUtterance(data.result.speech);
+      voices = synth.getVoices();
+      utterThis.voice = voices[74]; //61-82    61,64, 66, 67,  74 is top, 80, 22 weird singing
+      synth.speak(utterThis);
+    },
+    error: function() {
+      setResponse("Internal Server Error");
+    }
+  });
+    setResponse("Loading...");
+}
+
+function setResponse(val) {
+  $("#response").text(val);
+}
 
