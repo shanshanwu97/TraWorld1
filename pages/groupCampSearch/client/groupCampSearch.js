@@ -51,7 +51,8 @@
 
      Template.GroupCampListing.helpers({
           amGoing: function(){
-               travelers = this.trip.travelers;
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
                var index = travelers.indexOf(Meteor.user().userName);
 
                if (index == -1)
@@ -61,7 +62,8 @@
           },
 
           getTravelerCount: function(){
-               travelers = this.trip.travelers;
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
                return travelers.length;
           },
 
@@ -77,7 +79,22 @@
 
           isSearchedTag: function(tag)    {
                return (Session.get("searchedTag") == tag);
-          }
+          },
+
+          hasEnoughTravelers: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               if (travelers.length < trip.threshold)
+                    return false;
+               else
+                    return true;
+          },
+
+          getProgressBarWidth: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               return 100 * travelers.length / trip.threshold;
+          },
      });
 
      Template.GroupCampListing.events({
@@ -122,7 +139,7 @@
 // Group Camp Details
 
      Template.GroupCampDetails.helpers({
-          getTags: function(trip) {
+          getTags: function() {
                return tags.toString();
           }
      });
