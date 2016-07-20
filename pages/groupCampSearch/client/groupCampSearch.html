@@ -50,8 +50,8 @@
 
 
 
-<template name="GroupCampListing"> <div class = "container">
-     <div class="row bg-warning">
+<template name="GroupCampListing">
+     <div class="row">
           <div class="col-md-6">
                <a href="/GroupCampDetails/{{trip._id}}">
                     <h1>{{trip.title}}</h1>
@@ -150,7 +150,7 @@
 
           </div>
      </div>
-</div></template>
+</template>
 
 
 
@@ -206,9 +206,14 @@
      <br><br>
      At least {{threshold}} people needed for this trip.
 
-     <br><br>
-     Travelers:<br>
-
+     Travelers Signed Up ({{travelers.length}} so far):<br>
+     {{#each traveler in travelers}}
+          {{#if isMe traveler}}
+               <span class="label label-primary">Me</span>
+          {{else}}
+               <span class="label label-info">{{traveler}}</span>
+          {{/if}}
+     {{/each}}
 
      {{#if link}}
           <br><br>
