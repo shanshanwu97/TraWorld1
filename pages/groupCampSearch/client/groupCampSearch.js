@@ -1,5 +1,16 @@
 // Group Camp Search
      Template.groupCampSearch.helpers({
+          hasTrips: function(){
+               if (Session.get("searchBy") == "tag")
+                    return (GroupCampTrips.find({tags: Session.get("searchedTag")}).count() != 0);
+               else if (Session.get("searchBy") == "mine")
+                    return (GroupCampTrips.find({author: Meteor.user().userName}).count() != 0);
+               else if (Session.get("searchBy") == "going")
+                    return (GroupCampTrips.find({travelers: Meteor.user().userName}).count() != 0);
+               else
+                    return (GroupCampTrips.find({}).count() != 0);
+          },
+
           getTrips: function(){
                if (Session.get("searchBy") == "tag")
                     return GroupCampTrips.find({tags: Session.get("searchedTag")});
@@ -141,5 +152,12 @@
      Template.GroupCampDetails.helpers({
           getTags: function() {
                return tags.toString();
-          }
+          },
+
+          isMine: function() {
+               if (author == Meteor.user().userName)
+                    return true;
+               else
+                    return false;
+          },
      });

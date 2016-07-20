@@ -32,11 +32,19 @@
 
      <br>
 
-     {{#each trip in getTrips}}
-          <div class="alert alert-warning" role="alert">
-               {{> GroupCampListing trip = trip}}
-          </div>
-     {{/each}}
+     {{#if hasTrips}}
+          {{#each trip in getTrips}}
+               <div class="alert alert-warning" role="alert">
+                    {{> GroupCampListing trip = trip}}
+               </div>
+          {{/each}}
+     {{else}}
+          <p class="text-center">
+               <h2><small>
+                    No Trips Found
+               </small></h2>
+          </p>
+     {{/if}}
 </template>
 
 
@@ -147,52 +155,59 @@
 
 <template name="GroupCampDetails">
      <div class="page-header">
-          <h1>
-               {{title}} <br>
-               <small>{{message}}</small>
+          <h1 class="text-center">
+               <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
+               Group Camp
+               <small>Trip Details</small>
           </h1>
-          <h5>
-               {{#each tag in tags}}
-                    <span class="label label-default">{{tag}}</span>
-               {{/each}}
-          </h5>
+     </div>
+     <div class="page-header">
+          <p class = "text-center">
+               <h1>
+                    {{title}} <br>
+                    <small>{{message}}</small>
+               </h1>
+               <h5>
+                    {{#each tag in tags}}
+                         <span class="label label-default">{{tag}}</span>
+                    {{/each}}
+               </h5>
+          </p>
      </div>
 
-     <em>{{description}}</em>
+     {{#if picture}}
+          <p class="text-center">
+               <img src={{picture}} width = 750>
+               <br><br><br>
+          </p>
+     {{/if}}
+
+     {{#if description}}
+          <blockquote>
+               {{description}}
+          </blockquote>
+     {{/if}}
+
+     In <em>{{destination}}</em>
+     from <em>{{from}}</em>
+     to <em>{{to}}</em>
+
+     by
+     {{#if isMine}}
+          <span class="label label-primary">Me</span>
+     {{else}}
+          <span class="label label-info">{{author}}</span>
+     {{/if}}
+
+     on <em>{{timestamp}}</em>.
+
      <br><br>
-
-     {{#if destination}}
-          In <em>{{destination}}</em>
-     {{/if}}
-
-     {{#if from}}
-          from <em>{{from}}</em>
-     {{/if}}
-
-
-     {{#if to}}
-          to <em>{{to}}</em>
-     {{/if}}
-
-     <br><br>
-
-     {{#if author}}
-          <em>@{{author}}</em>
-     {{/if}}
-
-     {{#if timestamp}}
-          on <em>{{timestamp}}</em>
-     {{/if}}
+     At least {{threshold}} people needed for this trip.
 
      {{#if link}}
           <br><br>
-          <a href={{link}}>Click Here</a> for more.
-     {{/if}}
-
-     {{#if picture}}
-          <br><br><br>
-          <p class="text-center">
-               <img src={{picture}}>
+          <p class = "text-right">
+               <a href={{link}}>Click Here</a> for more information.
           </p>
      {{/if}}
 </template>
