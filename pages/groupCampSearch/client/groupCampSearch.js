@@ -82,22 +82,27 @@
 
      Template.GroupCampListing.events({
           "click .js-changeAmGoing": function() {
-               travelers = this.trip.travelers;
-               var index = travelers.indexOf(Meteor.user().userName);
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               console.log(travelers);
+               var username = Meteor.user() && Meteor.user().userName;
+               var index = travelers.indexOf(username);
 
                if (index == -1) {
-                    travelers.push(Meteor.user().userName);
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {travelers:username}});
 
                     console.log("added me");
-                    console.log(travelers.toString());
+                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
 
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-default');
                     $('.amGoing-text-' + this.trip._id).html('Remove Me!');
                }
                else {
                     travelers.splice(index, 1);
+                    GroupCampTrips.update({_id: this.trip._id}, {$set: {travelers: travelers}});
+
                     console.log("removed me");
-                    console.log(travelers.toString());
+                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
 
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
                     $('.amGoing-text-' + this.trip._id).html('Add Me!');
@@ -105,7 +110,11 @@
           },
 
           "click .js-cancel": function() {
-               
+               GroupCampTrips.remove({_id: this.trip._id});
+          },
+
+          "click .js-cancel": function() {
+               GroupCampTrips.remove({_id: this.trip._id});
           }
      });
 

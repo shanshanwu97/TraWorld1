@@ -45,7 +45,6 @@ Template.groupCampPost.events({
 
 		// MESSAGE
 		if (!message){
-			complete = false;
 			$(".js-messageGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -54,7 +53,6 @@ Template.groupCampPost.events({
 
 		// DESCRIPTION
 		if (!description){
-			complete = false;
 			$(".js-descriptionGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -63,7 +61,6 @@ Template.groupCampPost.events({
 
 		// TAGS
 		if (!rawTags){
-			complete = false;
 			$(".js-tagsGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -111,7 +108,6 @@ Template.groupCampPost.events({
 
 		// COST
 		if (!cost){
-			complete = false;
 			$(".js-costGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -120,7 +116,6 @@ Template.groupCampPost.events({
 
 		// LINK
 		if (!link){
-			complete = false;
 			$(".js-linkGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -129,7 +124,6 @@ Template.groupCampPost.events({
 
 		// PICTURE
 		if (!picture){
-			complete = false;
 			$(".js-pictureGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
