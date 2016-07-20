@@ -101,6 +101,15 @@
                     return true;
           },
 
+          getAlertColor: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               if (travelers.length < trip.threshold)
+                    return "alert-warning";
+               else
+                    return "alert-success";
+          },
+
           getProgressBarWidth: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;

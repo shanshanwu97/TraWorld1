@@ -34,9 +34,7 @@
 
      {{#if hasTrips}}
           {{#each trip in getTrips}}
-               <div class="alert alert-warning" role="alert">
                     {{> GroupCampListing trip = trip}}
-               </div>
           {{/each}}
      {{else}}
           <p class="text-center">
@@ -51,103 +49,102 @@
 
 
 <template name="GroupCampListing">
-     <div class="row">
-          <div class="col-md-6">
-               <a href="/GroupCampDetails/{{trip._id}}">
-                    <h1>{{trip.title}}</h1>
-               </a>
+     <div class="alert {{getAlertColor}}" role="alert">
+          <div class="row">
+               <div class="col-md-6">
+                    <a href="/GroupCampDetails/{{trip._id}}">
+                         <h1>{{trip.title}}</h1>
+                    </a>
 
-               <em>{{trip.message}}</em>
+                    <em>{{trip.message}}</em>
 
-               <h6>
-                    {{#each tag in trip.tags}}
-                         {{#if isSearchedTag tag}}
-                              <span class="label label-danger">{{tag}}</span>
-                         {{else}}
-                              <span class="label label-default">{{tag}}</span>
-                         {{/if}}
-                    {{/each}}
-               </h6>
+                    <h6>
+                         {{#each tag in trip.tags}}
+                              {{#if isSearchedTag tag}}
+                                   <span class="label label-danger">{{tag}}</span>
+                              {{else}}
+                                   <span class="label label-default">{{tag}}</span>
+                              {{/if}}
+                         {{/each}}
+                    </h6>
 
-          </div>
+               </div>
 
-          <div class="col-md-3">
-               <img src={{trip.picture}} class="img-thumbnail">
-          </div>
+               <div class="col-md-3">
+                    <img src={{trip.picture}} class="img-thumbnail">
+               </div>
 
-          <div class="col-md-3">
+               <div class="col-md-3">
 
-               {{#if getUserName}}
-                    {{#if isMine}}
-                         <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
-                    {{else}}
-                         {{#if amGoing}}
-                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                   <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                              </button>
-                         {{else}}
-                              <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
-                                   <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                              </button>
-                         {{/if}}
-                    {{/if}}
-               {{/if}}
-
-               <small>
-                    {{#if trip.destination}}
-                         In <em>{{trip.destination}}</em>
-                    {{/if}}
-
-                    {{#if trip.from}}
-                         from <em>{{trip.from}}</em>
-                    {{/if}}
-
-
-                    {{#if trip.to}}
-                         to <em>{{trip.to}}</em>
-                    {{/if}}
-
-                    {{#if trip.cost}}
-                         for <em>${{trip.cost}}</em>
-                    {{/if}}
-
-                    {{#if trip.author}}
-                         by
+                    {{#if getUserName}}
                          {{#if isMine}}
-                              <span class="label label-primary">Me</span>
+                              <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
                          {{else}}
-                              <span class="label label-info">{{trip.author}}</span>
+                              {{#if amGoing}}
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
+                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                   </button>
+                              {{else}}
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
+                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
+                                   </button>
+                              {{/if}}
                          {{/if}}
                     {{/if}}
-                    .
-                    <br><br>
 
-                    {{#if hasEnoughTravelers}}
+                    <small>
+                         {{#if trip.destination}}
+                              In <em>{{trip.destination}}</em>
+                         {{/if}}
+
+                         {{#if trip.from}}
+                              from <em>{{trip.from}}</em>
+                         {{/if}}
+
+
+                         {{#if trip.to}}
+                              to <em>{{trip.to}}</em>
+                         {{/if}}
+
+                         {{#if trip.cost}}
+                              for <em>${{trip.cost}}</em>
+                         {{/if}}
+
+                         {{#if trip.author}}
+                              by
+                              {{#if isMine}}
+                                   <span class="label label-primary">Me</span>
+                              {{else}}
+                                   <span class="label label-info">{{trip.author}}</span>
+                              {{/if}}
+                         {{/if}}
+                         .
                          <br><br>
-                         <div class="progress">
-                              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
-                                   <span class="sr-only">20% Complete</span>
-                                   This trip has enough people!
+
+                         {{#if hasEnoughTravelers}}
+                              <br>
+                              <div class="progress">
+                                   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
+                                        This trip has enough people!
+                                   </div>
                               </div>
-                         </div>
-                    {{else}}
-                         <p class="text-right">
-                              <small>
-                                   {{#if trip.threshold}}
-                                        {{getTravelerCount trip}} Going / {{trip.threshold}} Needed
-                                   {{/if}}
-                              </small>
-                         </p>
+                         {{else}}
+                              <p class="text-right">
+                                   <small>
+                                        {{#if trip.threshold}}
+                                             {{getTravelerCount trip}} Going / {{trip.threshold}} Needed
+                                        {{/if}}
+                                   </small>
+                              </p>
 
-                         <div class="progress">
-                              <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
-                                   <span class="sr-only">20% Complete</span>
+                              <div class="progress">
+                                   <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
                               </div>
-                         </div>
-                    {{/if}}
+                         {{/if}}
 
-               </small>
+                    </small>
 
+               </div>
           </div>
      </div>
 </template>
