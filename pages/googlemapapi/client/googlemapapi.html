@@ -1,11 +1,12 @@
 <template name="map">
-
+<div class="container">
 <button class="js-talk btn buttonblue">Talk a location's name!</button>
 <br><br><br>
 
 <li>Location: <input type="text"   class="js-location" ></li>
 <button class="js-addDay">Submit</button>
 <div id="map-nav" style="height:500px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+</div>
 ​
 </template>
 

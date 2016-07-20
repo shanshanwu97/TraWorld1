@@ -40,16 +40,41 @@ Template.itineraries.events({
 			const ur=username&&username.userName;
 			const img=$(".js-img").val();
 			const txt=[{uniqid:0, value:""}];
+			var imgs= Session.get("thumbpic");
+      var likes=0;
+			
 			const trip=
-			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, image: img,description: desc, textedit:txt
-
+			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, image: img, thumbpic:imgs, description: desc, textedit:txt,likes
 			}
 			Session.set("userinput",trip);
 			Meteor.call("insertTrip", trip);
 			Router.go('itdisplay');
 
 		}
-	}
+	},
+	'click #deleteFileButton ': function (event) {
+        console.log("deleteFile button ", this);
+        YourFileCollection.remove({_id:this._id});
+        
+      },
+      'change .your-upload-class': function (event, template) {
+    console.log("uploading...")
+    FS.Utility.eachFile(event, function (file) {
+      console.log("each file...");
+      var yourFile = new FS.File(file);
+          yourFile.creatorId = Meteor.userId();  // todo
+       var img=YourFileCollection.insert(yourFile, function (err, fileObj) {
+        console.log("callback for the insert, err: ", err);
+        if (!err) {
+          console.log("inserted without error");
+        }
+        else {
+          console.log("there was an error", err);
+        }
+      });
+      Session.set("thumbpic",img&&img._id);
+    });
+  }
 
 })
 function isNumeric(n) {
