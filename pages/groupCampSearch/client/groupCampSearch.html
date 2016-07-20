@@ -33,7 +33,7 @@
      <br>
 
      {{#each trip in getTrips}}
-          <div class="alert alert-danger" role="alert">
+          <div class="alert alert-warning" role="alert">
                {{> GroupCampListing trip = trip}}
           </div>
      {{/each}}
@@ -42,7 +42,7 @@
 
 
 <template name="GroupCampListing">
-     <div class="row bg-danger">
+     <div class="row bg-warning">
           <div class="col-md-6">
                <a href="/GroupCampDetails/{{trip._id}}">
                     <h1>{{trip.title}}</h1>
@@ -84,8 +84,6 @@
                     {{/if}}
                {{/if}}
 
-               <br>
-
                <small>
                     {{#if trip.destination}}
                          In <em>{{trip.destination}}</em>
@@ -112,16 +110,33 @@
                               <span class="label label-info">{{trip.author}}</span>
                          {{/if}}
                     {{/if}}
-
                     .
+                    <br><br>
 
-                    <p class="text-right">
-                         <small>
-                              {{#if trip.threshold}}
-                                   {{getTravelerCount trip}} / {{trip.threshold}}
-                              {{/if}}
-                         </small>
-                    </p>
+                    {{#if hasEnoughTravelers}}
+                         <br><br>
+                         <div class="progress">
+                              <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
+                                   <span class="sr-only">20% Complete</span>
+                                   This trip has enough people!
+                              </div>
+                         </div>
+                    {{else}}
+                         <p class="text-right">
+                              <small>
+                                   {{#if trip.threshold}}
+                                        {{getTravelerCount trip}} Going / {{trip.threshold}} Needed
+                                   {{/if}}
+                              </small>
+                         </p>
+
+                         <div class="progress">
+                              <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
+                                   <span class="sr-only">20% Complete</span>
+                              </div>
+                         </div>
+                    {{/if}}
+
                </small>
 
           </div>
@@ -136,9 +151,12 @@
                {{title}} <br>
                <small>{{message}}</small>
           </h1>
+          <h5>
+               {{#each tag in tags}}
+                    <span class="label label-default">{{tag}}</span>
+               {{/each}}
+          </h5>
      </div>
-
-     <h5>{{getTags tags}}</h5>
 
      <em>{{description}}</em>
      <br><br>
