@@ -9,7 +9,7 @@
 
      {{#if getUserName}}
      {{else}}
-          <div class="alert alert-warning alert-dismissible" role="alert">
+          <div class="alert alert-info alert-dismissible" role="alert">
                You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles"> User Profiles </a> page to claim one.
           </div>
      {{/if}}
@@ -120,6 +120,11 @@
                          {{/if}}
                          .
                          <br><br>
+
+                         {{#if getUserName}}
+                         {{else}}
+                              <br>
+                         {{/if}}
 
                          {{#if hasEnoughTravelers}}
                               <br>
