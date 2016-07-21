@@ -98,7 +98,7 @@ Template.groupCampPost.events({
 		}
 
 		// THRESHOLD
-		if (!threshold){	// Required
+		if (!threshold || threshold < 1 || Math.floor(threshold) != threshold){	// Required
 			complete = false;
 			$(".js-thresholdGroup").removeClass('has-success').addClass('has-error');
 		}
