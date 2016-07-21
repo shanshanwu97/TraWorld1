@@ -107,8 +107,9 @@ Template.groupCampPost.events({
 		}
 
 		// COST
-		if (!cost || !$.isNumeric(cost) || (Math.floor(cost) != cost && cost.length != cost.indexOf('.') + 3)){
+		if (!cost || !$.isNumeric(cost) || cost < 0 || (Math.floor(cost) != cost && cost.length != cost.indexOf('.') + 3)){
 			$(".js-costGroup").removeClass('has-success').addClass('has-warning');
+			cost = null;
 		}
 		else {
 			$(".js-costGroup").removeClass('has-warning').addClass('has-success');
