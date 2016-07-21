@@ -110,6 +110,15 @@
                     return "alert-success";
           },
 
+          getAddButtonColor: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               if (travelers.length < trip.threshold)
+                    return "btn-warning";
+               else
+                    return "btn-success";
+          },
+
           getProgressBarWidth: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
@@ -183,5 +192,13 @@
                     return true;
                else
                     return false;
+          },
+
+          getFrom: function() {
+               return new Date(this.trip.from).toDateString();
+          },
+
+          getTo: function() {
+               return new Date(this.trip.to).toDateString();
           }
      });

@@ -85,7 +85,7 @@
                                         <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
                                    </button>
                               {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-warning btn-block">
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm {{getAddButtonColor}} btn-block">
                                         <span class="amGoing-text-{{trip._id}}">Add Me!</span>
                                    </button>
                               {{/if}}
@@ -129,7 +129,7 @@
                          {{#if hasEnoughTravelers}}
                               <br>
                               <div class="progress">
-                                   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%">
+                                   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
                                         This trip has enough people!
                                    </div>
                               </div>
