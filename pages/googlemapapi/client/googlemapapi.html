@@ -1,14 +1,26 @@
 <template name="map">
 <div class="container">
-<button class="js-talk btn buttonblue">Talk a location's name!</button>
 <br><br><br>
 
-<li>Location: <input type="text"   class="js-location" ></li>
-<button class="js-addDay">Submit</button>
+
+<form id="calculate-route" name="calculate-route" action="#" method="get">
+  <label for="from">From:</label>
+  <input type="text" id="from" name="from"  placeholder="An address" size="30" /><button class="js-talk btn buttonblue">Talk a location's name!</button>
+
+  <br />
+
+  <label for="to">To:</label>
+  <input type="text" id="to" name="to"  placeholder="Another address" size="30" /><button class="js-talk2 btn buttonblue">Talk a location's name!</button>
+  <br />
+
+  <input type="submit" id="clickme">
+
+</form>
 <div id="map-nav" style="height:500px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
 </div>
 ​
 </template>
+
 
 
 
