@@ -13,13 +13,13 @@
 
           getTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return GroupCampTrips.find({tags: Session.get("searchedTag")});
+                    return GroupCampTrips.find({tags: Session.get("searchedTag")}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
-                    return GroupCampTrips.find({author: Meteor.user().userName});
+                    return GroupCampTrips.find({author: Meteor.user().userName}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
-                    return GroupCampTrips.find({travelers: Meteor.user().userName});
+                    return GroupCampTrips.find({travelers: Meteor.user().userName}, {sort: {timestamp: -1}});
                else
-                    return GroupCampTrips.find({});
+                    return GroupCampTrips.find({}, {sort: {timestamp: -1}});
           },
 
           getUserName: function() {return Meteor.user().userName;}

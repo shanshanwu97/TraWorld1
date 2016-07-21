@@ -1,9 +1,20 @@
 Template.groupCampPost.helpers({
+	setUp: function(){
+		Session.set("notCompleteAlertNeeded", false);
+	},
+
 	trips:function(){
 		return GroupCampTrips.find();
 	},
 
-	getUserName: function() {return Meteor.user().userName;}
+	getUserName: function() {return Meteor.user().userName;},
+
+	notCompleteAlertNeeded: function() {
+		if (Session.get("notCompleteAlertNeeded"))
+			return true;
+		else
+			return false;
+	}
 })
 
 Template.groupCampPost.events({
@@ -137,6 +148,8 @@ Template.groupCampPost.events({
 			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: From, to, travelers, threshold, cost, link, picture});
 			Router.go("groupCampSearch");
 		}
-		else{}
+		else{
+			Session.set("notCompleteAlertNeeded", true);
+		}
 	}
 })

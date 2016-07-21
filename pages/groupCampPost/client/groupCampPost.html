@@ -7,7 +7,15 @@
 		</h1>
 	</div>
 
+	{{setUp}}
+
 	{{#if getUserName}}
+		{{#if notCompleteAlertNeeded}}
+			<div class="alert alert-danger" role="alert">
+				All required fields must be filled with appropreate values in order to submit.
+			</div>
+		{{/if}}
+
 		<form>
 			<div class="row">
 				<div class="col-md-8">
