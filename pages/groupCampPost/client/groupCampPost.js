@@ -80,7 +80,7 @@ Template.groupCampPost.events({
 		}
 
 		// FROM
-		if (!From){	// Required
+		if (!From || isNaN(Date.parse(From))){	// Required
 			complete = false;
 			$(".js-fromGroup").removeClass('has-success').addClass('has-error');
 		}
@@ -89,7 +89,7 @@ Template.groupCampPost.events({
 		}
 
 		// TO
-		if (!to){	// Required
+		if (!to || isNaN(Date.parse(to))){	// Required
 			complete = false;
 			$(".js-toGroup").removeClass('has-success').addClass('has-error');
 		}
