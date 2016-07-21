@@ -107,7 +107,7 @@ Template.groupCampPost.events({
 		}
 
 		// COST
-		if (!cost){
+		if (!cost || !$.isNumeric(cost) || (Math.floor(cost) != cost && cost.length != cost.indexOf('.') + 3)){
 			$(".js-costGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
