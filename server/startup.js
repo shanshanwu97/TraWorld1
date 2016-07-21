@@ -25,7 +25,7 @@ Meteor.startup(function() {
 			from: "June 01, 2016",
 			to: "July 30, 2016",
 
-			travelers: [],
+			travelers: ["user1", "user2", "user3", "user4"],
 			threshold: 35,
 			cost: "2,500",
 
@@ -70,8 +70,8 @@ Meteor.startup(function() {
 			from: "Sept. 10, 2016",
 			to: "Oct. 21, 2016",
 
-			travelers: [],
-			threshold: 25,
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9"],
+			threshold: 10,
 
 			cost: "50",
 
