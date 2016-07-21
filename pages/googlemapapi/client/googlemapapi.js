@@ -2,9 +2,17 @@ Template.map.onCreated(function () {
   Session.set("location",{lat:42,lng:-71})
   GoogleMaps.load();
   GoogleMaps.ready('naviMap',function(map) {
+    var markerCurrent = new google.maps.Marker({
+        position: new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng),
+        map:map.instance
+      });
     Tracker.autorun(function() {
       map.instance.setCenter(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng))
+      
+      markerCurrent.setPosition(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng));
     });  
+    
+
 });
 });  
 
@@ -39,6 +47,7 @@ Template.map.helpers({
       };
     }
   },
+
 });
 
 Template.map.events({
@@ -75,6 +84,7 @@ Template.map.events({
     $(".js-location").val("");
     $(".js-talk").html("Try a new place!");
 
+
   })
 
 
@@ -93,7 +103,7 @@ Template.map.events({
           $(".js-talk").html("Got it!");
           Session.set("transcript",event.results[0][0].transcript);
           $(".js-location").val(Session.get("transcript"));
-         send();
+ 
           
 //        execute(Session.get("transcript")); 
         };
