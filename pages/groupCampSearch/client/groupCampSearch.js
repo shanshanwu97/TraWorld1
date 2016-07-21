@@ -115,6 +115,14 @@
                var travelers = trip && trip.travelers;
                return 100 * travelers.length / trip.threshold;
           },
+
+          getFrom: function() {
+               return new Date(this.trip.from).toDateString();
+          },
+
+          getTo: function() {
+               return new Date(this.trip.to).toDateString();
+          }
      });
 
      Template.GroupCampListing.events({
