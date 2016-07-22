@@ -2,7 +2,7 @@
      <div class="page-header">
           <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
-               Group Camp
+               <strong>Group Camp</strong>
                <small>Find Your Trip</small>
           </h1>
      </div>
@@ -53,7 +53,7 @@
           <div class="row">
                <div class="col-md-6">
                     <a href="/GroupCampDetails/{{trip._id}}">
-                         <h1>{{trip.title}}</h1>
+                         <h1><strong>{{trip.title}}</strong></h1>
                     </a>
 
                     <em>{{trip.message}}</em>
@@ -162,16 +162,16 @@
      <div class="page-header">
           <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
-               Group Camp
+               <strong>Group Camp</strong>
                <small>Trip Details</small>
           </h1>
      </div>
      <div class="page-header">
           <p class = "text-center">
-               <h1>
-                    {{title}} <br>
+               <h2>
+                    <strong>{{title}}</strong> <br>
                     <small>{{message}}</small>
-               </h1>
+               </h2>
                <h5>
                     {{#each tag in tags}}
                          <span class="label label-default">{{tag}}</span>
