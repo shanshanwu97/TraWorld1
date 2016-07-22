@@ -14,7 +14,7 @@ Meteor.startup(function() {
 
           GroupCampTrips.insert({
                author: "Someone",
-			timestamp: new Date(),
+			timestamp: new Date("April 25, 2016"),
 
 			title: "Trip to Hawaii",
 			description: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
@@ -35,7 +35,7 @@ Meteor.startup(function() {
 
           GroupCampTrips.insert({
                author: "Someone",
-			timestamp: new Date(),
+			timestamp: new Date("Feb. 17, 2016"),
 
 			title: "Hit the Slopes!",
 			description: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure.",
@@ -58,7 +58,7 @@ Meteor.startup(function() {
 
           GroupCampTrips.insert({
                author: "Someone",
-			timestamp: new Date(),
+			timestamp: new Date("July 1, 2016"),
 
 			title: "Lost in the Woods",
 			description: "Strangers will bond, explore the deep dark woods, and engage in general camp related activities.",
