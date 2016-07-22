@@ -172,7 +172,7 @@
           },
 
           isMine: function() {
-               if (author == Meteor.user().userName)
+               if (this.author == Meteor.user().userName)
                     return true;
                else
                     return false;
@@ -186,10 +186,14 @@
           },
 
           getFrom: function() {
-               return new Date(this.trip.from).toDateString();
+               return new Date(this.from).toDateString();
           },
 
           getTo: function() {
-               return new Date(this.trip.to).toDateString();
+               return new Date(this.to).toDateString();
+          },
+
+          getTimestamp: function() {
+               return new Date(this.timestamp).toDateString();
           }
      });
