@@ -72,10 +72,10 @@
                     return true;
           },
 
-          getTravelerCount: function(){
+          getTravelersNeeded: function(){
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
-               return travelers.length;
+               return trip.threshold - travelers.length;
           },
 
           getUserName: function() {return Meteor.user().userName;},
