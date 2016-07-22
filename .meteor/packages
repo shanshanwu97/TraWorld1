@@ -37,3 +37,5 @@ cfs:filesystem
 less
 cfs:standard-packages
 
+fourseven:scss
+rajit:bootstrap3-datepicker
