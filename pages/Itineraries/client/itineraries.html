@@ -59,21 +59,23 @@
             $(function () {
                 $('#datetimepicker1').datepicker();
             });
+            $(function(){
+            	$('#datetimepicker2').datepicker();
+            })
+            // $(function () {
+    //         $('#datetime').datepicker({
+    //             icons: {
+    //                 date: "glyphicon glyphicon-calendar",
+    //             }
+    //         });
+    //     });
         </script>
-				          <script type="text/javascript">
-        $(function () {
-            $('#datetime').datepicker({
-                icons: {
-                    date: "glyphicon glyphicon-calendar",
-                }
-            });
-        });
-    </script>
+				 
 	
 	 	</fieldset>
 	  	<fieldset class="form-group">
 	    	<label for="depart">Departure Date</label>
-	    	<div class='input-group date' id='datetimepicker1'><span class="input-group-addon">
+	    	<div class='input-group date' id='datetimepicker2'><span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
                     </span>
                     <input type='text' class="js-depart form-control" />
