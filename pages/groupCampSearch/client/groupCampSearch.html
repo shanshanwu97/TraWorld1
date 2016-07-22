@@ -49,7 +49,7 @@
 
 
 <template name="GroupCampListing">
-     <div class="alert {{getAlertColor}}" role="alert">
+     <div class="alert alert-{{getColor}}" role="alert">
           <div class="row">
                <div class="col-md-6">
                     <a href="/GroupCampDetails/{{trip._id}}">
@@ -63,7 +63,7 @@
                               {{#if isSearchedTag tag}}
                                    <span class="label label-danger">{{tag}}</span>
                               {{else}}
-                                   <span class="label label-default">{{tag}}</span>
+                                   <span class="label label-{{getColor}}">{{tag}}</span>
                               {{/if}}
                          {{/each}}
                     </h6>
@@ -85,7 +85,7 @@
                                         <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
                                    </button>
                               {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm {{getAddButtonColor}} btn-block">
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
                                         <span class="amGoing-text-{{trip._id}}">Add Me!</span>
                                    </button>
                               {{/if}}

@@ -101,22 +101,13 @@
                     return true;
           },
 
-          getAlertColor: function() {
+          getColor: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
                if (travelers.length < trip.threshold)
-                    return "alert-warning";
+                    return "warning";
                else
-                    return "alert-success";
-          },
-
-          getAddButtonColor: function() {
-               var trip = GroupCampTrips.findOne({_id:this.trip._id});
-               var travelers = trip && trip.travelers;
-               if (travelers.length < trip.threshold)
-                    return "btn-warning";
-               else
-                    return "btn-success";
+                    return "success";
           },
 
           getProgressBarWidth: function() {
