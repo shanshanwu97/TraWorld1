@@ -38,8 +38,8 @@ Meteor.startup(function() {
 			timestamp: new Date(),
 
 			title: "Hit the Slopes!",
-			description: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure",
-			message: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure",
+			description: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure.",
+			message: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure.",
                tags: ["france", "skiing", "val thorens"],
 
 
