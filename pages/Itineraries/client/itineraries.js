@@ -74,7 +74,16 @@ Template.itineraries.events({
       });
       Session.set("thumbpic",img&&img._id);
     });
-  }
+  },
+//   "click .js-picktime" :function(){
+//     var time=$('#time').datepicker({
+//     onSelect: function()
+//     { 
+//         var dateObject = $(this).datepicker('getDate'); 
+//     }
+// });
+//     $('.js-arrive').html(time);
+//   }
 
 })
 function isNumeric(n) {

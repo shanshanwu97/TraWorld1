@@ -1,5 +1,28 @@
 
 <template name="home">
+  <html>
+      <head>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
+        <script>
+            var autocomplete;
+            function initialize() {
+               var options = {
+  types: ['(cities)']
+ };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+              });
+            }
+        </script>
+      </head>
+      <body>
+        
+      </body>
+    </html>
+
   <style>
   h1{
     font-family: 'Galada', cursive;
@@ -14,7 +37,7 @@
     <br>
     
           <form id="searchbar">
-              <input type="search" class=" js-loca" >
+              <input type="search" id="autocomplete" class=" js-loca" >
                 <!-- <span class="input-group-btn">
                   <input class="btn btn-default" type="submit" value="Go!">
                 </span> -->
