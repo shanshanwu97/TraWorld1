@@ -27,7 +27,10 @@
           {{#if getUserName}}
                <button class="js-seeMine form-control btn-default btn-sm">See My Trips</button>
                <button class="js-seeAmGoing form-control btn-default btn-sm">See Trips I'm Going On</button>
-               <button class="form-control btn-default btn-sm" data-toggle="modal" data-target="#addTrip" onclick="event.preventDefault()">Design a Trip</button>
+               &nbsp;&nbsp;
+               <button class="form-control btn-default" onclick="event.preventDefault(); Router.go('groupCampPost')">
+                    Design a Trip
+               </button>
           {{/if}}
      </form>
 
@@ -44,149 +47,6 @@
                </small></h2>
           </p>
      {{/if}}
-
-
-     <!-- Modal -->
-     <div class="modal fade" id="addTrip" role="dialog">
-          <div class="modal-dialog modal-lg">
-               <div class="modal-content">
-
-                    <div class="modal-header">
-                         <button type="button" class="close" data-dismiss="modal">&times;</button>
-                         <h1 class="text-center">
-               			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
-               			<strong>Group Camp</strong>
-               			<small>Design Your Trip</small>
-               		</h1>
-                    </div>
-
-                    <div class="modal-body">
-                         <form>
-               			<div class="row">
-               				<div class="col-md-8">
-               					<!-- TITLE -->
-               					<div class="js-titleGroup form-group">
-               						<label>Title<small>*</small></label>
-               						<div class="input-group">
-               							<div class="input-group-addon"><span class="glyphicon glyphicon-tent" aria-hidden="true"></span></div>
-               							<input type="text" class="js-title form-control" placeholder="Name of Group Camp Trip">
-               						</div>
-               					</div>
-               				</div>
-               				<div class="col-md-4">
-               					<!-- TAGS -->
-               					<div class="js-tagsGroup form-group">
-               						<label>Tags</label>
-               						<div class="input-group">
-               							<div class="input-group-addon"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></div>
-               							<input type="text" class="js-tags form-control" placeholder="tag1, tag2, tag3">
-               						</div>
-               					</div>
-               				</div>
-               			</div>	<br>
-
-               			<div class="row">
-               				<div class="col-md-8">
-               					<!-- MESSAGE -->
-               					<div class="js-messageGroup form-group">
-               						<label>Message</label>
-               						<div class="input-group">
-               							<div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
-               							<input type="text" class="js-message form-control" placeholder="Promote Your Camp">
-               						</div>
-               					</div>
-               				</div>
-               				<div class="col-md-4">
-               					<!-- DESTINATION -->
-               					<div class="js-destinationGroup form-group">
-               						<label>Destination<small>*</small></label>
-               						<div class="input-group">
-               							<div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
-               							<input type="text" class="js-destination form-control" placeholder="Where Your Camp is Going to Go">
-               						</div>
-               					</div>
-               				</div>
-               			</div>	<br>
-
-               			<div class="row">
-               				<div class="col-md-4">
-               					<!-- FROM -->
-               					<div class="js-fromGroup form-group">
-               					  	<label>From<small>*</small></label>
-               				          <div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-time" aria-hidden="true"></span></div>
-               				               <input type="date" class="js-from form-control" placeholder="Departure Date">
-               				          </div>
-               					</div>
-               				</div>
-               				<div class="col-md-4">
-               					<!-- To -->
-               					<div class="js-toGroup form-group">
-               					  	<label>To<small>*</small></label>
-               				          <div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></div>
-               				               <input type="date" class="js-to form-control" placeholder="Arival Date">
-               				          </div>
-               					</div>
-               				</div>
-               				<div class="col-md-2">
-               					<!-- COST -->
-               					<div class="js-costGroup form-group">
-               					  	<label>Individual Cost</label>
-               				          <div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
-               				               <input type="number" class="js-cost form-control">
-               				          </div>
-               					</div>
-               				</div>
-               				<div class="col-md-2">
-               					<!-- THRESHOLD -->
-               					<div class="js-thresholdGroup form-group">
-               					  	<label>Minimum Group Size<small>*</small></label>
-               				          <div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></div>
-               				               <input type="number" class="js-threshold form-control">
-               				          </div>
-               					</div>
-               				</div>
-               			</div> <br>
-
-               	          <!-- DESCRIPTION -->
-               			<div class="js-descriptionGroup form-group">
-               			 	<label>Description</label>
-               				<textarea class="js-description form-control" rows=2></textarea>
-               			</div>	<br>
-
-               			<div class="row">
-               				<div class="col-md-6">
-               					<!-- LINK -->
-               					<div class="js-linkGroup form-group">
-               						<label>Link <small>URL</small></label>
-               						<div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></div>
-               				               <input type="url" class="js-link form-control">
-               				          </div>
-               					</div>
-               				</div>
-               				<div class="col-md-6">
-               					<!-- Picture -->
-               					<div class="js-pictureGroup form-group">
-               						<label>Picture <small>URL</small></label>
-               						<div class="input-group">
-               				               <div class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
-               				               <input type="url" class="js-picture form-control">
-               				          </div>
-               					</div>
-               				</div>
-               			</div>	<br><br>
-
-               		     <button class="js-submit btn btn-danger form-control">Submit</button> <br>
-               		</form>
-                    </div>
-
-               </div>
-          </div>
-     </div>
 
 </div></template>
 
