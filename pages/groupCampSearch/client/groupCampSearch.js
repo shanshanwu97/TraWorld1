@@ -122,6 +122,10 @@
 
           getTo: function() {
                return new Date(this.trip.to).toDateString();
+          },
+
+          getTimestamp: function() {
+               return new Date(this.trip.timestamp).toDateString();
           }
      });
 

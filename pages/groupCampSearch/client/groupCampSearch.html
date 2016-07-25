@@ -52,7 +52,7 @@
      <div class="alert alert-{{getColor}}" role="alert">
           <div class="row">
                <div class="col-md-6">
-                    <a href="/GroupCampDetails/{{trip._id}}">
+                    <a data-toggle="modal" data-target="#details-{{trip._id}}">
                          <h1><strong>{{trip.title}}</strong></h1>
                     </a>
 
@@ -159,6 +159,79 @@
                </div>
           </div>
      </div>
+
+     <!-- Modal -->
+     <div class="modal fade" id="details-{{trip._id}}" role="dialog">
+          <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <p class = "text-center">
+                              <h2>
+                                   <strong>{{trip.title}}</strong> <br>
+                                   <small>{{trip.message}}</small>
+                              </h2>
+                              <h5>
+                                   {{#each tag in trip.tags}}
+                                        <span class="label label-default">{{tag}}</span>
+                                   {{/each}}
+                              </h5>
+                         </p>
+                    </div>
+
+                    <div class="modal-body">
+                         {{#if trip.picture}}
+                              <p class="text-center">
+                                   <img src={{trip.picture}} width = 750>
+                                   <br><br><br>
+                              </p>
+                         {{/if}}
+
+                         {{#if trip.description}}
+                              <blockquote>
+                                   {{trip.description}}
+                              </blockquote>
+                         {{/if}}
+
+                         In <em>{{trip.destination}}</em>
+                         from <em>{{getFrom}}</em>
+                         to <em>{{getTo}}</em>.
+
+                         Created by
+                         {{#if isMine}}
+                              <span class="label label-primary">Me</span>
+                         {{else}}
+                              <span class="label label-info">{{trip.author}}</span>
+                         {{/if}}
+
+                         on <em>{{getTimestamp}}</em>.
+
+                         <br><br>
+                         At least {{trip.threshold}} people needed for this trip.
+
+                         Travelers Signed Up ({{trip.travelers.length}} so far):<br>
+                         {{#each traveler in travelers}}
+                              {{#if isMe traveler}}
+                                   <span class="label label-primary">Me</span>
+                              {{else}}
+                                   <span class="label label-info">{{trip.traveler}}</span>
+                              {{/if}}
+                         {{/each}}
+
+                         <br><br>
+
+                         {{#if trip.link}}
+                              <br><br>
+                              <p class = "text-right">
+                                   <a href={{trip.link}}>Click Here</a> for more information.
+                              </p>
+                         {{/if}}
+                    </div>
+               </div>
+          </div>
+     </div>
+
 </template>
 
 
