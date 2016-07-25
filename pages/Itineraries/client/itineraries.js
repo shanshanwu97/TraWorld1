@@ -42,7 +42,7 @@ Template.itineraries.events({
 			const txt=[];
 			var imgs= Session.get("thumbpic");
       var likes=0;
-			
+
 			const trip=
 			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, image: img, thumbpic:imgs, description: desc, textedit:txt,likes
 			}
@@ -55,7 +55,7 @@ Template.itineraries.events({
 	'click #deleteFileButton ': function (event) {
         console.log("deleteFile button ", this);
         YourFileCollection.remove({_id:this._id});
-        
+
       },
       'change .your-upload-class': function (event, template) {
     console.log("uploading...")
@@ -78,8 +78,8 @@ Template.itineraries.events({
 //   "click .js-picktime" :function(){
 //     var time=$('#time').datepicker({
 //     onSelect: function()
-//     { 
-//         var dateObject = $(this).datepicker('getDate'); 
+//     {
+//         var dateObject = $(this).datepicker('getDate');
 //     }
 // });
 //     $('.js-arrive').html(time);
@@ -114,14 +114,14 @@ Template.itineraries.events({
 });
 // We also need handlers for when the inputs themselves are changed / removed
 Template.input.events({
-  'click .remove-input': function(event) { 
+  'click .remove-input': function(event) {
   	event.preventDefault();
     var uniqid = $(event.currentTarget).attr('uniqid');
     inputs = Session.get('inputs');
     inputs = _.filter(inputs, function(x) { return x.uniqid != uniqid; });
     Session.set('inputs', inputs);
   },
-  'change input': function(event) { 
+  'change input': function(event) {
     var $input = $(event.currentTarget);
     var uniqid = $input.attr('uniqid');
     inputs = Session.get('inputs');
@@ -131,4 +131,3 @@ Template.input.events({
     console.log(Session.get('inputs'));
   }
 });
-

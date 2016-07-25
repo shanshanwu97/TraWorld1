@@ -1,3 +1,5 @@
+Meteor.subscribe("theDestSearched");
+
 Template.groupCampPost.helpers({
 	setUp: function(){
 		Session.set("notCompleteAlertNeeded", false);
