@@ -25,15 +25,15 @@ Template.showSearch.helpers({
   
   naviMapOptions: function(map) {
     if (GoogleMaps.loaded()) {
-
+      const l=Session.get("mapid");
       var markerCur= new google.maps.Marker({
-        position: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
+        position: new google.maps.LatLng(l.lat,l.lng),
         map:map&&map.instance
       });
       return {
-        center: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
+        center: new google.maps.LatLng(l.lat,l.lng),
         marker: new google.maps.Marker({
-        position: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
+        position: new google.maps.LatLng(l.lat,l.lng),
         map:map&&map.instance}),
         zoom:15
       };

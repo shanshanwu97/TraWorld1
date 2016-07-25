@@ -124,18 +124,30 @@ Template.home.events({
 })
 
 function send() {
+  // $speechInput,
+  //   $recBtn,
+  //   recognition,
+  //   messageRecording = "Recording...",
+  //   messageCouldntHear = "I couldn't hear you, could you say that again?",
+  //   messageInternalError = "Oh no, there has been an internal server error",
+  //   messageSorry = "I'm sorry, I don't have the answer to that yet.";
   var text =  Session.get("searchit");
+  var baseUrl= "https://api.api.ai/v1/";
+  var subscriptionKey="";
+  var synth=window.speechSynthesis;
   $.ajax({
     type: "POST",
     url: baseUrl + "query/",
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
-      "Authorization": "Bearer " + accessToken,
+      "Authorization": "Bearer " + "8c154d0fc086495daec6c8b12a5b7af8",
       "ocp-apim-subscription-key": subscriptionKey
     },
     data: JSON.stringify({ q: text, lang: "en" }),  
     success: function(data) {
+      console.dir(data);
+
         //  setResponse(JSON.stringify(data, undefined, 2));
         //  r= JSON.parse(results);
         //  console.dir(data.result.speech);
