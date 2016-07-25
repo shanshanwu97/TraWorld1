@@ -88,6 +88,13 @@
                     return false;
           },
 
+          isMe: function(traveler) {
+               if (traveler == Meteor.user().userName)
+                    return true;
+               else
+                    return false;
+          },
+
           isSearchedTag: function(tag)    {
                return (Session.get("searchedTag") == tag);
           },
