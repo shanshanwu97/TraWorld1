@@ -211,18 +211,17 @@
                          At least {{trip.threshold}} people needed for this trip.
 
                          Travelers Signed Up ({{trip.travelers.length}} so far):<br>
-                         {{#each traveler in travelers}}
+                         {{#each traveler in trip.travelers}}
                               {{#if isMe traveler}}
                                    <span class="label label-primary">Me</span>
                               {{else}}
-                                   <span class="label label-info">{{trip.traveler}}</span>
+                                   <span class="label label-info">{{traveler}}</span>
                               {{/if}}
                          {{/each}}
 
                          <br><br>
 
                          {{#if trip.link}}
-                              <br><br>
                               <p class = "text-right">
                                    <a href={{trip.link}}>Click Here</a> for more information.
                               </p>
