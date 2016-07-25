@@ -233,18 +233,27 @@
                               <br><br>
                          {{/if}}
 
+                         <hr>
+
                          {{#each message in trip.chat}}
-                              <hr>
-                              <p class="text-right"><span class="label label-info">{{message.username}}</span></p>
-                              {{message.text}}
+                              <p class="text-right">
+                                   {{#if isMe message.username}}
+                                        <span class="label label-primary">Me</span>
+                                   {{else}}
+                                        <span class="label label-info">{{message.username}}</span>
+                                   {{/if}}
+                              </p>
+                              <div class="well well-sm">
+                                   {{message.text}}
+                              </div>
                          {{/each}}
-                         <br><br><br>
+                         <br>
 
                          <!-- INSERT MESSAGE BAR HERE! -->
                          <form class="form">
                               <div class="input-group">
                                    <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
-                                   <input type="text" class="form-control">
+                                   <input type="text" class="js-postToChat form-control">
                                    <span class="input-group-btn">
                                         <input class="js-postToChat btn btn-info" type="submit" value="Post">
                                    </span>
