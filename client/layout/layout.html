@@ -7,7 +7,7 @@
     <div class="navbar-header">
       <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#navMain">
   <span class="glyphicon glyphicon-chevron-right" style="color:white;"></span>
-    
+
   </button>
 
       <a class="navbar-brand" >TraWorld</a>
@@ -17,7 +17,7 @@
 
         {{#if currentUser}}
 
-	
+
 	  		<li role="presentation" title="Home">
 		          <a href="{{pathFor 'home'}}">
 		          	<h4><span class="glyphicon glyphicon-home" aria-hidden="true"></span></h4>
@@ -30,19 +30,20 @@
 				</a>
 
 	          </li>
-			<li role="presentation" title="Current Group Camps">
-				<a href="{{pathFor 'groupCampSearch'}}">
-					<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
-					<!-- <h6>Find Group Camps</h6> -->
-				</a>
-			</li>
-	 	     <li role="presentation" title="Design a New Group Camp">
-	 			<a href="{{pathFor 'groupCampPost'}}">
-					<span class="glyphicon glyphicon-tent" aria-hidden="true"></span> +
-					<!-- <h6>Design a Group Camp</h6> -->
-				</a>
 
-	 	     </li>
+
+			<!-- GROUP CAMP -->
+			<li role="presentation" class="dropdown">
+				<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+					<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>&nbsp;
+					Group Camp
+					<span class="caret"></span>
+				</a>
+				<ul class="dropdown-menu">
+					<li><a id="navtab" href="{{pathFor 'groupCampSearch'}}">Find Your Trip</a></li>
+					<li><a id="navtab" href="{{pathFor 'groupCampPost'}}">Design your Trip</a></li>
+				</ul>
+			</li>
 
 
 			<!-- COMMENTS -->
@@ -63,7 +64,7 @@
 					<h6>My Profile</h6>
 				</a>
 	          </li>
-						
+
 			<li role="presentation" class="dropdown">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"> {{userName.profile.first}} {{userName.profile.last}} <span class="caret"></span> </a>
 					<ul class="dropdown-menu">
@@ -118,6 +119,6 @@
     </div>
   </div>
 </div>
-	
+
 {{> yield}}
 </template>
