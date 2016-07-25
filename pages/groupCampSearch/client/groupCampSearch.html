@@ -1,4 +1,4 @@
-<template name="groupCampSearch"> <div class = "container">
+<template name="groupCampSearch"><div class = "container">
      <div class="page-header">
           <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
@@ -230,7 +230,26 @@
                               <p class = "text-right">
                                    <a href={{trip.link}}>Click Here</a> for more information.
                               </p>
+                              <br><br>
                          {{/if}}
+
+                         {{#each message in trip.chat}}
+                              <hr>
+                              <p class="text-right"><span class="label label-info">{{message.username}}</span></p>
+                              {{message.text}}
+                         {{/each}}
+                         <br><br><br>
+
+                         <!-- INSERT MESSAGE BAR HERE! -->
+                         <form class="form">
+                              <div class="input-group">
+                                   <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
+                                   <input type="text" class="form-control">
+                                   <span class="input-group-btn">
+                                        <input class="js-postToChat btn btn-info" type="submit" value="Post">
+                                   </span>
+                              </div>
+                         </form>
                     </div>
                </div>
           </div>
