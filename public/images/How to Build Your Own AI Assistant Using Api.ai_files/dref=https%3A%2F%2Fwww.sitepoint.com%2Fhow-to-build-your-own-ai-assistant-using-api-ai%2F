@@ -1,8 +1,0 @@
-document.write('<!--*');
-document.write('var aolAdId=\"2323774\";');
-document.write('var aolSize=\"300|250\";');
-document.write('var aolFormat=\"3rd Party Rich Media Redirect\";');
-document.write('*-->');
-document.write('<scr' + 'ipt language=\'JavaScript1.1\' SRC=\"https:\/\/fw.adsafeprotected.com\/rjss\/dc\/60103\/9485107\/ddm\/adj\/N265001.272756AOL-ADVERTISING\/B9994335.134404474;sz=300x250;click=https://secure.ace.advertising.com\/click\/site=899532\/mnum=2323774\/cstr=89870300=_57963778_4114487802_899532*2323774*82*0_1_\/xsxdata=$XSXDATA\/imptid=AS4081834d7e9048d0a4e33fcf2502535c\/bnum=89870300\/optn=64?trg=;ord=4114487802;dc_lat=;dc_rdid=;tag_for_child_directed_treatment=?\">');
-document.write('<\/scr' + 'ipt>');
-document.write("<scr"+"ipt src='https://z.moatads.com/advertisingdotcom370674952587/moatad.js#moatClientLevel1=2323774&moatClientLevel2=385186&zMoatMediaWidth=300&zMoatMediaHeight=250&zMoatSegmentID=82&zMoatImpressionID=AS4081834d7e9048d0a4e33fcf2502535c&moatClientSlicer1=899532&moatClientSlicer2=0&zMoatSiteDomain=www.sitepoint.com&zMoatDevice=$device_category' type='text/javascript'></scr"+"ipt>");
