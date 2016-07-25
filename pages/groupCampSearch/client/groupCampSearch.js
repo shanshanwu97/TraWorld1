@@ -173,38 +173,3 @@
                GroupCampTrips.remove({_id: this.trip._id});
           }
      });
-
-
-// Group Camp Details
-
-     Template.GroupCampDetails.helpers({
-          getTags: function() {
-               return tags.toString();
-          },
-
-          isMine: function() {
-               if (this.author == Meteor.user().userName)
-                    return true;
-               else
-                    return false;
-          },
-
-          isMe: function(traveler) {
-               if (traveler == Meteor.user().userName)
-                    return true;
-               else
-                    return false;
-          },
-
-          getFrom: function() {
-               return new Date(this.from).toDateString();
-          },
-
-          getTo: function() {
-               return new Date(this.to).toDateString();
-          },
-
-          getTimestamp: function() {
-               return new Date(this.timestamp).toDateString();
-          }
-     });
