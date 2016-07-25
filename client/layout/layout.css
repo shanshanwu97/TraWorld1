@@ -22,6 +22,9 @@
 ul.dropdown-menu {
     background-color: black;
 }
+#navtab{
+  color:white;
+}
 
 
 @media (max-width: 992px) {
