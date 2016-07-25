@@ -27,6 +27,7 @@
           {{#if getUserName}}
                <button class="js-seeMine form-control btn-default btn-sm">See My Trips</button>
                <button class="js-seeAmGoing form-control btn-default btn-sm">See Trips I'm Going On</button>
+               <button class="form-control btn-default btn-sm" data-toggle="modal" data-target="#addTrip" onclick="event.preventDefault()">Design a Trip</button>
           {{/if}}
      </form>
 
@@ -43,6 +44,30 @@
                </small></h2>
           </p>
      {{/if}}
+
+
+     <!-- Modal -->
+     <div class="modal fade" id="addTrip" role="dialog">
+          <div class="modal-dialog modal-lg">
+               <div class="modal-content">
+
+                    <div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <h1 class="text-center">
+               			<img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
+               			<strong>Group Camp</strong>
+               			<small>Design Your Trip</small>
+               		</h1>
+                    </div>
+
+                    <div class="modal-body">
+                         <!-- PUT BODY HERE -->
+                    </div>
+
+               </div>
+          </div>
+     </div>
+
 </div></template>
 
 
