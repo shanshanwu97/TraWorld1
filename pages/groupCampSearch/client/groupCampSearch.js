@@ -169,7 +169,14 @@
                GroupCampTrips.remove({_id: this.trip._id});
           },
 
-          "click .js-cancel": function() {
-               GroupCampTrips.remove({_id: this.trip._id});
+          "click .js-postToChat": function() {
+               event.preventDefault();
+
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var chat = trip && trip.chat;
+               var username = Meteor.user() && Meteor.user().userName;
+               var text = $(".js-postToChat").val().trim();
+
+               GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text}}});
           }
      });

@@ -147,7 +147,7 @@ Template.groupCampPost.events({
 
 
 		if (complete){
-			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: From, to, travelers, threshold, cost, link, picture});
+			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: From, to, travelers, threshold, cost, link, picture, chat: []});
 			Router.go("groupCampSearch");
 		}
 		else{
