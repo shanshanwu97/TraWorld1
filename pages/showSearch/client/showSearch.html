@@ -1,0 +1,107 @@
+<template name = "showSearch">
+      <div class="container">
+        <div class="jumbotron" style="background-image: url({{image}}); background-size: 100%; height: 100%;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+  </div>
+      <div class="row" id="display">
+    <div class="col-md-12  col-md-offset-0  bg-info">
+      <h1>{{title}}</h1>
+      <h4>{{username}}</h4>
+      <h3><ul>
+        <div> 
+        {{#each d in destination}}
+            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{d.value}}
+          
+        {{/each}}
+      </div>
+      </ul></h3>
+      <div class="panel panel-default">
+          <div class="panel-body">
+          <h4><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Arrival: {{arrival}}</h4>
+          <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Companions: {{amountOfTraveler}}</h4>
+          <h4><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Approximate Expense: {{expenses}}</h4>
+          </div>
+      </div>
+      <h4> Description: {{description}}</h4>
+      <br>
+    </div>
+  </div>
+    {{#each t in textedit}}
+    {{#if checkText t.type}}
+    <section id="cd-timeline" class="cd-container">
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture"> -->
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        <h2>{{t.title}}</h2>
+        <p>{{t.text}}</p>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <span class="cd-date">{{t.date}}</span>
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+</section>
+{{/if}}
+
+  {{#if checkPic t.type}}
+    <section id="cd-timeline" class="cd-container">
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture">
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        <h2>{{t.title}}</h2>
+        
+        <div> {{savepicref t.pic}}
+        <a href="{{thispic.url}}" target="_blank"><img src="{{thispic.url}}" width= "100%" alt=""></a>
+      </div><p>{{t.text}}</p>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <span class="cd-date">{{t.date}}</span>
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+</section>
+  {{/if}}
+  {{#if checkMap t.type}}
+    <section id="cd-timeline" class="cd-container">
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture">
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        <h2>{{t.location}}</h2>
+        
+        <div> {{savemapref t.map}}
+        <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+      </div>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <!-- <span class="cd-date">{{t.date}}</span> -->
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+</section>
+  {{/if}}
+{{/each}}
+  {{#if isUser}}
+{{>addtext}}
+{{>addpicture}}
+{{>addmap}}
+<nav class="cd-stretchy-nav add-content js-addstuff">
+    <a class="cd-nav-trigger" href="#0">
+      <span aria-hidden="true"></span>
+    </a>
+
+    <ul>
+      <li class="js-imgsss"><a href="#addTextForm" data-toggle="modal" data-target="#addTextForm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
+      <li class="js-picts"><a href="#addPicture" data-toggle="modal" data-target="#addPicture"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
+      <li class="js-addmap"><a href="#addMap" data-toggle="modal" data-target="#addMap"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a></li>
+      <li><a href="#0"><span>Video</span></a></li>
+    </ul>
+
+    <span aria-hidden="true" class="stretchy-nav-bg"></span>
+  </nav>
+  {{/if}}
+         
+</div>            
+
+</template>

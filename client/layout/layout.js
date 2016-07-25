@@ -30,6 +30,7 @@ Template.layout.events({
         $('.opaque-navbar').removeClass('opaque');
     }
 });
+  
 // new function($) {
 //   $.fn.setCursorPosition = function(pos) {
 //     if (this.setSelectionRange) {
