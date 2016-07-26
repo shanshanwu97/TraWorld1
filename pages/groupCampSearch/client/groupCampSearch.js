@@ -175,7 +175,7 @@
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var chat = trip && trip.chat;
                var username = Meteor.user() && Meteor.user().userName;
-               var text = $(".js-postToChat").val().trim();
+               var text = $(".js-postToChatText").val().trim();
 
                GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text}}});
           }
