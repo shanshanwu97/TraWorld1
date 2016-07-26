@@ -4,9 +4,9 @@
                if (Session.get("searchBy") == "tag")
                     return (GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gt: new Date()}}).count() != 0);
                else if (Session.get("searchBy") == "mine")
-                    return (GroupCampTrips.find({author: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {hasEnoughTravelers: true}]}).count() != 0);
+                    return (GroupCampTrips.find({author: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else if (Session.get("searchBy") == "going")
-                    return (GroupCampTrips.find({travelers: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {hasEnoughTravelers: true}]}).count() != 0);
+                    return (GroupCampTrips.find({travelers: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else
                     return (GroupCampTrips.find({deadline: {$gt: new Date()}}).count() != 0);
           },
@@ -15,9 +15,9 @@
                if (Session.get("searchBy") == "tag")
                     return GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gt: new Date()}}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
-                    return GroupCampTrips.find({author: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {hasEnoughTravelers: true}]}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({author: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
-                    return GroupCampTrips.find({travelers: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {hasEnoughTravelers: true}]}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({travelers: Meteor.user().userName, $or: [{deadline: {$gt: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else
                     return GroupCampTrips.find({deadline: {$gt: new Date()}}, {sort: {timestamp: -1}});
           },
