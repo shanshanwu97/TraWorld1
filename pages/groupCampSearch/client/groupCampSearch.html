@@ -162,6 +162,23 @@
                                         <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
                                    </div>
                               {{/if}}
+                         {{else}}
+                              <br><br>
+                              {{#if hasEnoughTravelers}}
+                                   <p class="text-right">
+                                        <small>
+                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+                              {{else}}
+                                   <p class="text-right">
+                                        <small>
+                                             CANCELED
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+                              {{/if}}
                          {{/if}}
 
                     </small>

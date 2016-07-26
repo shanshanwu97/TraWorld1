@@ -2,24 +2,24 @@
      Template.groupCampSearch.helpers({
           hasTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return (GroupCampTrips.find({tags: Session.get("searchedTag")}).count() != 0);
+                    return (GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gt: new Date()}}).count() != 0);
                else if (Session.get("searchBy") == "mine")
                     return (GroupCampTrips.find({author: Meteor.user().userName}).count() != 0);
                else if (Session.get("searchBy") == "going")
                     return (GroupCampTrips.find({travelers: Meteor.user().userName}).count() != 0);
                else
-                    return (GroupCampTrips.find({}).count() != 0);
+                    return (GroupCampTrips.find({deadline: {$gt: new Date()}}).count() != 0);
           },
 
           getTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return GroupCampTrips.find({tags: Session.get("searchedTag")}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gt: new Date()}}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
                     return GroupCampTrips.find({author: Meteor.user().userName}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
                     return GroupCampTrips.find({travelers: Meteor.user().userName}, {sort: {timestamp: -1}});
                else
-                    return GroupCampTrips.find({}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({deadline: {$gt: new Date()}}, {sort: {timestamp: -1}});
           },
 
           getUserName: function() {return Meteor.user().userName;}
