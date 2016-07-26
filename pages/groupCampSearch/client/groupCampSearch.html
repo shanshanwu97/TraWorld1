@@ -216,13 +216,15 @@
                          At least {{trip.threshold}} people needed for this trip.
 
                          Travelers Signed Up ({{trip.travelers.length}} so far):<br>
-                         {{#each traveler in trip.travelers}}
-                              {{#if isMe traveler}}
-                                   <span class="label label-primary">Me</span>
-                              {{else}}
-                                   <span class="label label-info">{{traveler}}</span>
-                              {{/if}}
-                         {{/each}}
+                         <h6>
+                              {{#each traveler in trip.travelers}}
+                                   {{#if isMe traveler}}
+                                        <span class="label label-primary">Me</span>
+                                   {{else}}
+                                        <span class="label label-info">{{traveler}}</span>
+                                   {{/if}}
+                              {{/each}}
+                         </h6>
 
                          <br><br>
 
@@ -237,16 +239,20 @@
 
                          {{#each message in trip.chat}}
                               <p class="text-right">
-                                   {{#if isMe message.username}}
-                                        <span class="label label-primary">Me</span>
-                                   {{else}}
-                                        <span class="label label-info">{{message.username}}</span>
-                                   {{/if}}
-                                   <small>on {{message.timestamp.toDateString}} at {{message.timestamp.toTimeString}}</small> 
+                                   <h6>
+                                        {{#if isMe message.username}}
+                                             <span class="label label-primary">Me</span>
+                                        {{else}}
+                                             <span class="label label-info">{{message.username}}</span>
+                                        {{/if}}
+                                        <small>on {{message.timestamp.toDateString}} at {{message.timestamp.toTimeString}}</small>
+                                   </h6>
                               </p>
+
                               <div class="well well-sm">
                                    {{message.text}}
                               </div>
+
                          {{/each}}
                          <br>
 
