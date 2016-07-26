@@ -178,7 +178,7 @@
                     var chat = trip && trip.chat;
                     var username = Meteor.user() && Meteor.user().userName;
 
-                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text}}});
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text, timestamp: new Date()}}});
                }
           }
      });

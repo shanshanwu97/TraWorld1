@@ -242,6 +242,7 @@
                                    {{else}}
                                         <span class="label label-info">{{message.username}}</span>
                                    {{/if}}
+                                   <small>on {{message.timestamp.toDateString}} at {{message.timestamp.toTimeString}}</small> 
                               </p>
                               <div class="well well-sm">
                                    {{message.text}}
