@@ -19,7 +19,7 @@
                else if (Session.get("searchBy") == "going")
                     return GroupCampTrips.find({travelers: Meteor.user().userName}, {sort: {timestamp: -1}});
                else
-                    return GroupCampTrips.find({}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({deadline: {$gt: new Date()}}, {sort: {timestamp: -1}});
           },
 
           getUserName: function() {return Meteor.user().userName;}
