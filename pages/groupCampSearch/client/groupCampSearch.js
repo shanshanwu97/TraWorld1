@@ -133,6 +133,25 @@
 
           getTimestamp: function() {
                return new Date(this.trip.timestamp).toDateString();
+          },
+
+          getTimeof: function(dateObj) {
+               minutes = dateObj.getMinutes();
+               if (minutes < 10)
+                    minutes = "0" + minutes;
+
+               if (dateObj.getHours() == 0) {
+                    return "12:" + minutes + " AM";
+               }
+               else if (dateObj.getHours() < 12) {
+                    return dateObj.getHours() + ":" + minutes + " AM";
+               }
+               else if (dateObj.getHours() == 12) {
+                    return "12:" + minutes + " PM";
+               }
+               else {
+                    return (dateObj.getHours() - 12) + ":" + minutes + " PM";
+               }
           }
      });
 
