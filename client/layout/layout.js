@@ -14,20 +14,20 @@ Template.layout.events({
     },
     "click .js-goto": function(event){
           console.log("clicked it");
-          $(".js-speak").html("Listening...");
+          // $(".js-speak").html("Listening...");
        // https://shapeshed.com/html5-speech-recognition-api/
           const recognition = new webkitSpeechRecognition();
           recognition.lang = 'en-US'
           recognition.onresult = function(event) {
               console.dir(event);
-              $(".js-speak").html("Got it!");
-              Session.set("searchit",event.results[0][0].transcript);
-              $(".js-loca").val(Session.get("searchit"));
+              // $(".js-speak").html("Got it!");
+               Session.set("searchit",event.results[0][0].transcript);
+              // $(".js-loca").val(Session.get("searchit"));
              send();
 
     //        execute(Session.get("transcript"));
             };
-            $(".js-loca").val("");
+            // $(".js-loca").val("");
         recognition.start();
        //      console.log("starting the recognizer")
 
@@ -56,17 +56,17 @@ function send() {
       "Authorization": "Bearer " + "8c154d0fc086495daec6c8b12a5b7af8",
       "ocp-apim-subscription-key": subscriptionKey
     },
-    data: JSON.stringify({ q: text, lang: "en" }),
-    success: function(data) {
-      console.dir(data);
-
-        //  setResponse(JSON.stringify(data, undefined, 2));
-        //  r= JSON.parse(results);
-        //  console.dir(data.result.speech);
-      setResponse(data.result.speech);
-      var utterThis = new SpeechSynthesisUtterance(data.result.speech);
-    //  "ocp-apim-subscription-key": subscriptionKey
-    },
+    // data: JSON.stringify({ q: text, lang: "en" }),
+    // success: function(data) {
+    //   console.dir(data);
+    //
+    //     //  setResponse(JSON.stringify(data, undefined, 2));
+    //     //  r= JSON.parse(results);
+    //     //  console.dir(data.result.speech);
+    //   setResponse(data.result.speech);
+    //   var utterThis = new SpeechSynthesisUtterance(data.result.speech);
+    // //  "ocp-apim-subscription-key": subscriptionKey
+    // },
     data: JSON.stringify({ q: text, lang: "en" }),
     success: function(data) {
       //setResponse(JSON.stringify(data, undefined, 2));
@@ -86,7 +86,7 @@ function send() {
         Router.go('/');
       }
       else if((!goPage.home)&&(!goPage.maps)&&(!goPage.pastItineraries)){
-        Router.go('groupCampPost');
+        Router.go('groupCampSearch');
       }
       else if((!goPage.home)&&(!goPage.groupCamp)&&(!goPage.pastItineraries)){
         Router.go('map');
