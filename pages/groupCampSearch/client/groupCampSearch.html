@@ -65,11 +65,7 @@
 
                     <h6>
                          {{#each tag in trip.tags}}
-                              {{#if isSearchedTag tag}}
-                                   <span class="label label-danger">{{tag}}</span>
-                              {{else}}
-                                   <span class="label label-{{getColor}}">{{tag}}</span>
-                              {{/if}}
+                              <span class="label label-{{getColor}}">{{tag}}</span>
                          {{/each}}
                     </h6>
 
@@ -85,14 +81,16 @@
                          {{#if isMine}}
                               <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
                          {{else}}
-                              {{#if amGoing}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                                   </button>
-                              {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                                   </button>
+                              {{#if isOpen}}
+                                   {{#if amGoing}}
+                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
+                                             <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                        </button>
+                                   {{else}}
+                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
+                                             <span class="amGoing-text-{{trip._id}}">Add Me!</span>
+                                        </button>
+                                   {{/if}}
                               {{/if}}
                          {{/if}}
                     {{/if}}
@@ -131,32 +129,39 @@
                               <br>
                          {{/if}}
 
-                         {{#if hasEnoughTravelers}}
-                              <p class="text-right">
-                                   <small>
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                        &nbsp;&nbsp;
-                                   </small>
-                              </p>
-
-                              <div class="progress">
-                                   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
-                                        This trip has enough people!
-                                   </div>
-                              </div>
+                         {{#if isOpen}}
                          {{else}}
-                              <p class="text-right">
-                                   <small>
-                                        {{#if trip.threshold}}
-                                             {{getTravelersNeeded trip}} Travelers Needed
-                                             &nbsp;
-                                        {{/if}}
-                                   </small>
-                              </p>
+                              <br>
+                         {{/if}}
 
-                              <div class="progress">
-                                   <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
-                              </div>
+                         {{#if isOpen}}
+                              {{#if hasEnoughTravelers}}
+                                   <p class="text-right">
+                                        <small>
+                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
+                                             This trip has enough people!
+                                        </div>
+                                   </div>
+                              {{else}}
+                                   <p class="text-right">
+                                        <small>
+                                             {{#if trip.threshold}}
+                                                  {{getTravelersNeeded trip}} Travelers Needed
+                                                  &nbsp;
+                                             {{/if}}
+                                        </small>
+                                   </p>
+
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
+                                   </div>
+                              {{/if}}
                          {{/if}}
 
                     </small>
@@ -202,6 +207,12 @@
                          In <em>{{trip.destination}}</em>
                          from <em>{{getFrom}}</em>
                          to <em>{{getTo}}</em>.
+
+                         {{#if isOpen}}
+                              Closes <em>{{getDeadline}}</em>.
+                         {{else}}
+                              Closed <em>{{getDeadline}}</em>.
+                         {{/if}}
 
                          Created by
                          {{#if isMine}}

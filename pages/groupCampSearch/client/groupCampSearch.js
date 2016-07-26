@@ -108,13 +108,28 @@
                     return true;
           },
 
+          isOpen: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               console.log(new Date(trip.deadline));
+               if(new Date(trip.deadline) < new Date())
+                    return false;
+               else
+                    return true;
+          },
+
           getColor: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
                if (travelers.length < trip.threshold)
-                    return "warning";
+                    if(new Date(trip.deadline) < new Date())
+                         return "danger";
+                    else
+                         return "warning";
                else
-                    return "success";
+                    if(new Date(trip.deadline) < new Date())
+                         return "info";
+                    else
+                         return "success";
           },
 
           getProgressBarWidth: function() {
@@ -129,6 +144,10 @@
 
           getTo: function() {
                return new Date(this.trip.to).toDateString();
+          },
+
+          getDeadline: function() {
+               return new Date(this.trip.deadline).toDateString();
           },
 
           getTimestamp: function() {
