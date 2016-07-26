@@ -75,9 +75,9 @@ Meteor.startup(function() {
 			destination: "Burlington, Vermont",
 			from: new Date("Sept. 10, 2016"),
 			to: new Date("Oct. 21, 2016"),
-               deadline: new Date("Sept. 8, 2016"),
+               deadline: new Date("Sept. 8, 2015"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10"],
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10", "abhishek"],
 			threshold: 10,
 
 			cost: "50",
