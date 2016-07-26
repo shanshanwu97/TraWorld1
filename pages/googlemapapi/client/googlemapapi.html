@@ -1,29 +1,35 @@
-<template name="map">
-<div class="container">
-<br><br><br>
+<template name="map"><div class="container">
+     <br><br>
+     <form id="calculate-route" name="calculate-route" action="#" method="get">
+          <div class="row">
+               <div class="col-md-6">
+                    <label>From</label>
+                    <div class="input-group">
+                         <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
+                         <input type="text" class="form-control" id="from" name="from"  placeholder="Enter Address">
+                         <span class="input-group-btn">
+                              <input class="js-talk btn buttonblue btn-info" type="submit" value="Speak">
+                         </span>
+                    </div>
+               </div>
 
+               <div class="col-md-6">
+                    <label>To</label>
+                    <div class="input-group">
+                         <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
+                         <input type="text" class="form-control" id="to" name="to"  placeholder="Enter Address">
+                         <span class="input-group-btn">
+                              <input class="js-talk2 btn buttonblue btn-info" type="submit" value="Speak">
+                         </span>
+                    </div>
+               </div>
+          </div>
 
-<form id="calculate-route" name="calculate-route" action="#" method="get">
-  <label for="from">From:</label>
-  <input type="text" id="from" name="from"  placeholder="An address" size="30" /><button class="js-talk btn buttonblue">Talk a location's name!</button>
-
-  <br />
-
-  <label for="to">To:</label>
-  <input type="text" id="to" name="to"  placeholder="Another address" size="30" /><button class="js-talk2 btn buttonblue">Talk a location's name!</button>
-  <br />
-
-  <input type="submit" id="clickme">
-
-</form>
-<div id="map-nav" style="height:500px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
-</div>
-​
-</template>
-
-
-
-
-
-
-
+          <form>
+               <br>
+               <input type="submit" class="form-control btn-primary" id="clickme" value="Search">
+          </form>
+     </form>
+     <br><br>
+     <div id="map-nav" style="height:500px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+</div></template>

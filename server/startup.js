@@ -24,6 +24,7 @@ Meteor.startup(function() {
 			destination: "Honalulu, Hawaii",
 			from: "June 01, 2016",
 			to: "July 30, 2016",
+               deadline: "June 15, 2016",
 
 			travelers: ["user1", "user2", "user3", "user4"],
 			threshold: 35,
@@ -48,6 +49,7 @@ Meteor.startup(function() {
 			destination: "Val Thorens, France",
 			from: "Dec. 1, 2016",
 			to: "Jan. 31, 2017",
+               deadline: "Nov. 1, 2016",
 
 			travelers: [],
 			threshold: 20,
@@ -73,6 +75,7 @@ Meteor.startup(function() {
 			destination: "Burlington, Vermont",
 			from: "Sept. 10, 2016",
 			to: "Oct. 21, 2016",
+               deadline: "Sept. 8, 2016",
 
 			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9"],
 			threshold: 10,
