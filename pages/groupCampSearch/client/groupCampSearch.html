@@ -235,28 +235,49 @@
                               <br><br>
                          {{/if}}
 
-                         <hr>
-
-                         {{#each message in trip.chat}}
-                              <p class="text-right">
-                                   <h6>
-                                        {{#if isMe message.username}}
-                                             <span class="label label-primary">Me</span>
+                         {{#if amGoing}}
+                              <hr>
+                              {{#each message in trip.chat}}
+                                   {{#if message.alert}}
+                                        <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
+                                        {{#if message.isGoing}}
+                                             <div class="alert alert-success alert">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  joined the group.
+                                             </div>
                                         {{else}}
-                                             <span class="label label-info">{{message.username}}</span>
+                                             <div class="alert alert-danger">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  left the group.
+                                             </div>
                                         {{/if}}
-                                        <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
-                                   </h6>
-                              </p>
+                                   {{else}}
+                                        <p class="text-right">
+                                             <h6>
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">Me</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
+                                             </h6>
+                                        </p>
 
-                              <div class="well well-sm">
-                                   {{message.text}}
-                              </div>
+                                        <div class="well well-sm">
+                                             {{message.text}}
+                                        </div>
+                                   {{/if}}
+                              {{/each}}
+                              <br>
 
-                         {{/each}}
-                         <br>
-
-                         {{#if getUserName}}
                               <form class="form">
                                    <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
