@@ -249,16 +249,17 @@
                          {{/each}}
                          <br>
 
-                         <!-- INSERT MESSAGE BAR HERE! -->
-                         <form class="form">
-                              <div class="input-group">
-                                   <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
-                                   <input type="text" class="js-postToChat form-control">
-                                   <span class="input-group-btn">
-                                        <input class="js-postToChat btn btn-info" type="submit" value="Post">
-                                   </span>
-                              </div>
-                         </form>
+                         {{#if getUserName}}
+                              <form class="form">
+                                   <div class="input-group">
+                                        <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
+                                        <input type="text" class="js-postToChat form-control">
+                                        <span class="input-group-btn">
+                                             <input class="js-postToChat btn btn-info" type="submit" value="Post">
+                                        </span>
+                                   </div>
+                              </form>
+                         {{/if}}
                     </div>
                </div>
           </div>
