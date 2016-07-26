@@ -237,6 +237,17 @@
 
                          {{#if amGoing}}
                               <hr>
+
+                              <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
+                              <div class="alert alert-warning alert">
+                                   {{#if isMine}}
+                                        <span class="label label-primary">You</span>
+                                   {{else}}
+                                        <span class="label label-info">{{trip.author}}</span>
+                                   {{/if}}
+                                   created the group.
+                              </div>
+
                               {{#each message in trip.chat}}
                                    {{#if message.alert}}
                                         <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
