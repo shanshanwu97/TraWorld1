@@ -235,28 +235,60 @@
                               <br><br>
                          {{/if}}
 
-                         <hr>
+                         {{#if amGoing}}
+                              <hr>
 
-                         {{#each message in trip.chat}}
-                              <p class="text-right">
-                                   <h6>
-                                        {{#if isMe message.username}}
-                                             <span class="label label-primary">Me</span>
-                                        {{else}}
-                                             <span class="label label-info">{{message.username}}</span>
-                                        {{/if}}
-                                        <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
-                                   </h6>
-                              </p>
-
-                              <div class="well well-sm">
-                                   {{message.text}}
+                              <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
+                              <div class="alert alert-warning alert">
+                                   {{#if isMine}}
+                                        <span class="label label-primary">You</span>
+                                   {{else}}
+                                        <span class="label label-info">{{trip.author}}</span>
+                                   {{/if}}
+                                   created the group.
                               </div>
 
-                         {{/each}}
-                         <br>
+                              {{#each message in trip.chat}}
+                                   {{#if message.alert}}
+                                        <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
+                                        {{#if message.isGoing}}
+                                             <div class="alert alert-success alert">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  joined the group.
+                                             </div>
+                                        {{else}}
+                                             <div class="alert alert-danger">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  left the group.
+                                             </div>
+                                        {{/if}}
+                                   {{else}}
+                                        <p class="text-right">
+                                             <h6>
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">Me</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
+                                             </h6>
+                                        </p>
 
-                         {{#if getUserName}}
+                                        <div class="well well-sm">
+                                             {{message.text}}
+                                        </div>
+                                   {{/if}}
+                              {{/each}}
+                              <br>
+
                               <form class="form">
                                    <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>

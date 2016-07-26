@@ -166,21 +166,19 @@
                if (index == -1) {
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {travelers:username}});
 
-                    console.log("added me");
-                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
-
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-default');
                     $('.amGoing-text-' + this.trip._id).html('Remove Me!');
+
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: true, username: username, timestamp: new Date()}}});
                }
                else {
                     travelers.splice(index, 1);
                     GroupCampTrips.update({_id: this.trip._id}, {$set: {travelers: travelers}});
 
-                    console.log("removed me");
-                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
-
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
                     $('.amGoing-text-' + this.trip._id).html('Add Me!');
+
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: false, username: username, timestamp: new Date()}}});
                }
           },
 
@@ -197,7 +195,7 @@
                     var chat = trip && trip.chat;
                     var username = Meteor.user() && Meteor.user().userName;
 
-                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text, timestamp: new Date()}}});
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: false, username: username, text: text, timestamp: new Date()}}});
                }
           }
      });
