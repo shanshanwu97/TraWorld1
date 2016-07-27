@@ -48,7 +48,9 @@ Template.itineraries.events({
 			}
 			Session.set("userinput",trip);
 			Meteor.call("insertTrip", trip);
-			Router.go('itdisplay');
+      var tripid=Session.get("temptripid");
+      const goid='/showsearch/'+tripid;
+			Router.go(goid);
 
 		}
 	},

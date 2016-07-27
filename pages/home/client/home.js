@@ -162,8 +162,9 @@ function send() {
         //  console.dir(data.result.speech);
       console.dir(data)
       setResponse(data.result.speech);
-
+      // SpeechSynthesisUtteranceInstance.lang = 'en-US';
       var utterThis = new SpeechSynthesisUtterance(data.result.speech);
+      utterThis.lang='en-US';
       voices = synth.getVoices();
       utterThis.voice = voices[74]; //61-82    61,64, 66, 67,  74 is top, 80, 22 weird singing
       synth.speak(utterThis);
