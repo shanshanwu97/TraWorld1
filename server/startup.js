@@ -13,7 +13,7 @@ Meteor.startup(function() {
      if (GroupCampTrips.find().count() == 0) {
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author1",
 			timestamp: new Date("April 25, 2016"),
 
 			title: "Trip to Hawaii",
@@ -21,9 +21,10 @@ Meteor.startup(function() {
 			message: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
                tags: ["beach", "hawaii"],
 
-			destination: "Honalulu, Hawaii",
-			from: "June 01, 2016",
-			to: "July 30, 2016",
+			destination: "Honolulu, Hawaii",
+			from: new Date("Aug. 02, 2016"),
+			to: new Date("Aug. 30, 2016"),
+               deadline: new Date("Aug. 1, 2016"),
 
 			travelers: ["user1", "user2", "user3", "user4"],
 			threshold: 35,
@@ -36,7 +37,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author2",
 			timestamp: new Date("Feb. 17, 2016"),
 
 			title: "Hit the Slopes!",
@@ -46,8 +47,9 @@ Meteor.startup(function() {
 
 
 			destination: "Val Thorens, France",
-			from: "Dec. 1, 2016",
-			to: "Jan. 31, 2017",
+			from: new Date("Dec. 1, 2016"),
+			to: new Date("Jan. 31, 2017"),
+               deadline: new Date("Nov. 1, 2016"),
 
 			travelers: [],
 			threshold: 20,
@@ -61,7 +63,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author3",
 			timestamp: new Date("July 1, 2016"),
 
 			title: "Lost in the Woods",
@@ -71,10 +73,11 @@ Meteor.startup(function() {
 
 
 			destination: "Burlington, Vermont",
-			from: "Sept. 10, 2016",
-			to: "Oct. 21, 2016",
+			from: new Date("Sept. 10, 2016"),
+			to: new Date("Oct. 21, 2016"),
+               deadline: new Date("Sept. 8, 2015"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9"],
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10", "abhishek"],
 			threshold: 10,
 
 			cost: "50",

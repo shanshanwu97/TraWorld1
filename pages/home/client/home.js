@@ -10,7 +10,7 @@ Template.home.events({
 	"submit form": function(){
 		event.preventDefault();
 		const destination=$(".js-loca").val().toLowerCase();
-		
+
 		Router.go('searchresults');
 		Session.set("results", destination);
 		// Meteor.call("search", destination);
@@ -21,12 +21,12 @@ Template.home.events({
 			searches: 1
 			}
 			DestSearched.insert(search_obj);
-			
+
 		}else{
 			console.dir("Destination search incremented");
 			DestSearched.update({_id:DestSearched.findOne({location:destination})._id},{$inc:{searches: 1}});
 		}
-		
+
 	},
 	msg:function(){return Settings.findOne({user:Meteor.userId()})},
 	usersearch:function(){
@@ -45,7 +45,7 @@ Template.home.events({
 
 		Meteor.call("tosearch", destination);
 		Router.go('searchresults');
-		
+
 	},
 	"click .js-deletefav ":function(event){
 		console.log("clicked on the x"); //debug
@@ -74,7 +74,7 @@ Template.showSearch.events({
     var uniqid = Math.floor(Math.random() * 100000); // Give a unique ID so you can pull _this_ input when you click remove
     inputs&&inputs.push({uniqid: uniqid, datecreated: new Date(), cvalue: ""});
     Session.set('data', inputs);
-  }, 
+  },
   'click .js-subtext':function(){
   	const getdata=Session.get('data');
   	console.log(getdata);
@@ -83,14 +83,14 @@ Template.showSearch.events({
 });
 // We also need handlers for when the inputs themselves are changed / removed
 Template.input.events({
-  'click .remove-input': function(event) { 
+  'click .remove-input': function(event) {
   	event.preventDefault();
     var uniqid = $(event.currentTarget).attr('uniqid');
     inputs = Session.get('data');
     inputs = _.filter(inputs, function(x) { return x.uniqid != uniqid; });
     Session.set('data', inputs);
   },
-  'change input': function(event) { 
+  'change input': function(event) {
     var $input = $(event.currentTarget);
     var uniqid = $input.attr('uniqid');
     inputs = Session.get('data');
@@ -105,22 +105,22 @@ Template.home.events({
       $(".js-speak").html("Listening...");
    // https://shapeshed.com/html5-speech-recognition-api/
       const recognition = new webkitSpeechRecognition();
-      recognition.lang = 'en-US' 
+      recognition.lang = 'en-US'
       recognition.onresult = function(event) {
           console.dir(event);
           $(".js-speak").html("Got it!");
           Session.set("searchit",event.results[0][0].transcript);
           $(".js-loca").val(Session.get("searchit"));
-         send();
-          
-//        execute(Session.get("transcript")); 
+         //send();
+
+//        execute(Session.get("transcript"));
         };
         $(".js-loca").val("");
     recognition.start();
    //      console.log("starting the recognizer")
 
-    
-   },   
+
+   },
 })
 
 function send() {
@@ -144,7 +144,7 @@ function send() {
       "Authorization": "Bearer " + "8c154d0fc086495daec6c8b12a5b7af8",
       "ocp-apim-subscription-key": subscriptionKey
     },
-    data: JSON.stringify({ q: text, lang: "en" }),  
+    data: JSON.stringify({ q: text, lang: "en" }),
     success: function(data) {
       console.dir(data);
 
@@ -155,7 +155,7 @@ function send() {
       var utterThis = new SpeechSynthesisUtterance(data.result.speech);
     //  "ocp-apim-subscription-key": subscriptionKey
     },
-    data: JSON.stringify({ q: text, lang: "en" }),  
+    data: JSON.stringify({ q: text, lang: "en" }),
     success: function(data) {
       //setResponse(JSON.stringify(data, undefined, 2));
         //  r= JSON.parse(results);
@@ -179,4 +179,3 @@ function send() {
 function setResponse(val) {
   $("#response").text(val);
 }
-
