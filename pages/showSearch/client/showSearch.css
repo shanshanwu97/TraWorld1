@@ -1,6 +1,128 @@
 #display{
 	clear:both;
 	}
+#userntitle{
+  position:absolute;
+  z-index:2;
+  margin-top:210px;
+  margin-left:100px;
+  display:inline-block;
+}
+#likebutton{
+  float:right;
+   height: 90px;
+    width: 90px;
+    border-radius: 90px;
+    border: 5px solid #000;
+    background: transparent;
+    font-size: 20px;
+    color:#FF69B4;
+    border-color:#FF69B4;
+    margin-right: 120px;
+    top:-20px;
+}
+#likebutton span {
+  font-size:40px;
+}
+#displaypanel {
+  border-radius: 20px;
+  background: white;
+  text-align: center;
+  padding-top: 7px;
+  padding-bottom:7px;
+  border: dashed;
+  border-color: #48D1CC;
+  height:100%
+}
+
+#usernname{
+  margin-top: 120px;
+  margin-left:40px;
+  display:inline-block;
+  position:absolute;
+}
+#titleofdisplay{
+  padding-top: 0 !important;
+  top:63px;
+  position:absolute;
+  font-size: 50px;
+  margin-left: 180px;
+  
+}
+#bannerimage{
+  clear:both;
+  width: 100%;
+  height: 370px;
+  margin-top:60px;
+  background-size: 100%;
+  background-position: center center;
+
+}
+.banbutton{
+  display:none;
+  padding-top:100px;
+  height:50%;
+
+}
+.bannerimg{
+  padding-top:250px;
+  left:50%;
+  display:none;
+  position:absolute;
+  z-index:1;
+}
+#bannerimage:hover:after .bannerimg{
+  display:none;
+}
+small #smallimg{
+  color:white;
+}
+#propic{
+  border:solid;
+  border-color:#48D1CC;
+  background-color: white;
+}
+#bannerimage:hover #banbutton{
+  display:block;
+  padding-top:150px;
+  height:50%;
+  left:45%;
+  display: inline-block;
+  position:absolute;
+  z-index: 1;
+}
+
+#bannerimage:after{
+  content:'\A';
+  z-index: 0;
+    position:absolute;
+    width:100%; height:370px;
+    top:60px; left:0;
+    background:rgba(0,0,0,0.3);
+    opacity:0;
+    transition: all 0.5s;
+    -webkit-transition: all 0.5s;
+   
+}
+
+#bannerimage:before {
+   /* content: attr(data-content);
+    width:100%;
+    color:#fff;
+    z-index:1;
+    bottom:0;
+    padding:4px 10px;
+    text-align:center;
+    background:red;
+    box-sizing:border-box;
+    -moz-box-sizing:border-box;*/
+}
+#bannerimage:hover:after{
+
+    opacity:1;
+    
+}
+
 	.cd-container {
   /* this class is used to give a max-width to the element it is applied to, and center it horizontally when it reaches that max-width */
   width: 90%;
@@ -183,8 +305,8 @@
   background: white;
   border:solid;
   border-width: 3px;
-  border-color:blue;
-  border-radius: 0.25em;
+  border-color:#48D1CC;
+  border-radius: 0.40em;
   padding: 1em;
   box-shadow: 0 3px 0 #d7e4ed;
 }
@@ -258,7 +380,7 @@
   .cd-timeline-content::before {
     top: 24px;
     left: 100%;
-    border-color: blue;
+    border-color: #48D1CC;
     border-left-color: white;
   }
   .cd-timeline-content .cd-read-more {
@@ -279,7 +401,7 @@
     top: 24px;
     left: auto;
     right: 100%;
-    border-color: transparent;
+    border-color: #48D1CC;
     border-right-color: white;
   }
   .cd-timeline-block:nth-child(even) .cd-timeline-content .cd-read-more {
