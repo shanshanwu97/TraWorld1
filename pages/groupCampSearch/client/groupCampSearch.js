@@ -1,54 +1,117 @@
 // Group Camp Search
      Template.groupCampSearch.helpers({
+          setUp: function(){
+     		Session.set("searchOption", "tag");
+     	},
+
           hasTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return (GroupCampTrips.find({tags: Session.get("searchedTag")}).count() != 0);
+                    return (GroupCampTrips.find({tags: Session.get("searchField"), deadline: {$gte: new Date()}}).count() != 0);
+               else if (Session.get("searchBy") == "author")
+                    return (GroupCampTrips.find({author: Session.get("searchField"), deadline: {$gte: new Date()}}).count() != 0);
+               else if (Session.get("searchBy") == "ID")
+                    return (GroupCampTrips.find({_id: Session.get("searchField")}).count() != 0);
                else if (Session.get("searchBy") == "mine")
-                    return (GroupCampTrips.find({author: Meteor.user().userName}).count() != 0);
+                    return (GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else if (Session.get("searchBy") == "going")
-                    return (GroupCampTrips.find({travelers: Meteor.user().userName}).count() != 0);
+                    return (GroupCampTrips.find({travelers: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else
-                    return (GroupCampTrips.find({}).count() != 0);
+                    return (GroupCampTrips.find({deadline: {$gte: new Date()}}).count() != 0);
           },
 
           getTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return GroupCampTrips.find({tags: Session.get("searchedTag")}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({tags: Session.get("searchField"), deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
+               else if (Session.get("searchBy") == "author")
+                    return GroupCampTrips.find({author: Session.get("searchField"), deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
+               else if (Session.get("searchBy") == "ID")
+                    return GroupCampTrips.find({_id: Session.get("searchField")}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
-                    return GroupCampTrips.find({author: Meteor.user().userName}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
-                    return GroupCampTrips.find({travelers: Meteor.user().userName}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({travelers: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else
-                    return GroupCampTrips.find({}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
           },
 
-          getUserName: function() {return Meteor.user().userName;}
+          getUserName: function() {return Meteor.user().userName;},
+
+          getSearchGlyph: function() {
+               if (Session.get("searchOption") == "author")
+                    return "user";
+               else if (Session.get("searchOption") == "ID")
+                    return "barcode";
+               else
+                    return "tag";
+          },
+
+          getSearchText: function() {
+               if (Session.get("searchOption") == "author")
+                    return "Search by Author";
+               else if (Session.get("searchOption") == "ID")
+                    return "Search by ID";
+               else
+                    return "Search by Tag";
+          },
+
+          getSearchColor: function() {
+               if (Session.get("searchOption") == "author")
+                    return "primary";
+               else if (Session.get("searchOption") == "ID")
+                    return "success";
+               else
+                    return "danger";
+          }
      });
 
      Template.groupCampSearch.events({
-          "click .js-searchTags": function(event, instance) {
+          "click .js-search": function(event, instance) {
                event.preventDefault();
-               searchedTag = $(".js-searchTag").val().toLowerCase().trim();
-               Session.set("searchBy", "tag");
-               Session.set("searchedTag", searchedTag);
+               search = $(".js-searchField").val().trim();
+
+               if (Session.get("searchOption") == "author")
+                    Session.set("searchBy", "author");
+               else if (Session.get("searchOption") == "ID")
+                    Session.set("searchBy", "ID");
+               else{
+                    search = search.toLowerCase();
+                    Session.set("searchBy", "tag");
+               }
+
+               Session.set("searchField", search);
+          },
+
+          "click .js-searchByTagOption": function(event, instance) {
+               console.log("clicked Search by Tag");
+               Session.set("searchOption", "tag");
+          },
+
+          "click .js-searchByAuthorOption": function(event, instance) {
+               console.log("clicked Search by Author");
+               Session.set("searchOption", "author");
+          },
+
+          "click .js-searchByIDOption": function(event, instance) {
+               console.log("clicked Search by ID");
+               Session.set("searchOption", "ID");
           },
 
           "click .js-seeAll": function(event, instance) {
                event.preventDefault();
                Session.set("searchBy", null);
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           },
 
           "click .js-seeMine": function() {
                event.preventDefault();
                Session.set("searchBy", "mine");
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           },
 
           "click .js-seeAmGoing": function() {
                event.preventDefault();
                Session.set("searchBy", "going");
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           }
      });
 
@@ -95,10 +158,6 @@
                     return false;
           },
 
-          isSearchedTag: function(tag)    {
-               return (Session.get("searchedTag") == tag);
-          },
-
           hasEnoughTravelers: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
@@ -108,13 +167,28 @@
                     return true;
           },
 
+          isOpen: function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               console.log(new Date(trip.deadline));
+               if(new Date(trip.deadline) < new Date())
+                    return false;
+               else
+                    return true;
+          },
+
           getColor: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
                if (travelers.length < trip.threshold)
-                    return "warning";
+                    if(new Date(trip.deadline) < new Date())
+                         return "danger";
+                    else
+                         return "warning";
                else
-                    return "success";
+                    if(new Date(trip.deadline) < new Date())
+                         return "info";
+                    else
+                         return "success";
           },
 
           getProgressBarWidth: function() {
@@ -129,6 +203,10 @@
 
           getTo: function() {
                return new Date(this.trip.to).toDateString();
+          },
+
+          getDeadline: function() {
+               return new Date(this.trip.deadline).toDateString();
           },
 
           getTimestamp: function() {
@@ -166,21 +244,19 @@
                if (index == -1) {
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {travelers:username}});
 
-                    console.log("added me");
-                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
-
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-default');
                     $('.amGoing-text-' + this.trip._id).html('Remove Me!');
+
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: true, username: username, timestamp: new Date()}}});
                }
                else {
                     travelers.splice(index, 1);
                     GroupCampTrips.update({_id: this.trip._id}, {$set: {travelers: travelers}});
 
-                    console.log("removed me");
-                    console.log(GroupCampTrips.findOne({_id:this.trip._id}).travelers.toString());
-
                     $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
                     $('.amGoing-text-' + this.trip._id).html('Add Me!');
+
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: false, username: username, timestamp: new Date()}}});
                }
           },
 
@@ -197,7 +273,7 @@
                     var chat = trip && trip.chat;
                     var username = Meteor.user() && Meteor.user().userName;
 
-                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {username: username, text: text, timestamp: new Date()}}});
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: false, username: username, text: text, timestamp: new Date()}}});
                }
           }
      });

@@ -35,6 +35,7 @@ Template.groupCampPost.events({
 		destination = $(".js-destination").val();
 		From = $(".js-from").val();
 		to = $(".js-to").val();
+		deadline = $(".js-deadline").val();
 
 		travelers = [];
 		threshold = $(".js-threshold").val();
@@ -110,6 +111,15 @@ Template.groupCampPost.events({
 			$(".js-toGroup").removeClass('has-error').addClass('has-success');
 		}
 
+		//DEADLINE
+		if (!deadline || isNaN(Date.parse(deadline)) || new Date(deadline) > new Date(From) || new Date(deadline) < new Date()){	// Required
+			complete = false;
+			$(".js-deadlineGroup").removeClass('has-success').addClass('has-error');
+		}
+		else {
+			$(".js-deadlineGroup").removeClass('has-error').addClass('has-success');
+		}
+
 		// THRESHOLD
 		if (!threshold || threshold < 1 || Math.floor(threshold) != threshold){	// Required
 			complete = false;
@@ -147,7 +157,7 @@ Template.groupCampPost.events({
 
 
 		if (complete){
-			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: From, to, travelers, threshold, cost, link, picture, chat: []});
+			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: new Date(From), to: new Date(to), deadline: new Date(deadline), travelers, threshold, cost, link, picture, chat: []});
 			Router.go("groupCampSearch");
 		}
 		else{

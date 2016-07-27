@@ -1,4 +1,6 @@
 <template name="groupCampSearch"><div class = "container">
+     {{setUp}}
+
      <div class="page-header">
           <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
@@ -16,22 +18,32 @@
 
      <form class="form-inline">
           <div class="input-group">
-               <div class="input-group-addon"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
-               <input type="text" class="js-searchTag form-control" size=25>
+               <div class="input-group-addon"><span class="glyphicon glyphicon-{{getSearchGlyph}}" aria-hidden="true"></span></div>
+               <input type="text" class="js-searchField form-control" size=25>
                <span class="input-group-btn">
-                    <input class="js-searchTags btn btn-danger" type="submit" value="Search by Tag">
+
+                    <div class="js-searchGroup btn-group">
+                         <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
+                         <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                         </button>
+                         <ul class="js-searchDropdown dropdown-menu">
+                              <li class="js-searchByTagOption"><a href="#">Search by Tag</a></li>
+                              <li class="js-searchByAuthorOption"><a href="#">Search by Author</a></li>
+                              <li class="js-searchByIDOption"><a href="#">Search by ID</a></li>
+                              <li role="separator" class="divider"></li>
+                              <li class="js-seeAll"><a href="#">See All Trips</a></li>
+                              {{#if getUserName}}
+                                   <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
+                                   <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
+                              {{/if}}
+                         </ul>
+                    </div>
                </span>
           </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="js-seeAll form-control btn-default">See All</button>
-          {{#if getUserName}}
-               <button class="js-seeMine form-control btn-default btn-sm">See My Trips</button>
-               <button class="js-seeAmGoing form-control btn-default btn-sm">See Trips I'm Going On</button>
-               &nbsp;&nbsp;
-               <button class="form-control btn-default" onclick="event.preventDefault(); Router.go('groupCampPost')">
-                    Design a Trip
-               </button>
-          {{/if}}
      </form>
 
      <br>
@@ -57,7 +69,7 @@
      <div class="alert alert-{{getColor}}" role="alert">
           <div class="row">
                <div class="col-md-6">
-                    <a data-toggle="modal" data-target="#details-{{trip._id}}">
+                    <a class="alert-link" data-toggle="modal" data-target="#details-{{trip._id}}">
                          <h1><strong>{{trip.title}}</strong></h1>
                     </a>
 
@@ -65,11 +77,7 @@
 
                     <h6>
                          {{#each tag in trip.tags}}
-                              {{#if isSearchedTag tag}}
-                                   <span class="label label-danger">{{tag}}</span>
-                              {{else}}
-                                   <span class="label label-{{getColor}}">{{tag}}</span>
-                              {{/if}}
+                              <span class="label label-{{getColor}}">{{tag}}</span>
                          {{/each}}
                     </h6>
 
@@ -85,14 +93,16 @@
                          {{#if isMine}}
                               <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
                          {{else}}
-                              {{#if amGoing}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                                   </button>
-                              {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                                   </button>
+                              {{#if isOpen}}
+                                   {{#if amGoing}}
+                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
+                                             <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                        </button>
+                                   {{else}}
+                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
+                                             <span class="amGoing-text-{{trip._id}}">Add Me!</span>
+                                        </button>
+                                   {{/if}}
                               {{/if}}
                          {{/if}}
                     {{/if}}
@@ -118,12 +128,11 @@
                          {{#if trip.author}}
                               by
                               {{#if isMine}}
-                                   <span class="label label-primary">Me</span>
+                                   <span class="text-primary">Me</span>
                               {{else}}
-                                   <span class="label label-info">{{trip.author}}</span>
+                                   <span class="text-primary">@{{trip.author}}</span>
                               {{/if}}
-                         {{/if}}
-                         .
+                         {{/if}}.
                          <br><br>
 
                          {{#if getUserName}}
@@ -131,32 +140,56 @@
                               <br>
                          {{/if}}
 
-                         {{#if hasEnoughTravelers}}
-                              <p class="text-right">
-                                   <small>
-                                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
-                                        &nbsp;&nbsp;
-                                   </small>
-                              </p>
-
-                              <div class="progress">
-                                   <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
-                                        This trip has enough people!
-                                   </div>
-                              </div>
+                         {{#if isOpen}}
                          {{else}}
-                              <p class="text-right">
-                                   <small>
-                                        {{#if trip.threshold}}
-                                             {{getTravelersNeeded trip}} Travelers Needed
-                                             &nbsp;
-                                        {{/if}}
-                                   </small>
-                              </p>
+                              <br>
+                         {{/if}}
 
-                              <div class="progress">
-                                   <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
-                              </div>
+                         {{#if isOpen}}
+                              {{#if hasEnoughTravelers}}
+                                   <p class="text-right">
+                                        <small>
+                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
+                                             This trip has enough people!
+                                        </div>
+                                   </div>
+                              {{else}}
+                                   <p class="text-right">
+                                        <small>
+                                             {{#if trip.threshold}}
+                                                  {{getTravelersNeeded trip}} Travelers Needed
+                                                  &nbsp;
+                                             {{/if}}
+                                        </small>
+                                   </p>
+
+                                   <div class="progress">
+                                        <div class="progress-bar progress-bar-warning progress-bar-striped" role="progressbar" style="width: {{getProgressBarWidth}}%"></div>
+                                   </div>
+                              {{/if}}
+                         {{else}}
+                              <br><br>
+                              {{#if hasEnoughTravelers}}
+                                   <p class="text-right">
+                                        <small>
+                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+                              {{else}}
+                                   <p class="text-right">
+                                        <small>
+                                             CANCELED
+                                             &nbsp;&nbsp;
+                                        </small>
+                                   </p>
+                              {{/if}}
                          {{/if}}
 
                     </small>
@@ -183,6 +216,10 @@
                                    {{/each}}
                               </h5>
                          </p>
+
+                         <p class="text-right">
+                              <h6><small>ID: <em>{{trip._id}}</em></small></h6>
+                         </p>
                     </div>
 
                     <div class="modal-body">
@@ -202,6 +239,12 @@
                          In <em>{{trip.destination}}</em>
                          from <em>{{getFrom}}</em>
                          to <em>{{getTo}}</em>.
+
+                         {{#if isOpen}}
+                              Closes <em>{{getDeadline}}</em>.
+                         {{else}}
+                              Closed <em>{{getDeadline}}</em>.
+                         {{/if}}
 
                          Created by
                          {{#if isMine}}
@@ -231,32 +274,65 @@
                          {{#if trip.link}}
                               <p class = "text-right">
                                    <a href={{trip.link}}>Click Here</a> for more information.
+                                   <h6><small>ID: {{trip._id}}</small></h6>
                               </p>
                               <br><br>
                          {{/if}}
 
-                         <hr>
+                         {{#if amGoing}}
+                              <hr>
 
-                         {{#each message in trip.chat}}
-                              <p class="text-right">
-                                   <h6>
-                                        {{#if isMe message.username}}
-                                             <span class="label label-primary">Me</span>
-                                        {{else}}
-                                             <span class="label label-info">{{message.username}}</span>
-                                        {{/if}}
-                                        <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
-                                   </h6>
-                              </p>
-
-                              <div class="well well-sm">
-                                   {{message.text}}
+                              <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
+                              <div class="alert alert-warning alert">
+                                   {{#if isMine}}
+                                        <span class="label label-primary">You</span>
+                                   {{else}}
+                                        <span class="label label-info">{{trip.author}}</span>
+                                   {{/if}}
+                                   created the group.
                               </div>
 
-                         {{/each}}
-                         <br>
+                              {{#each message in trip.chat}}
+                                   {{#if message.alert}}
+                                        <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
+                                        {{#if message.isGoing}}
+                                             <div class="alert alert-success alert">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  joined the group.
+                                             </div>
+                                        {{else}}
+                                             <div class="alert alert-danger">
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">You</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  left the group.
+                                             </div>
+                                        {{/if}}
+                                   {{else}}
+                                        <p class="text-right">
+                                             <h6>
+                                                  {{#if isMe message.username}}
+                                                       <span class="label label-primary">Me</span>
+                                                  {{else}}
+                                                       <span class="label label-info">{{message.username}}</span>
+                                                  {{/if}}
+                                                  <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
+                                             </h6>
+                                        </p>
 
-                         {{#if getUserName}}
+                                        <div class="well well-sm">
+                                             {{message.text}}
+                                        </div>
+                                   {{/if}}
+                              {{/each}}
+                              <br>
+
                               <form class="form">
                                    <div class="input-group">
                                         <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
