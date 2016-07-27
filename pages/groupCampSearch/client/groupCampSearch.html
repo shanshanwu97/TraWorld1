@@ -1,4 +1,6 @@
 <template name="groupCampSearch"><div class = "container">
+     {{setUp}}
+
      <div class="page-header">
           <h1 class="text-center">
                <img src="https://lightcastletech.files.wordpress.com/2013/04/campfire.png" width="80">
@@ -16,10 +18,22 @@
 
      <form class="form-inline">
           <div class="input-group">
-               <div class="input-group-addon"><span class="glyphicon glyphicon-tag" aria-hidden="true"></span></div>
-               <input type="text" class="js-searchTag form-control" size=25>
+               <div class="input-group-addon"><span class="glyphicon glyphicon-{{getSearchGlyph}}" aria-hidden="true"></span></div>
+               <input type="text" class="js-searchField form-control" size=25>
                <span class="input-group-btn">
-                    <input class="js-searchTags btn btn-danger" type="submit" value="Search by Tag">
+
+                    <div class="js-searchGroup btn-group">
+                         <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
+                         <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                              <span class="caret"></span>
+                              <span class="sr-only">Toggle Dropdown</span>
+                         </button>
+                         <ul class="js-searchDropdown dropdown-menu">
+                              <li class="js-searchByTagOption"><a href="#">Search by Tag</a></li>
+                              <li class="js-searchByAuthorOption"><a href="#">Search by Author</a></li>
+                              <li class="js-searchByIDOption"><a href="#">Search by ID</a></li>
+                         </ul>
+                    </div>
                </span>
           </div>
           &nbsp;&nbsp;&nbsp;&nbsp;
@@ -57,7 +71,7 @@
      <div class="alert alert-{{getColor}}" role="alert">
           <div class="row">
                <div class="col-md-6">
-                    <a data-toggle="modal" data-target="#details-{{trip._id}}">
+                    <a class="alert-link" data-toggle="modal" data-target="#details-{{trip._id}}">
                          <h1><strong>{{trip.title}}</strong></h1>
                     </a>
 
@@ -116,12 +130,11 @@
                          {{#if trip.author}}
                               by
                               {{#if isMine}}
-                                   <span class="label label-primary">Me</span>
+                                   <span class="text-primary">Me</span>
                               {{else}}
-                                   <span class="label label-info">{{trip.author}}</span>
+                                   <span class="text-primary">@{{trip.author}}</span>
                               {{/if}}
-                         {{/if}}
-                         .
+                         {{/if}}.
                          <br><br>
 
                          {{#if getUserName}}
@@ -205,6 +218,10 @@
                                    {{/each}}
                               </h5>
                          </p>
+
+                         <p class="text-right">
+                              <h6><small>ID: <em>{{trip._id}}</em></small></h6>
+                         </p>
                     </div>
 
                     <div class="modal-body">
@@ -259,6 +276,7 @@
                          {{#if trip.link}}
                               <p class = "text-right">
                                    <a href={{trip.link}}>Click Here</a> for more information.
+                                   <h6><small>ID: {{trip._id}}</small></h6>
                               </p>
                               <br><br>
                          {{/if}}
