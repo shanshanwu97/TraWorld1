@@ -1,6 +1,7 @@
 // Group Camp Search
      Template.groupCampSearch.helpers({
           setUp: function(){
+               Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
      	},
 
@@ -40,7 +41,7 @@
                if (Session.get("searchOption") == "author")
                     return "user";
                else if (Session.get("searchOption") == "ID")
-                    return "barcode";
+                    return "asterisk";
                else
                     return "tag";
           },
