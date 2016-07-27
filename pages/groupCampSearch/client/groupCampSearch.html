@@ -32,20 +32,18 @@
                               <li class="js-searchByTagOption"><a href="#">Search by Tag</a></li>
                               <li class="js-searchByAuthorOption"><a href="#">Search by Author</a></li>
                               <li class="js-searchByIDOption"><a href="#">Search by ID</a></li>
+                              <li role="separator" class="divider"></li>
+                              <li class="js-seeAll"><a href="#">See All Trips</a></li>
+                              {{#if getUserName}}
+                                   <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
+                                   <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
+                                   <li role="separator" class="divider"></li>
+                                   <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
+                              {{/if}}
                          </ul>
                     </div>
                </span>
           </div>
-          &nbsp;&nbsp;&nbsp;&nbsp;
-          <button class="js-seeAll form-control btn-default">See All</button>
-          {{#if getUserName}}
-               <button class="js-seeMine form-control btn-default btn-sm">See My Trips</button>
-               <button class="js-seeAmGoing form-control btn-default btn-sm">See Trips I'm Going On</button>
-               &nbsp;&nbsp;
-               <button class="form-control btn-default" onclick="event.preventDefault(); Router.go('groupCampPost')">
-                    Design a Trip
-               </button>
-          {{/if}}
      </form>
 
      <br>
