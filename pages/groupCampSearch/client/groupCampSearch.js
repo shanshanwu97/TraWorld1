@@ -1,8 +1,16 @@
 // Group Camp Search
      Template.groupCampSearch.helpers({
+          setUp: function(){
+     		Session.set("searchOption", "tag");
+     	},
+
           hasTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return (GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gte: new Date()}}).count() != 0);
+                    return (GroupCampTrips.find({tags: Session.get("searchField"), deadline: {$gte: new Date()}}).count() != 0);
+               else if (Session.get("searchBy") == "author")
+                    return (GroupCampTrips.find({author: Session.get("searchField"), deadline: {$gte: new Date()}}).count() != 0);
+               else if (Session.get("searchBy") == "ID")
+                    return (GroupCampTrips.find({_id: Session.get("searchField")}).count() != 0);
                else if (Session.get("searchBy") == "mine")
                     return (GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else if (Session.get("searchBy") == "going")
@@ -13,7 +21,11 @@
 
           getTrips: function(){
                if (Session.get("searchBy") == "tag")
-                    return GroupCampTrips.find({tags: Session.get("searchedTag"), deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({tags: Session.get("searchField"), deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
+               else if (Session.get("searchBy") == "author")
+                    return GroupCampTrips.find({author: Session.get("searchField"), deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
+               else if (Session.get("searchBy") == "ID")
+                    return GroupCampTrips.find({_id: Session.get("searchField")}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
                     return GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
@@ -22,33 +34,84 @@
                     return GroupCampTrips.find({deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
           },
 
-          getUserName: function() {return Meteor.user().userName;}
+          getUserName: function() {return Meteor.user().userName;},
+
+          getSearchGlyph: function() {
+               if (Session.get("searchOption") == "author")
+                    return "user";
+               else if (Session.get("searchOption") == "ID")
+                    return "barcode";
+               else
+                    return "tag";
+          },
+
+          getSearchText: function() {
+               if (Session.get("searchOption") == "author")
+                    return "Search by Author";
+               else if (Session.get("searchOption") == "ID")
+                    return "Search by ID";
+               else
+                    return "Search by Tag";
+          },
+
+          getSearchColor: function() {
+               if (Session.get("searchOption") == "author")
+                    return "primary";
+               else if (Session.get("searchOption") == "ID")
+                    return "success";
+               else
+                    return "danger";
+          }
      });
 
      Template.groupCampSearch.events({
-          "click .js-searchTags": function(event, instance) {
+          "click .js-search": function(event, instance) {
                event.preventDefault();
-               searchedTag = $(".js-searchTag").val().toLowerCase().trim();
-               Session.set("searchBy", "tag");
-               Session.set("searchedTag", searchedTag);
+               search = $(".js-searchField").val().trim();
+
+               if (Session.get("searchOption") == "author")
+                    Session.set("searchBy", "author");
+               else if (Session.get("searchOption") == "ID")
+                    Session.set("searchBy", "ID");
+               else{
+                    search = search.toLowerCase();
+                    Session.set("searchBy", "tag");
+               }
+
+               Session.set("searchField", search);
+          },
+
+          "click .js-searchByTagOption": function(event, instance) {
+               console.log("clicked Search by Tag");
+               Session.set("searchOption", "tag");
+          },
+
+          "click .js-searchByAuthorOption": function(event, instance) {
+               console.log("clicked Search by Author");
+               Session.set("searchOption", "author");
+          },
+
+          "click .js-searchByIDOption": function(event, instance) {
+               console.log("clicked Search by ID");
+               Session.set("searchOption", "ID");
           },
 
           "click .js-seeAll": function(event, instance) {
                event.preventDefault();
                Session.set("searchBy", null);
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           },
 
           "click .js-seeMine": function() {
                event.preventDefault();
                Session.set("searchBy", "mine");
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           },
 
           "click .js-seeAmGoing": function() {
                event.preventDefault();
                Session.set("searchBy", "going");
-               Session.set("searchedTag", null);
+               Session.set("searchField", null);
           }
      });
 
@@ -93,10 +156,6 @@
                     return true;
                else
                     return false;
-          },
-
-          isSearchedTag: function(tag)    {
-               return (Session.get("searchedTag") == tag);
           },
 
           hasEnoughTravelers: function() {

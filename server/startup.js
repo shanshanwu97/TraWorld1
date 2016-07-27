@@ -13,7 +13,7 @@ Meteor.startup(function() {
      if (GroupCampTrips.find().count() == 0) {
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author1",
 			timestamp: new Date("April 25, 2016"),
 
 			title: "Trip to Hawaii",
@@ -21,10 +21,10 @@ Meteor.startup(function() {
 			message: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
                tags: ["beach", "hawaii"],
 
-			destination: "Honalulu, Hawaii",
-			from: new Date("June 01, 2016"),
-			to: new Date("July 30, 2016"),
-               deadline: new Date("June 15, 2016"),
+			destination: "Honolulu, Hawaii",
+			from: new Date("Aug. 02, 2016"),
+			to: new Date("Aug. 30, 2016"),
+               deadline: new Date("Aug. 1, 2016"),
 
 			travelers: ["user1", "user2", "user3", "user4"],
 			threshold: 35,
@@ -37,7 +37,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author2",
 			timestamp: new Date("Feb. 17, 2016"),
 
 			title: "Hit the Slopes!",
@@ -63,7 +63,7 @@ Meteor.startup(function() {
           });
 
           GroupCampTrips.insert({
-               author: "Someone",
+               author: "author3",
 			timestamp: new Date("July 1, 2016"),
 
 			title: "Lost in the Woods",
