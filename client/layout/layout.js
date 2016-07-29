@@ -79,7 +79,7 @@ function send() {
 
       var utterThis = new SpeechSynthesisUtterance(data.result.speech);
       voices = synth.getVoices();
-      utterThis.voice = voices[74]; //61-82    61,64, 66, 67,  74 is top, 80, 22 weird singing
+      utterThis.voice = voices[0]; //61-82    61,64, 66, 67,  74 is top, 80, 22 weird singing
       synth.speak(utterThis);
 
       if((!goPage.groupCamp)&&(!goPage.maps)&&(!goPage.pastItineraries)){
