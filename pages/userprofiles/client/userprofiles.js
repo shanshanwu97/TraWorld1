@@ -1,6 +1,6 @@
 
 Template.profiledisplay.helpers({
-	pro:function(){
+	profile:function(){
 		// const dest= $(".js-dest").val();
 		return UserProfiles.findOne({user:Meteor.userId});
 	},
@@ -41,11 +41,15 @@ Template.userprofiles.events({
 Template.userprofiles.events({
 	"click .js-submitinfo": function(event){
 		event.preventDefault();
-		console.log("hey u clicked");
-		const loc = $(".js-locat").val();
-		var imgpath=Session.get("propic");
+		const fname = $(".js-name").val();
+
+		const email = $(".js-email").val();
+		const loc = $(".js-loc").val();
+		const amount = $(".js-trv").val();
+		var propic= Session.get("propic");
 			const prof=
-			{user:Meteor.userId(), loc:loc, propic:imgpath}; 
+			{user:Meteor.userId(), name:fname, email:email, location:loc,propic}; 
+			console.log(prof);
 			Meteor.call("insertProf", prof);
 			Router.go('profiledisplay');
 			
@@ -66,13 +70,51 @@ Template.userprofiles.events({
         }
         
       });
-      Session.set("propic",imgfile);
+      Session.set("propic",imgfile&&imgfile._id);
     });
   }
 });
 
 Template.userprofiles.helpers({
+	profexist:function(){
+		if(UserProfiles.find({user:Meteor.userId}).count()==0){
+			return true;
+		}else{
+			return false;
+		}
+	},
   theFiles: function () {
     return YourFileCollection.find();
   }
 });
+Template.profiledisplay.events({
+	"click .js-submitedit": function(event ){
+		event.preventDefault();
+		Router.go('editprofile');
+	},
+	"click .js-changepic":function(event ){
+		event.preventDefault();
+		
+	}
+})
+Template.editprofile.helpers({
+	hi:function(){
+		return UserProfiles.findOne();
+	},
+	})
+Template.editprofile.events({
+	"click .js-submitin": function(event){
+		event.preventDefault();
+		const fname = $(".js-cname").val();
+		const email = $(".js-cemail").val();
+		const loc = $(".js-cloc").val();
+		var user= UserProfiles.findOne({user: Meteor.userId()});
+		var propic=user&&user.propic;
+			const prof=
+			{user:Meteor.userId(), name:fname, email:email, location:loc,propic}; 
+			console.log(prof);
+			Meteor.call("updateProf", prof);
+			Router.go('profiledisplay');
+		},
+		
+	})

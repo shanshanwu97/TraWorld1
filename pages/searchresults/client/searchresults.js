@@ -15,8 +15,14 @@ Template.searchresults.helpers({
 		return instance.state.get("budget");
 	},
 })
+// Template.addFav.rendered=function(){
+// 	Session.set("thumbnail", $(".js-favtempid").val());
+// };
 Template.addFav.helpers({
-	
+	thumbpic:function(){
+		var picid=$(".js-favtempid").val();
+		return YourFileCollection.findOne({_id:this.thumbpic});
+	}
 })
 Template.searchresults.events({
 	"change .js-refine": function(event, instance){

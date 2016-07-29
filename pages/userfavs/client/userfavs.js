@@ -1,9 +1,10 @@
 Template.userfavs.helpers({
 	userfavorites:function(){
-		return UserFavorites.find();
+		var userid=Meteor.userId();
+		return UserFavorites.find({user:Meteor.userId()});
 	},
 	anyfav: function(){
-	if(UserFavorites.find().count()==0){
+	if(UserFavorites.find({user:Meteor.userId()}).count()==0){
 		return true;
 	}
 }

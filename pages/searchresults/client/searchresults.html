@@ -48,24 +48,25 @@
 
 
 </template>
-<template name="addFav">
+<template name="addFav" >
+  <input class="js-favtempid" style="display:none" value="{{fav.thumbpic}}">
   <li>
-                                <div class="box london">
-                                    <div class="box-icon">
-                                      <a href="/showpic/{{fav.thumbpic}}" target="_blank"><img src="/showpic/{{fav.thumbpic.thumbpic}}" width= "100%" alt=""></a>
-                                    </div>
-                                    <div class="info float-container">
-                                        <div class=" london-title">
-                                            <h3 class="text-uppercase"><a href="/showsearch/{{fav._id}}">{{fav.title}}</a></h3>
-                                            <h4 class="text-uppercase"><a href="/showuser/{{fav.createdBy}}">{{fav.username}} </a></h4>
-                                        </div>
-                                        <p>{{fav.desc}} </p><hr />
-                                        <div class=" location-main"> 
-                                            <div class="pull-left location">
+    <div class="box london">
+        <div class="box-icon">
+          <a href="{{thumbpic.url}}" target="_blank"><img src="{{thumbpic.url}}" width= "100%" alt=""></a>
+           </div>
+   <div class="info float-container">
+        <div class=" london-title">
+         <h3 class="text-uppercase"><a href="/showsearch/{{fav._id}}">{{fav.title}}</a></h3>
+         <h4 class="text-uppercase"><a href="/showuser/{{fav.createdBy}}">{{fav.username}} </a></h4>
+         </div>
+            <p>{{fav.desc}} </p><hr />
+         <div class=" location-main"> 
+          <div class="pull-left location">
                                                 <!-- <i class="fa fa-map-marker fa-2x"></i><span>LONDON</span> -->
                                               <!--   <ul> -->
         {{#each d in fav.destination}}
-            <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{d.value}}
+            <h5 style="text-transform: capitalize"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>{{d.value}}</h5>
           
         {{/each}}
       <!-- </ul> -->

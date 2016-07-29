@@ -3,20 +3,29 @@
 		<div class="page-header">
 			<h1>My Itineraries</h1>
 		</div>
-		 <ul><div >
-		
-		{{#each fav in userit}}
-		<div >
-        <div>
-          <a href="/showsearch/{{fav._id}}"><h3>{{fav.title}}</h3></a>
+    <button style="float:right;" class="btn btn-info" id="newit">Create a New Itinerary </button>
+		 <ul >
+      <br>
+      <br>
+      <br>
+    {{#each fav in userit}}
+    <div class="alert alert-info" role="alert">
+      <div class="panel-body">
+    <div id="showpastit">
+          <a href="/showsearch/{{fav._id}}"><strong>{{fav.title}}</strong></a>
           <p align="right"><span class="js-addfav glyphicon glyphicon-heart-empty" aria-hidden="true"></span>Add to Favorite</p>
         </div>
-      </div>
+    </div>
       <div class="panel-footer">by <a href="/showuser/{{fav.createdBy}}">{{fav.username}} </a>on {{fav.datecreated}}
       </div>
-      {{/each}}
- 
-	</div> </ul>
+  </div>
+     <!--  <li> -->
+        <!-- <div class="panel panel-success"> -->
+        
+         <!-- </div> -->
+       <!-- </li> -->
+    {{/each}}
+  </ul>
 
 </div>
 

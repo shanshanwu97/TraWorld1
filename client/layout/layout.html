@@ -16,7 +16,8 @@
       <ul class="nav navbar-nav pull-right">
 
         {{#if currentUser}}
-
+        	<li role="presentation">
+						<button id="navbut" class="js-goto btn buttonblue"><img  src="../images/whitemic.png"> Speak to Navigate</button> </li>
 
 	  		<li role="presentation" title="Home">
 		          <a href="{{pathFor 'home'}}">
@@ -25,7 +26,7 @@
 	          </li>
 
 	          <li role="presentation" id="itin">
-	     		<a href="{{pathFor 'itineraries'}}">
+	     		<a href="{{pathFor 'pastitin'}}">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;
 					Past Itineraries
 				</a>
@@ -48,24 +49,28 @@
 					<!-- <h6>Google Maps API</h6> -->
 				</a>
 	          </li>
-						<li role="presentation">
-						<button class="js-goto btn buttonblue">Jump Page</button> </li>
+						<!-- <li role="presentation">
+						<button id="navbut" class="js-goto btn buttonblue"></button> </li> -->
 			<!-- COMMENTS -->
-	  	     <li role="presentation" title="Comments">
+	  	     <!-- <li role="presentation" title="Comments">
 	     		<a href="http://localhost:3000/showsearch/WrkEHWfFtwLpZtTbS?">
 					[TEMPORARY]
 				</a>
-	          </li>
+	          </li> -->
 
-			<li role="presentation" class="dropdown">
+			<li role="presentation" class="dropdown topdrop">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
 						{{userName.profile.first}} {{userName.profile.last}}
 						<span class="caret"></span> </a>
-					<ul class="dropdown-menu">
+					<ul class="dropdown-menu thisdrop">
 						<li><a id="navtab" href="{{pathFor 'userprofiles'}}">My Profile</a></li>
 						<li role="separator" class="divider"></li>
+						<li><a id="navtab" href="{{pathFor 'itineraries'}}">Create Itinerary</a></li>
+						<li role="separator" class="divider"></li>
 						<li><a id="navtab" href="{{pathFor 'myitinerary'}}">My Itinerary</a></li>
+						<li role="separator" class="divider"></li>
+						<li><a id="navtab" href="{{pathFor 'userfavs'}}">My Favorites</a></li>
 						<li role="separator" class="divider"></li>
 						<li class="logout"><a id="navtab" href="#">Logout</a></li>
 					</ul>

@@ -30,13 +30,13 @@
   <div id="userntitle" class="container">
 
   <h1 id="titleofdisplay">{{title}}</h1> 
-  <img id="propic" src="{{propic.url}}" class="img-circle" width= "150px" alt="">
+  <img id="propic" src="{{propic.url}}" class="img-circle"  alt="">
   <h4 id="usernname"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{username}}</h4>
   
   {{#if isNotUser}}
-  <button id="addfav" class="btn js-fav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
+  <button id="addfav" class="btn js-addfav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
   <button id="addshare" class="btn js-share"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</button>
-  <button id="likebutton"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><br>{{likes}}</button>
+  <button id="likebutton" class="btn"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> {{likes}}</button>
   {{/if}}
   </div>
 </div>
@@ -204,6 +204,7 @@
           </div>
            <form id="basicsetting">
         <div class="modal-body">
+          <input class="js-thistripid" style="display:none;" value="{{d._id}}">
          
           <div class="form-group">
             <label for="title">Title</label>

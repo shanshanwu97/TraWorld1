@@ -131,9 +131,9 @@ function send() {
   //   messageCouldntHear = "I couldn't hear you, could you say that again?",
   //   messageInternalError = "Oh no, there has been an internal server error",
   //   messageSorry = "I'm sorry, I don't have the answer to that yet.";
-  var text =  Session.get("searchit");
-  var baseUrl= "https://api.api.ai/v1/";
-  var subscriptionKey="";
+  // var text =  Session.get("searchit");
+  // var baseUrl= "https://api.api.ai/v1/";
+  // var subscriptionKey="";
   var synth=window.speechSynthesis;
   $.ajax({
     type: "POST",
@@ -141,7 +141,7 @@ function send() {
     contentType: "application/json; charset=utf-8",
     dataType: "json",
     headers: {
-      "Authorization": "Bearer " + "8c154d0fc086495daec6c8b12a5b7af8",
+      "Authorization": "Bearer ",
       "ocp-apim-subscription-key": subscriptionKey
     },
     data: JSON.stringify({ q: text, lang: "en" }),
@@ -164,7 +164,7 @@ function send() {
       setResponse(data.result.speech);
       // SpeechSynthesisUtteranceInstance.lang = 'en-US';
       var utterThis = new SpeechSynthesisUtterance(data.result.speech);
-      utterThis.lang='en-US';
+      // utterThis.lang='en-US';
       voices = synth.getVoices();
       utterThis.voice = voices[74]; //61-82    61,64, 66, 67,  74 is top, 80, 22 weird singing
       synth.speak(utterThis);

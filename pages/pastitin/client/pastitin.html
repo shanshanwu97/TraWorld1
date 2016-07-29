@@ -1,0 +1,36 @@
+<template name="pastitin">
+	<div class="container">
+		<div class="page-header">
+          <h1 class="text-center">
+               <img src="http://www.cpawebsolutions.it/wp-content/uploads/2014/08/proximity-marketing.png" width="80">
+               <strong>Past Itineraries</strong>
+               <small>Find Your Trip</small>
+          </h1>
+     </div>
+		<button style="float:right;" class="btn btn-info" id="newit">Create a New Itinerary </button>
+			<ul >
+				<br>
+				<br>
+				<br>
+    {{#each fav in resultData}}
+    <div class="alert alert-info" role="alert">
+    	<div class="panel-body">
+    <div id="showpastit">
+          <a href="/showsearch/{{fav._id}}"><strong>{{fav.title}}</strong></a> <input class="js-favid" value="{{fav._id}}" style= "display:none;">
+          <p align="right" class="js-addfav"><span class=" glyphicon glyphicon-heart-empty" aria-hidden="true"></span>Add to Favorite</p>
+        </div>
+    </div>
+      <div class="panel-footer">by <a href="/showuser/{{fav.createdBy}}">{{fav.username}} </a>on {{fav.datecreated}}
+      </div>
+  </div>
+     <!--  <li> -->
+        <!-- <div class="panel panel-success"> -->
+        
+         <!-- </div> -->
+       <!-- </li> -->
+    {{/each}}
+  </ul>
+        
+    </div>
+
+</template>

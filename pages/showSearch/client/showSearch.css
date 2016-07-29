@@ -10,19 +10,25 @@
 }
 #likebutton{
   float:right;
-   height: 90px;
+  background: white;
+  color:#ff99aa;
+  border:solid;
+  border-color:#ff99aa;
+  margin-right: 20px;
+  margin-top: 112px;
+  /* height: 90px;
     width: 90px;
     border-radius: 90px;
     border: 5px solid #000;
     background: transparent;
     font-size: 20px;
     color:#FF69B4;
-    border-color:#FF69B4;
-    margin-right: 120px;
-    top:-20px;
+    border-color:#FF69B4;*/
+    /*margin-right: px;*/
+   /* top:-20px;*/
 }
 #likebutton span {
-  font-size:40px;
+/*  font-size:40px*/
 }
 .col-centered{
     float: none;
@@ -139,6 +145,9 @@ small #smallimg{
   border:solid;
   border-color:#48D1CC;
   background-color: white;
+  height:130px;
+  width: 130px;
+  object-fit:cover;
 }
 #bannerimage:hover #banbutton{
   display:block;

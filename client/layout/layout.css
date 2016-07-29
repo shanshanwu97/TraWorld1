@@ -19,13 +19,23 @@
     transition: background-color .5s ease 0s;
 }
 
-ul.dropdown-menu {
+ul.thisdrop {
     background-color: black;
 }
 #navtab{
   color:white;
 }
-
+#navbut{
+  background-color: rgba(0,0,0,0.1);
+  border: solid 1px #ccc;
+  /*padding: 9px 10px px 9px;*/
+  height: 38px;
+  width: auto;
+  font-size: 15px;
+  color: white;
+  border-radius: 20px;
+  margin-top: 8px
+}
 
 @media (max-width: 992px) {
   

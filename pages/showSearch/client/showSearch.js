@@ -34,34 +34,34 @@ $(window).on('scroll', function(){
   }
 }
 }
-Template.showSearch.onCreated(function () {
-  Session.set("mapid",{lat:42,lng:-71});
-  GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
-  GoogleMaps.ready('naviMap',function(map) {
-    var markerCurrent = new google.maps.Marker({
-        position: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
-        map:map&&map.instance
-      });
-    Tracker.autorun(function() {
-      map.instance.setCenter(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng))
-      markerCurrent.setPosition(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng));
-    });  
-});
-});
+// Template.showSearch.onCreated(function () {
+//   Session.set("mapid",{lat:42,lng:-71});
+//   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
+//   GoogleMaps.ready('naviMap',function(map) {
+//     var markerCurrent = new google.maps.Marker({
+//         position: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
+//         map:map&&map.instance
+//       });
+//     Tracker.autorun(function() {
+//       map.instance.setCenter(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng))
+//       markerCurrent.setPosition(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng));
+//     });  
+// });
+// });
 Template.showSearch.helpers({
   
   naviMapOptions: function(map) {
     if (GoogleMaps.loaded()) {
       const l=Session.get("mapid");
+      var markloc={lat:l.lat, lng:l.lng}
+      console.dir(markloc);
+      console.dir(l);
       var markerCur= new google.maps.Marker({
-        position: new google.maps.LatLng(l.lat,l.lng),
-        map:map&&map.instance
+        position: markloc,
+        map:map,
       });
       return {
         center: new google.maps.LatLng(l.lat,l.lng),
-        marker: new google.maps.Marker({
-        position: new google.maps.LatLng(l.lat,l.lng),
-        map:map&&map.instance}),
         zoom:15
       };
     }
@@ -100,7 +100,8 @@ Template.showSearch.events({
     var newpic=Session.get("addpics");
     const pictitle=$(".js-titlepic").val();
     const picdes=$(".js-picdesc").val();
-    const addpix={_id: new Meteor.Collection.ObjectID()._str,title:pictitle, text:picdes, type:"picture",pic:newpic};
+    const date=$(".js-picdate").val();
+    const addpix={_id: new Meteor.Collection.ObjectID()._str,title:pictitle, text:picdes, type:"picture",pic:newpic, date};
     Trips.update({_id:this._id},{$push:{textedit:addpix}});
     $("#addPicture").modal('hide');
 },
@@ -146,11 +147,38 @@ Template.showSearch.events({
   'click #likebutton': function(){
     Trips.update({_id:this._id},{$inc:{likes:1}});
   },
-  
+  "submit #basicsetting": function(){
+    event.preventDefault();
+    const title=$(".js-titleset").val();
+    const description=$(".js-descset").val();
+    const arrival=$(".js-arriveset").val();
+    const departure=$(".js-departset").val();
+    const amountOfTraveler=$(".js-amtppl").val();
+    const expenses=$(".js-expenses").val();
+    const tripid=$(".js-thistripid").val();
+    Trips.update({_id:tripid}, {$set:{title, description,arrival, departure,amountOfTraveler,expenses}});
+    $("#displaySet").modal('hide');
+  },
+  // "click .js-mapdir":function(){
+  //   Router.go("map");
+  // }
   // function deletethis(obid){
   //   Trips.update({_id:this._id},{$pull:{textedit:{$elemMatch:{_id:obid}}}});
   // },
-
+ "click .js-addfav ":function(event){
+    console.log("clicked on the +"); //debug
+    console.dir(this);
+    window.alert("Added to favorite!");
+    var favid= $(".js-favid").val()
+    var blog= Trips.findOne({_id: this._id});
+    console.dir(blog);
+    const fav =
+    {user: Meteor.userId(),
+    addedAt: new Date(),
+    favadded: blog
+    }
+    Meteor.call("addFav", fav);
+  }
 });
 
 Template.showSearch.helpers({
@@ -198,7 +226,7 @@ Template.showSearch.helpers({
   propic:function(){
 
     var user =UserProfiles.findOne({user:this.createdBy});
-    const id= user&&user.propic&&user.propic._id
+    const id= user&&user.propic;
     return YourFileCollection.findOne({_id:id});
 
   },
