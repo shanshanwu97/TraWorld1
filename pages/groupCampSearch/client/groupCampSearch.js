@@ -85,34 +85,40 @@
           "click .js-searchByTagOption": function(event, instance) {
                console.log("clicked Search by Tag");
                Session.set("searchOption", "tag");
+               $(".js-searchField").val("");
           },
 
           "click .js-searchByAuthorOption": function(event, instance) {
                console.log("clicked Search by Author");
                Session.set("searchOption", "author");
+               $(".js-searchField").val("");
           },
 
           "click .js-searchByIDOption": function(event, instance) {
                console.log("clicked Search by ID");
                Session.set("searchOption", "ID");
+               $(".js-searchField").val("");
           },
 
           "click .js-seeAll": function(event, instance) {
                event.preventDefault();
                Session.set("searchBy", null);
                Session.set("searchField", null);
+               $(".js-searchField").val("");
           },
 
           "click .js-seeMine": function() {
                event.preventDefault();
                Session.set("searchBy", "mine");
                Session.set("searchField", null);
+               $(".js-searchField").val("");
           },
 
           "click .js-seeAmGoing": function() {
                event.preventDefault();
                Session.set("searchBy", "going");
                Session.set("searchField", null);
+               $(".js-searchField").val("");
           }
      });
 
@@ -275,6 +281,7 @@
                     var username = Meteor.user() && Meteor.user().userName;
 
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: false, username: username, text: text, timestamp: new Date()}}});
+                    $(".js-postToChatText").val("");
                }
           }
      });
