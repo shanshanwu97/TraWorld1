@@ -56,14 +56,34 @@
           </div>
           <div class="form-group required">
             <label for="date">Date</label>
-            <input class="form-control js-date"  id="date">
-          </div>
             
-        </div>
+                <div class='input-group date' id='datetime1'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type='text' class="js-txtdate form-control" />
+                    
+                </div>
+            
+        <script type="text/javascript">
+            $(function () {
+                $('#datetime1').datepicker();
+            });
+          
+            // $(function () {
+    //         $('#datetime').datepicker({
+    //             icons: {
+    //                 date: "glyphicon glyphicon-calendar",
+    //             }
+    //         });
+    //     });
+        </script>
+            
+        </div></div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" id="submittext">Submit</button>
         </div>
+
       </form>
     </div>
   </div>
@@ -104,10 +124,23 @@
           </div>
           <div class="form-group required">
             <label for="date">Date</label>
-            <input class="form-control js-picdate"  id="date">
-          </div>
             
-        </div>
+        
+            
+                <div class='input-group date' id='datetime2'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type='text' class="js-picdate form-control" />
+                    
+                </div>
+            
+        <script type="text/javascript">
+            $(function () {
+                $('#datetime2').datepicker();
+            });
+            
+        </script>
+        </div>  </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
           <button type="submit" class="btn btn-primary" id="submitpic">Submit</button>

@@ -75,7 +75,8 @@ Template.showSearch.events({
     event.preventDefault();
     const title=$(".js-titletext").val();
     const txtdes=$(".js-textdesc").val();
-    const addtext={_id: new Meteor.Collection.ObjectID()._str, title, text:txtdes, type:"text"};
+    const txtdate=$(".js-txtdate").val();
+    const addtext={_id: new Meteor.Collection.ObjectID()._str, title, text:txtdes, type:"text", date:txtdate};
     Trips.update({_id:this._id},{$push:{textedit:addtext}});
     $("#addTextForm").modal('hide');
   },
@@ -178,8 +179,9 @@ Template.showSearch.events({
     favadded: blog
     }
     Meteor.call("addFav", fav);
-  }
+  },
 });
+
 
 Template.showSearch.helpers({
   

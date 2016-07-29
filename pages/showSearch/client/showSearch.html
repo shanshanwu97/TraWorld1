@@ -87,7 +87,7 @@
       <div class="cd-timeline-content">
         {{#if isUser}}
         <div class="header">
-            <button type="button" class="close js-close"  aria-label="Close" onclick="deletethis('{{t._id}}')"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close js-closet"  aria-label="Close" onclick="deletethis('{{t._id}}')"><span aria-hidden="true">&times;</span></button>
           </div>
           {{/if}}
         <h2>{{t.title}}</h2>
@@ -107,7 +107,7 @@
       <div class="cd-timeline-content">
         {{#if isUser}}
         <div class="header">
-            <button type="button" class="close js-close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close js-closet"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           {{/if}}
         <h2>{{t.title}}</h2>
@@ -129,7 +129,7 @@
       <div class="cd-timeline-content">
         {{#if isUser}}
         <div class="header">
-            <button type="button" class="close js-close"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <button type="button" class="close js-closet"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           {{/if}}
         <h2>{{t.location}}</h2>
@@ -218,11 +218,39 @@
           </div>
           <div class="form-group required">
             <label for="date">From</label>
-            <input class="form-control js-arriveset"  id="arriveset" value="{{d.arrival}}">
+               <div class='input-group date' id='arrivalset1'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type='text' class="js-arriveset form-control" id="arriveset" value="{{d.arrival}}"  />
+                    
+                </div>
+            
+        <script type="text/javascript">
+            $(function () {
+                $('#arrivalset1').datepicker();
+            });
+            $(function(){
+              $('#departset2').datepicker();
+            })
+            // $(function () {
+    //         $('#datetime').datepicker({
+    //             icons: {
+    //                 date: "glyphicon glyphicon-calendar",
+    //             }
+    //         });
+    //     });
+        </script>
           </div>
           <div class="form-group required">
             <label for="date">To</label>
-            <input class="form-control js-departset"  id="departset" value="{{d.departure}}">
+
+
+            <div class='input-group date' id='departset1'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type='text' class="js-departset form-control" id="departset" value="{{d.departure}}"  />
+                    
+                </div>
           </div>
           <div class="form-group required">
             <label for="date">Number of Companions</label>
