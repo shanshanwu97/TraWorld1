@@ -12,80 +12,100 @@ Meteor.startup(function() {
 
      if (GroupCampTrips.find().count() == 0) {
 
+          // SKYDIVING
           GroupCampTrips.insert({
                author: "author1",
-			timestamp: new Date("April 25, 2016"),
+			timestamp: new Date("Jul. 18, 2016"),
 
-			title: "Trip to Hawaii",
-			description: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
-			message: "Travelers will engage in group excursions to various historical landmarks and group activities including beach sports.",
-               tags: ["beach", "hawaii"],
+			title: "Skydiving Adventure",
+			description: "This is a trip for beginers and enthusiast alike. Basic training and equipment provided. Arive at the airfield at 8 AM. Adventure will last entire day. Group will eat dinner and celebrate together at the end of the day. All costs and fees included.",
+			message: "Come fall from the sky with a group of people you have never met. Screams, laughs, and memories guarenteed!",
+               tags: ["skydiving", "adventure", "thrills", "local"],
 
-			destination: "Honolulu, Hawaii",
-			from: new Date("Aug. 02, 2016"),
-			to: new Date("Aug. 30, 2016"),
-               deadline: new Date("Aug. 1, 2016"),
+			destination: "Airfield",
+			from: new Date("Aug. 1, 2016"),
+			to: new Date("Aug. 1, 2016"),
+               deadline: new Date("Jul. 30, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4"],
-			threshold: 35,
-			cost: "2,500",
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9"],
+			threshold: 10,
+			cost: 50,
 
-               link: "http://www.gohawaii.com/en/",
-               picture: "https://aos.iacpublishinglabs.com/question/aq/700px-394px/hawaii-known_2209a286881fab48.jpg?domain=cx.aos.ask.com",
+               picture: "http://www.skydivefortcollins.com/images/gallery/skydiving-gallery-fort-collins.jpg",
 
                chat: []
           });
 
+          // TRIP HOME TO CHINA
           GroupCampTrips.insert({
                author: "author2",
-			timestamp: new Date("Feb. 17, 2016"),
+			timestamp: new Date("Jun. 3, 2016"),
 
-			title: "Hit the Slopes!",
-			description: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure.",
-			message: "Adventurers will meet and hit the slopes for this awesome ski and snowboard adventure.",
-               tags: ["france", "skiing", "val thorens"],
+			title: "Trip Home to China",
+			description: "Arive at Logan Airport in Boston, MA at 2:30 PM on Aug. 5. ",
+			message: "Travel home with us and take advantage of our group discount.",
+               tags: ["china", "home", "discount"],
 
+			destination: "Beijing, China",
+			from: new Date("Aug. 6, 2016"),
+			to: new Date("Aug. 7, 2016"),
+               deadline: new Date("Jul. 10, 2016"),
 
-			destination: "Val Thorens, France",
-			from: new Date("Dec. 1, 2016"),
-			to: new Date("Jan. 31, 2017"),
-               deadline: new Date("Nov. 1, 2016"),
-
-			travelers: [],
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "nobody"],
 			threshold: 20,
+			cost: 900,
 
-			cost: "5,000",
-
-               link: "http://www.valthorens.com/en/home-page.1.html",
-               picture: "http://www.ski-i.com/pub/img/resort/66/glisse_b_longo_ot_val_thorens_6_default.18703.jpg",
+               picture: "http://nycaviation.com/newspage/wp-content/uploads/2011/04/plane-over-china-istock-426.jpg",
 
                chat: []
           });
 
+          // MUSEUM VISIT
           GroupCampTrips.insert({
                author: "author3",
-			timestamp: new Date("July 1, 2016"),
+			timestamp: new Date("Jul. 15, 2016"),
 
-			title: "Lost in the Woods",
-			description: "Strangers will bond, explore the deep dark woods, and engage in general camp related activities.",
-			message: "Strangers will bond, explore the deep dark woods, and engage in general camp related activities.",
-               tags: ["camping", "vermont", "woods"],
+			title: "Museum Excursion",
+			description: "",
+			message: "Come visit the Museum of Fine Arts with with a group of friendly Brandeis students.",
+               tags: ["museum", "mfa", "local"],
 
-
-			destination: "Burlington, Vermont",
+			destination: "",
 			from: new Date("Sept. 10, 2016"),
-			to: new Date("Oct. 21, 2016"),
-               deadline: new Date("Sept. 8, 2015"),
+			to: new Date("Sept. 10, 2016"),
+               deadline: new Date("Sept. 1, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9", "user10", "abhishek"],
-			threshold: 10,
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6"],
+			threshold: 20,
+			cost: 20,
 
-			cost: "50",
-
-               picture: "http://vermontfurnitureblog.com/wp-content/uploads/2014/08/Vermont-Wood-Man.jpg",
+               link: "http://www.mfa.org/",
+               picture: "http://www.saci-florence.edu/files/ckfile/images/MFA_475.jpg",
 
                chat: []
           });
 
+          // TRIP TO ISRAEL
+          GroupCampTrips.insert({
+               author: "author4",
+			timestamp: new Date("Jun. 21, 2016"),
+
+			title: "Trip to Israel",
+			message: "Never seen Israel? Frequent visiter looking for a chance to go again? This trip is for you. Discounted tickets included. Arive at Logan Airport at 12:30 PM on day of.",
+               tags: ["israel", "discount"],
+
+			destination: "Israel",
+			from: new Date("Sept. 8, 2016"),
+			to: new Date("Oct. 12, 2016"),
+               deadline: new Date("Aug. 10, 2016"),
+
+			travelers: ["user1", "user2", "user3"],
+			threshold: 25,
+			cost: "850",
+
+               picture: "http://cdn.timesofisrael.com/uploads/2014/01/flight.jpg",
+
+               chat: []
+          });
      }
 })
