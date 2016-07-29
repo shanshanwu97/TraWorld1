@@ -44,7 +44,7 @@ Template.itineraries.events({
       var likes=0;
 
 			const trip=
-			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, amountOfTraveler: amount, expenses: expenses, image: img, thumbpic:imgs, description: desc, textedit:txt,likes
+			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, departure:depart, amountOfTraveler: amount, expenses: expenses, image: img, thumbpic:imgs, description: desc, textedit:txt,likes
 			}
 			Session.set("userinput",trip);
 			Meteor.call("insertTrip", trip);

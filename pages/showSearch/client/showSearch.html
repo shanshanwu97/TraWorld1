@@ -32,39 +32,50 @@
   <h1 id="titleofdisplay">{{title}}</h1> 
   <img id="propic" src="{{propic.url}}" class="img-circle" width= "150px" alt="">
   <h4 id="usernname"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{username}}</h4>
+  
   {{#if isNotUser}}
+  <button id="addfav" class="btn js-fav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
+  <button id="addshare" class="btn js-share"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</button>
   <button id="likebutton"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span><br>{{likes}}</button>
   {{/if}}
   </div>
 </div>
 
   <div class="container">
-      <div class="row" id="display">
-    <div class="col-md-12  bg-info">
+      <!-- <div class="row" id="display">
+    <div class="col-md-12  bg-info"> -->
       
       
-      <ul> 
+      <div id="mappanel" class="col-md-12 desti "><h3 style="text-transform: capitalize;"><ul> 
         {{#each d in destination}}
-          <h3 style="text-transform: capitalize;">
+          
             <span class="glyphicon glyphicon-map-marker" style="color:red;" aria-hidden="true"></span>{{d.value}}
-          </h3>
+  
           
         {{/each}}
-      </ul>
-      
-          <div id="displaypanel" class="col-md-6">
-          <h4><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> Arrival: {{arrival}}</h4>
+      </ul></h3></div><br><br><br>
+        
+          <div id="displaypanel" class="dispan col-md-6 col-xs-4 ">
+            <div class="dispan">
+          <h4><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> From: {{arrival}}</h4>
+          <h4><span class="glyphicon glyphicon-plane" aria-hidden="true"></span> To: {{departure}}</h4>
           <h4><span class="glyphicon glyphicon-user" aria-hidden="true"></span> Companions: {{amountOfTraveler}}</h4>
           <h4><span class="glyphicon glyphicon-usd" aria-hidden="true"></span> Approximate Expense: {{expenses}}</h4>
-          </div>
-          <div id="displaypanel" class="col-md-6">
+          </div><!-- <div id="editbasic" class="dispan disbut"> -->
+          {{#if isUser}}
+          <button id="editbasic" data-toggle="modal" data-target="#displaySet" class="btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br>Edit</button>
+          {{/if}}<!-- </div> --></div>
+          <div id="displaypanel" class="col-md-6  col-xs-8">
           <h4> Description: {{description}}</h4>
+          {{#if isUser}}
+          <button id="editbasic" data-toggle="modal" data-target="#displaySet" class="btn"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span><br>Edit</button>
+          {{/if}}
           </div>
       
       <br>
-    </div>
+   <!--  </div>
   </div>
-  <section id="cd-timeline" class="cd-container">
+ -->  <section id="cd-timeline" class="cd-container">
     {{#each t in textedit}}
     {{#if checkText t.type}}
     
@@ -138,6 +149,7 @@
 {{>addtext}}
 {{>addpicture}}
 {{>addmap}}
+{{>displaySet d=this}}
 <nav class="cd-stretchy-nav add-content js-addstuff">
     <a class="cd-nav-trigger" href="#0">
       <span aria-hidden="true"></span>
@@ -147,7 +159,7 @@
       <li class="js-imgsss"><a href="#addTextForm" data-toggle="modal" data-target="#addTextForm"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></a></li>
       <li class="js-picts"><a href="#addPicture" data-toggle="modal" data-target="#addPicture"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></a></li>
       <li class="js-addmap"><a href="#addMap" data-toggle="modal" data-target="#addMap"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></a></li>
-      <li><a href="#0"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
+      <li><a href="#displaySet" data-toggle="modal" data-target="#displaySet"><span class="glyphicon glyphicon-cog" aria-hidden="true"></span></a></li>
     </ul>
 
     <span aria-hidden="true" class="stretchy-nav-bg"></span>
@@ -176,6 +188,57 @@
           <button  class="btn btn-primary js-uploadban" id="uploadban">Upload</button>
         </div>
        </div>  
+      </form>
+   
+    </div>
+  </div>
+</div>
+</template>
+<template name="displaySet"> 
+  <div class="modal" id="displaySet" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title" id="modelLabel">Edit Basic Information/Settings</h4>
+          </div>
+           <form id="basicsetting">
+        <div class="modal-body">
+         
+          <div class="form-group">
+            <label for="title">Title</label>
+            <input class="form-control js-titleset" id="titleset" value="{{d.title}}" aria-describedby="feedbackEmailHelp">
+          
+          </div>
+          
+          <div class="form-group required">
+            <label for="feedbackComment">Description</label>
+            <textarea class="form-control js-descset" rows="5" id="descset" value="{{d.description}}"></textarea>
+          </div>
+          <div class="form-group required">
+            <label for="date">From</label>
+            <input class="form-control js-arriveset"  id="arriveset" value="{{d.arrival}}">
+          </div>
+          <div class="form-group required">
+            <label for="date">To</label>
+            <input class="form-control js-departset"  id="departset" value="{{d.departure}}">
+          </div>
+          <div class="form-group required">
+            <label for="date">Number of Companions</label>
+            <input class="form-control js-amtppl"  id="amtppl" value="{{d.amountOfTraveler}}">
+          </div>
+          <div class="form-group required">
+            <label for="date">Approximated Expense per Person:</label>
+            <input class="form-control js-apxex"  id="apxex" value="{{d.expenses}}">
+          </div>
+            
+        </div>
+         
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button type="submit" class="btn btn-primary js-applyset" id="applyset">Apply</button>
+        </div> 
       </form>
    
     </div>
