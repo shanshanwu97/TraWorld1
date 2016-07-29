@@ -24,15 +24,73 @@
 #likebutton span {
   font-size:40px;
 }
-#displaypanel {
-  border-radius: 20px;
+.col-centered{
+    float: none;
+    margin: auto;
+}
+#addfav {
+  float:right;
+}
+#editbasic{
+   
+    display:none;
+}
+#displaypanel:hover #editbasic{
+  height: 60px;
+    width: 60px;
+    border-radius: 60px;
+    background-color:#4169E1;
+    color:white;
+    position:relative;
+    top:-80px;
+  display:block;
+  float:right;
+  padding: 0 !important;
+}
+#addfav{
   background: white;
+  color:#ff99aa;
+  border:solid;
+  border-color:#ff99aa;
+  margin-right: 100px;
+  margin-top: 112px;
+}
+#addshare {
+  background: white;
+  color:#0099ff;
+  border:solid;
+  border-color:#0099ff;
+  float:right;
+  margin-right:20px;
+  margin-top: 112px;
+}
+#displaypanel {
+  display:inline-block;
+  margin-top: 20px;
+  border-radius: 20px;
+  background:repeating-linear-gradient(
+  45deg,
+   #FFFACD,
+  #FFFACD 20px,
+  white 20px,
+ white 40px);
   text-align: center;
   padding-top: 7px;
   padding-bottom:7px;
   border: dashed;
   border-color: #48D1CC;
-  height:100%
+ /* height:100%;*/
+}
+#mappanel{
+  padding-top: 10px;
+  padding-bottom:10px;
+  border-radius: 20px;
+   border: dashed;
+  border-color: #48D1CC;
+
+  background-image: url(../images/maps.png);
+  min-height: 100%;
+  text-align: center;
 }
 
 #usernname{

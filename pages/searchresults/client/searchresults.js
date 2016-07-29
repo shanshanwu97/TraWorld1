@@ -61,16 +61,21 @@ Template.searchresults.events({
 Template.searchresults.helpers({
 	// searchdata: function(){return DestSearched.find({}, {sort:{searches:-1}});},
 	resultData: function(){
-		let loc = Session.get("results");
+		let locat=Session.get("results");
+		if (locat.includes(",")){
+			const num=locat.indexOf(",");
+			locat=locat.substring(0,num);
+		}
+		let loc = ".*"+locat+".*";
 		console.log(loc);
 		var bud= Session.get("budget");
 		var find="0";
 		if (Session.get("budget")=="Show All"){
-		find= Trips.find({destination: {$elemMatch:{value:loc}}},{sort:{datecreated: -1}});
+		find= Trips.find({destination: {$elemMatch:{value:{$regex:loc}}}},{sort:{datecreated: -1}});
 	}else if(Session.get("budget")=="Over $5000"){
-		find= Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
+		find= Trips.find({$and: [{destination: {$elemMatch:{value:{$regex:loc}}}},{expenses: {$gt:5000}}]},{sort:{datecreated: -1}});
 	}else{
-		find= Trips.find({$and: [{destination: {$elemMatch:{value:loc}}},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
+		find= Trips.find({$and: [{destination: {$elemMatch:{value:{$regex:loc}}}},{expenses: {$lte:bud}}]},{sort:{datecreated: -1}});
 	}
 		Session.set("numResults", find.count());
 		return find;
