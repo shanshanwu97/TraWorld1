@@ -23,7 +23,7 @@ Session.set("obj",null);
 Session.set("transcript","");
 
 Tracker.autorun(function(){
-  console.log(Session.get("latLong"));
+  console.log(Session.get("location"));
 });
 
 var accessToken = "8fd67a24e6ae40bb81af0eabd4cec15b";
