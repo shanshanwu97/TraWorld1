@@ -9,9 +9,9 @@ Template.signup.events({
     // if (user.userName&&user!=null){
     //   alert("You already have a username, you can only change it once!");
     // }
-    // else 
+    // else
   //   const urname=$(".js-usern").val();
-    
+
   //   if (Meteor.users.find({userName:$(".js-usern").val()}).count()==0){
   //     alert("The username is available!");
   //   }else{
@@ -20,7 +20,7 @@ Template.signup.events({
   // },
   "submit .register": function(event) {
     event.preventDefault();
-    
+
 
     // if (Meteor.users.find({userName:$(".js-usern").val()}).count()==0){
     //   alert("The username is available!");
@@ -29,15 +29,23 @@ Template.signup.events({
     const e = $(".js-email").val();
     const p = $(".js-password").val();
 const usrname=$(".js-usern").val();
-    Accounts.createUser({
+if(e.split("@")[1]!="brandeis.edu"){
+  window.alert("You must use a Brandeis University account!");
+  $(".js-email").val("");
+  $(".js-password").val("");
+}
+else{    Accounts.createUser({
       // userName: usrname,
       profile: {
         first: f,
         last: l,
-        color: "bg-danger"
+        color: "bg-danger",
+          username: e.split("@")[0],
       },
       email: e,
-      password: p
+      password: p,
+
+
     }, function(error) {
       if(error) { // if registration fails
         console.log(error.reason);
@@ -47,10 +55,12 @@ const usrname=$(".js-usern").val();
         Router.go('/'); // else go to feed page
       }
     });
+
+  }
     // }else{
     //   alert("The username is not available! Please re-enter!");
     // }
-    
+
   },
 
 
