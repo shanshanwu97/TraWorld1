@@ -9,7 +9,7 @@ Template.groupCampPost.helpers({
 		return GroupCampTrips.find();
 	},
 
-	getUserName: function() {return Meteor.user().userName;},
+	getUserName: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username;},
 
 	notCompleteAlertNeeded: function() {
 		if (Session.get("notCompleteAlertNeeded"))
@@ -23,7 +23,7 @@ Template.groupCampPost.events({
 	"click .js-submit": function(event){
 		event.preventDefault();
 
-		author = Meteor.user().userName;
+		author = Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
 		timestamp = new Date();
 
 		title = $(".js-title").val();
@@ -181,7 +181,7 @@ Template.groupCampPost.events({
 	},
 
 	"click .js-modalSubmit": function(event) {
-		author = Meteor.user().userName;
+		author = Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
 		timestamp = new Date();
 
 		title = $(".js-title").val();

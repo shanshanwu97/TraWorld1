@@ -13,9 +13,9 @@
                else if (Session.get("searchBy") == "ID")
                     return (GroupCampTrips.find({_id: Session.get("searchField")}).count() != 0);
                else if (Session.get("searchBy") == "mine")
-                    return (GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
+                    return (GroupCampTrips.find({author: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else if (Session.get("searchBy") == "going")
-                    return (GroupCampTrips.find({travelers: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
+                    return (GroupCampTrips.find({travelers: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else
                     return (GroupCampTrips.find({deadline: {$gte: new Date()}}).count() != 0);
           },
@@ -28,14 +28,14 @@
                else if (Session.get("searchBy") == "ID")
                     return GroupCampTrips.find({_id: Session.get("searchField")}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "mine")
-                    return GroupCampTrips.find({author: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({author: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
-                    return GroupCampTrips.find({travelers: Meteor.user().userName, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
+                    return GroupCampTrips.find({travelers: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else
                     return GroupCampTrips.find({deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
           },
 
-          getUserName: function() {return Meteor.user().userName;},
+          getUsername: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username},
 
           getSearchGlyph: function() {
                if (Session.get("searchOption") == "author")
@@ -134,7 +134,7 @@
           amGoing: function(){
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
-               var index = travelers.indexOf(Meteor.user().userName);
+               var index = travelers.indexOf(Meteor.users.findOne({_id: Meteor.userId()}).profile.username);
 
                if (index == -1)
                     return false;
@@ -148,18 +148,18 @@
                return trip.threshold - travelers.length;
           },
 
-          getUserName: function() {return Meteor.user().userName;},
+          getUsername: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username},
 
           isMine: function() {
                author = this.trip.author;
-               if (author == Meteor.user().userName)
+               if (author == Meteor.users.findOne({_id: Meteor.userId()}).profile.username)
                     return true;
                else
                     return false;
           },
 
           isMe: function(traveler) {
-               if (traveler == Meteor.user().userName)
+               if (traveler == Meteor.users.findOne({_id: Meteor.userId()}).profile.username)
                     return true;
                else
                     return false;
@@ -245,7 +245,7 @@
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
                console.log(travelers);
-               var username = Meteor.user() && Meteor.user().userName;
+               var username = Meteor.user() && Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
                var index = travelers.indexOf(username);
 
                if (index == -1) {
@@ -278,7 +278,7 @@
                if (text != "") {
                     var trip = GroupCampTrips.findOne({_id:this.trip._id});
                     var chat = trip && trip.chat;
-                    var username = Meteor.user() && Meteor.user().userName;
+                    var username = Meteor.user() && Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
 
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: false, username: username, text: text, timestamp: new Date()}}});
                     $(".js-postToChatText").val("");

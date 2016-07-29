@@ -9,7 +9,7 @@
           </h1>
      </div>
 
-     {{#if getUserName}}
+     {{#if getUsername}}
      {{else}}
           <div class="alert alert-danger alert-dismissible" role="alert">
                You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles" class="alert-link"> User Profiles </a> page to claim one.
@@ -35,7 +35,7 @@
                               <li role="separator" class="divider"></li>
                               <li class="js-seeAll"><a href="#">See All Available Trips</a></li>
 
-                              {{#if getUserName}}
+                              {{#if getUsername}}
                                    <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
                                    <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
                                    <li role="separator" class="divider"></li>
@@ -94,7 +94,7 @@
 
                <div class="col-md-3">
 
-                    {{#if getUserName}}
+                    {{#if getUsername}}
                          {{#if isMine}}
                               <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
                          {{else}}
@@ -140,7 +140,7 @@
                          {{/if}}.
                          <br><br>
 
-                         {{#if getUserName}}
+                         {{#if getUsername}}
                          {{else}}
                               <br>
                          {{/if}}
