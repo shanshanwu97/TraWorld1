@@ -46,11 +46,13 @@ Template.groupCampPost.events({
 
 
 		complete = true;
+		filled = true;
 
 
 		// TITLE
 		if (!title){	// Required
 			complete = false;
+			filled = false;
 			$(".js-titleGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -59,6 +61,7 @@ Template.groupCampPost.events({
 
 		// MESSAGE
 		if (!message){
+			filled = false;
 			$(".js-messageGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -67,6 +70,7 @@ Template.groupCampPost.events({
 
 		// DESCRIPTION
 		if (!description){
+			filled = false;
 			$(".js-descriptionGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -75,6 +79,7 @@ Template.groupCampPost.events({
 
 		// TAGS
 		if (!rawTags){
+			filled = false;
 			$(".js-tagsGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -87,6 +92,7 @@ Template.groupCampPost.events({
 		// DESTINATION
 		if (!destination){	// Required
 			complete = false;
+			filled = false;
 			$(".js-destinationGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -96,6 +102,7 @@ Template.groupCampPost.events({
 		// FROM
 		if (!From || isNaN(Date.parse(From)) || new Date(From) < new Date()){	// Required
 			complete = false;
+			filled = false;
 			$(".js-fromGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -105,6 +112,7 @@ Template.groupCampPost.events({
 		// TO
 		if (!to || isNaN(Date.parse(to)) || new Date(to) < new Date(From) || new Date(to) < new Date()){	// Required
 			complete = false;
+			filled = false;
 			$(".js-toGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -114,6 +122,7 @@ Template.groupCampPost.events({
 		//DEADLINE
 		if (!deadline || isNaN(Date.parse(deadline)) || new Date(deadline) > new Date(From) || new Date(deadline) < new Date()){	// Required
 			complete = false;
+			filled = false;
 			$(".js-deadlineGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -123,6 +132,7 @@ Template.groupCampPost.events({
 		// THRESHOLD
 		if (!threshold || threshold < 1 || Math.floor(threshold) != threshold){	// Required
 			complete = false;
+			filled = false;
 			$(".js-thresholdGroup").removeClass('has-success').addClass('has-error');
 		}
 		else {
@@ -131,6 +141,7 @@ Template.groupCampPost.events({
 
 		// COST
 		if (!cost || !$.isNumeric(cost) || cost < 0 || (Math.floor(cost) != cost && cost.length != cost.indexOf('.') + 3)){
+			filled = false;
 			$(".js-costGroup").removeClass('has-success').addClass('has-warning');
 			cost = null;
 		}
@@ -140,6 +151,7 @@ Template.groupCampPost.events({
 
 		// LINK
 		if (!link){
+			filled = false;
 			$(".js-linkGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -148,6 +160,7 @@ Template.groupCampPost.events({
 
 		// PICTURE
 		if (!picture){
+			filled = false;
 			$(".js-pictureGroup").removeClass('has-success').addClass('has-warning');
 		}
 		else {
@@ -155,13 +168,57 @@ Template.groupCampPost.events({
 		}
 
 
-
-		if (complete){
+		if (filled) {
 			GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: new Date(From), to: new Date(to), deadline: new Date(deadline), travelers, threshold, cost, link, picture, chat: []});
 			Router.go("groupCampSearch");
+		}
+		else if (complete){
+			$("#warningModal").modal();
 		}
 		else{
 			Session.set("notCompleteAlertNeeded", true);
 		}
+	},
+
+	"click .js-modalSubmit": function(event) {
+		author = Meteor.user().userName;
+		timestamp = new Date();
+
+		title = $(".js-title").val();
+		message = $(".js-message").val();
+		description = $(".js-description").val();
+		rawTags = $(".js-tags").val();
+		tags = [];
+
+		destination = $(".js-destination").val();
+		From = $(".js-from").val();
+		to = $(".js-to").val();
+		deadline = $(".js-deadline").val();
+
+		travelers = [];
+		threshold = $(".js-threshold").val();
+
+		cost = $(".js-cost").val();
+		link = $(".js-link").val();
+		picture = $(".js-picture").val();
+
+
+		// TAGS
+		if (rawTags){
+			tags = $(".js-tags").val().split(",");
+			for (i = 0; i < tags.length; i++) 	{tags[i] = tags[i].trim();}
+			tags = tags.sort();
+		}
+
+		// COST
+		if (!cost || !$.isNumeric(cost) || cost < 0 || (Math.floor(cost) != cost && cost.length != cost.indexOf('.') + 3))
+			cost = null;
+
+
+		GroupCampTrips.insert({author, timestamp, title, message, description, tags: tags, destination, from: new Date(From), to: new Date(to), deadline: new Date(deadline), travelers, threshold, cost, link, picture, chat: []});
+		$("#warningModal").modal('hide');
+		$('body').removeClass('modal-open');
+		$('.modal-backdrop').hide();
+		Router.go("groupCampSearch");
 	}
 })
