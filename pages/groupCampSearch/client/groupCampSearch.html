@@ -85,7 +85,11 @@
                </div>
 
                <div class="col-md-3">
-                    <img src={{trip.picture}} class="img-thumbnail">
+                    {{#if trip.picture}}
+                         <img src={{trip.picture}} class="img-thumbnail">
+                    {{else}}
+                         <img src="https://d13yacurqjgara.cloudfront.net/users/515677/screenshots/1911741/onb_icon_campfire_df.jpg" class="img-thumbnail">
+                    {{/if}}
                </div>
 
                <div class="col-md-3">
