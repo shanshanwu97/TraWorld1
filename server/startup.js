@@ -51,12 +51,11 @@ Meteor.startup(function() {
 			to: new Date("Aug. 7, 2016"),
                deadline: new Date("Jul. 10, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "nobody"],
+			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "somebody"],
 			threshold: 20,
 			cost: 900,
 
                picture: "http://nycaviation.com/newspage/wp-content/uploads/2011/04/plane-over-china-istock-426.jpg",
-
                chat: []
           });
 
