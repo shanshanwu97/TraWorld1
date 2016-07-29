@@ -1,5 +1,5 @@
 <template name="signup">
-
+  <div class="container">
   <div class="jumbotron">
     <h1>Register <small>join the sharing spree</small></h1>
   </div>
@@ -13,6 +13,13 @@
     <div class="col-sm-6">
       <label>Last Name</label>
       <input class="js-last form-control" type="text">
+    </div>
+
+    <div class="col-sm-12">
+      <br> 
+      <label for="username">Username: </label>
+          <input type="username" class="form-control js-usern" placeholder="Can only choose once!">
+          <button class="js-checkuser btn btn-success">Check Availability</button> 
     </div>
 
     <div class="col-sm-12">
@@ -33,6 +40,6 @@
     </div>
   </form>
 
-
+</div>
 
 </template>

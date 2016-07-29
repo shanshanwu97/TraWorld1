@@ -1,14 +1,28 @@
+Template.userprofiles.helpers({
 
+})
 Template.profiledisplay.helpers({
 	profile:function(){
 		// const dest= $(".js-dest").val();
-		return UserProfiles.findOne({user:Meteor.userId});
+		return UserProfiles.findOne({user:Meteor.userId()});
 	},
 	propic:function(){
 		var user =UserProfiles.findOne({user:Meteor.userId()});
-		const id= user&&user.propic&&user.propic._id
+		const id= user&&user.propic
 		return YourFileCollection.findOne({_id:id});
 
+	},
+	userprof:function(){
+		return Meteor.users.findOne({_id:Meteor.userId()});
+
+	},
+	userNoName:function(){
+		var user=Meteor.users.findOne({_id:Meteor.userId()});
+		if (user.userName&&user==null){
+			return true;
+		}else{
+			return false;
+		}
 	}
 })
 Template.userprofiles.events({
@@ -41,14 +55,12 @@ Template.userprofiles.events({
 Template.userprofiles.events({
 	"click .js-submitinfo": function(event){
 		event.preventDefault();
-		const fname = $(".js-name").val();
-
-		const email = $(".js-email").val();
-		const loc = $(".js-loc").val();
-		const amount = $(".js-trv").val();
+		
+		const loc = $(".js-curloc").val();
+		
 		var propic= Session.get("propic");
 			const prof=
-			{user:Meteor.userId(), name:fname, email:email, location:loc,propic}; 
+			{user:Meteor.userId(), location:loc,propic}; 
 			console.log(prof);
 			Meteor.call("insertProf", prof);
 			Router.go('profiledisplay');
@@ -77,7 +89,7 @@ Template.userprofiles.events({
 
 Template.userprofiles.helpers({
 	profexist:function(){
-		if(UserProfiles.find({user:Meteor.userId}).count()==0){
+		if(UserProfiles.find({user:Meteor.userId()}).count()==0){
 			return true;
 		}else{
 			return false;
