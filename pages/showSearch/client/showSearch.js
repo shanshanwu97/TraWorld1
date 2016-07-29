@@ -180,6 +180,10 @@ Template.showSearch.events({
     }
     Meteor.call("addFav", fav);
   },
+  "click .js-closet":function(event){
+    const docid=$(".js-docid").val();
+    Trips.update({_id: this._id}, {$pull:{textedit:{_id: docid}}});
+  }
 });
 
 
