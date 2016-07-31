@@ -309,11 +309,11 @@
                               <hr>
 
                               <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
-                              <div class="alert alert-warning alert">
+                              <div class="alert alert-info alert">
                                    {{#if isMine}}
-                                        <span class="label label-primary">You</span>
+                                        <span class="text-primary">You</span>
                                    {{else}}
-                                        <span class="label label-info">{{trip.author}}</span>
+                                        <span class="text-info">{{trip.author}}</span>
                                    {{/if}}
                                    created the group.
                               </div>
@@ -322,20 +322,20 @@
                                    {{#if message.alert}}
                                         <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
                                         {{#if message.isGoing}}
-                                             <div class="alert alert-success alert">
+                                             <div class="alert alert-info alert">
                                                   {{#if isMe message.username}}
-                                                       <span class="label label-primary">You</span>
+                                                       <span class="text-primary">You</span>
                                                   {{else}}
-                                                       <span class="label label-info">{{message.username}}</span>
+                                                       <span class="text-info">{{message.username}}</span>
                                                   {{/if}}
                                                   joined the group.
                                              </div>
                                         {{else}}
-                                             <div class="alert alert-danger">
+                                             <div class="alert alert-info">
                                                   {{#if isMe message.username}}
-                                                       <span class="label label-primary">You</span>
+                                                       <span class="text-primary">You</span>
                                                   {{else}}
-                                                       <span class="label label-info">{{message.username}}</span>
+                                                       <span class="text-info">{{message.username}}</span>
                                                   {{/if}}
                                                   left the group.
                                              </div>
@@ -344,9 +344,9 @@
                                         <p class="text-right">
                                              <h6>
                                                   {{#if isMe message.username}}
-                                                       <span class="label label-primary">Me</span>
+                                                       <span class="text-primary">Me</span>
                                                   {{else}}
-                                                       <span class="label label-info">{{message.username}}</span>
+                                                       <span class="text-info">{{message.username}}</span>
                                                   {{/if}}
                                                   <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
                                              </h6>
