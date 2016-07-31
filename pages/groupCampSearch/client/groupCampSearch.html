@@ -9,13 +9,6 @@
           </h1>
      </div>
 
-     {{#if getUsername}}
-     {{else}}
-          <div class="alert alert-danger alert-dismissible" role="alert">
-               You must have a username in order to sign up for Group Camps. Please got to the <a href="/userprofiles" class="alert-link"> User Profiles </a> page to claim one.
-          </div>
-     {{/if}}
-
      <form class="form-inline">
           <div class="input-group">
                <div class="input-group-addon"><span class="glyphicon glyphicon-{{getSearchGlyph}}" aria-hidden="true"></span></div>
@@ -34,13 +27,10 @@
                               <li class="js-searchByIDOption"><a href="#">Search by ID</a></li>
                               <li role="separator" class="divider"></li>
                               <li class="js-seeAll"><a href="#">See All Available Trips</a></li>
-
-                              {{#if getUsername}}
-                                   <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
-                                   <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
-                                   <li role="separator" class="divider"></li>
-                                   <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
-                              {{/if}}
+                              <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
+                              <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
+                              <li role="separator" class="divider"></li>
+                              <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
                          </ul>
                     </div>
                </span>
@@ -94,20 +84,18 @@
 
                <div class="col-md-3">
 
-                    {{#if getUsername}}
-                         {{#if isMine}}
-                              <button class = "btn-sm btn-danger btn-block" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</button>
-                         {{else}}
-                              {{#if isOpen}}
-                                   {{#if amGoing}}
-                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                             <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                                        </button>
-                                   {{else}}
-                                        <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
-                                             <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                                        </button>
-                                   {{/if}}
+                    {{#if isMine}}
+                         <button class = "btn-sm btn-danger btn-block" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</button>
+                    {{else}}
+                         {{#if isOpen}}
+                              {{#if amGoing}}
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
+                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                   </button>
+                              {{else}}
+                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
+                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
+                                   </button>
                               {{/if}}
                          {{/if}}
                     {{/if}}
@@ -133,11 +121,11 @@
                          {{#if trip.author}}
                               by
                               {{#if isMine}}
-                                   <span class="text-primary">Me</span>
+                                   <span class="text-primary">Me</span>.
                               {{else}}
-                                   <span class="text-primary">@{{trip.author}}</span>
+                                   <span class="text-info">{{trip.author}}</span>.
                               {{/if}}
-                         {{/if}}.
+                         {{/if}}
                          <br><br>
 
                          {{#if getUsername}}
@@ -286,9 +274,9 @@
 
                          Created by
                          {{#if isMine}}
-                              <span class="label label-primary">Me</span>
+                              <span class="text-primary">Me</span>
                          {{else}}
-                              <span class="label label-info">{{trip.author}}</span>
+                              <span class="text-info">{{trip.author}}</span>
                          {{/if}}
 
                          on <em>{{getTimestamp}}</em>.
@@ -300,10 +288,11 @@
                          <h6>
                               {{#each traveler in trip.travelers}}
                                    {{#if isMe traveler}}
-                                        <span class="label label-primary">Me</span>
+                                        <span class="text-primary">Me</span>
                                    {{else}}
-                                        <span class="label label-info">{{traveler}}</span>
+                                        <span class="text-info">{{traveler}}</span>
                                    {{/if}}
+                                   &nbsp;
                               {{/each}}
                          </h6>
 
