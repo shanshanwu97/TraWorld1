@@ -294,6 +294,8 @@
 
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: false, username: username, text: text, timestamp: new Date()}}});
                     $(".js-postToChatText").val("");
+
+                    $("#chat-" + this.trip._id).animate({ scrollTop: $('.chatInput').offset().top }, 500);
                }
           }
      });
