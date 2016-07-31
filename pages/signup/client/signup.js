@@ -26,7 +26,7 @@ Template.signup.events({
     //   alert("The username is available!");
       const f = $(".js-first").val();
     const l = $(".js-last").val();
-    const e = $(".js-email").val();
+    const e = $(".js-email").val().toLowerCase();
     const p = $(".js-password").val();
 const usrname=$(".js-usern").val();
 if(e.split("@")[1]!="brandeis.edu"){
