@@ -276,8 +276,11 @@
                }
           },
 
-          "click .js-cancel": function() {
+          "click .js-modalCancel": function() {
                GroupCampTrips.remove({_id: this.trip._id});
+               $("#deleteWarningModal-" + this.trip._id).modal('hide');
+     		$('body').removeClass('modal-open');
+     		$('.modal-backdrop').hide();
           },
 
           "click .js-postToChat": function() {

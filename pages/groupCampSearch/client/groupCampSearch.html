@@ -96,7 +96,7 @@
 
                     {{#if getUsername}}
                          {{#if isMine}}
-                              <button class = "js-cancel btn-sm btn-danger btn-block">Cancel Trip!</button>
+                              <button class = "btn-sm btn-danger btn-block" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</button>
                          {{else}}
                               {{#if isOpen}}
                                    {{#if amGoing}}
@@ -209,8 +209,38 @@
           </div>
      </div>
 
-     <!-- Modal -->
-     <div class="modal fade" id="details-{{trip._id}}" role="dialog">
+     <!-- MODAL: Warning -->
+	<div id="deleteWarningModal-{{trip._id}}" class="modal fade" role="dialog">
+		<div class="modal-dialog modal-sm">
+
+			<div class="modal-content">
+				<div class="modal-header">
+					<button type="button" class="close" data-dismiss="modal">&times;</button>
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+					<h3 class="modal-title text-center">
+						Warning!
+					</h3>
+				</div>
+				<div class="modal-body">
+					You are about to irreversably cancel one of your trips (<em>{{trip.title}}</em>). Are you sure you want to proceed?
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Never Mind</button>
+					<button type="button" class="btn btn-danger js-modalCancel">Cancel Trip!</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+     <!-- MODAL: Details About Trip -->
+     <div id="details-{{trip._id}}" class="modal fade" role="dialog">
           <div class="modal-dialog modal-lg">
                <div class="modal-content">
 
