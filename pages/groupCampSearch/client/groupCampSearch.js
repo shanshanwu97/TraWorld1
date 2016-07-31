@@ -148,6 +148,15 @@
                return trip.threshold - travelers.length;
           },
 
+          isPlural: function(){
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var travelers = trip && trip.travelers;
+               if (trip.threshold - travelers.length == 1)
+                    return false;
+               else
+                    return true;
+          },
+
           getUsername: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username},
 
           isMine: function() {

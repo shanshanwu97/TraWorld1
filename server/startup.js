@@ -23,11 +23,11 @@ Meteor.startup(function() {
                tags: ["skydiving", "adventure", "thrills", "local"],
 
 			destination: "Airfield",
-			from: new Date("Aug. 1, 2016"),
-			to: new Date("Aug. 1, 2016"),
-               deadline: new Date("Jul. 30, 2016"),
+			from: new Date("Aug. 4, 2016"),
+			to: new Date("Aug. 4, 2016"),
+               deadline: new Date("Aug. 2, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user9"],
+			travelers: ["author1", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"],
 			threshold: 10,
 			cost: 50,
 
@@ -51,7 +51,7 @@ Meteor.startup(function() {
 			to: new Date("Aug. 7, 2016"),
                deadline: new Date("Jul. 10, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "somebody"],
+			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "somebody"],
 			threshold: 20,
 			cost: 900,
 
@@ -74,7 +74,7 @@ Meteor.startup(function() {
 			to: new Date("Sept. 10, 2016"),
                deadline: new Date("Sept. 1, 2016"),
 
-			travelers: ["user1", "user2", "user3", "user4", "user5", "user6"],
+			travelers: ["author3", "user1", "user2", "user3", "user4", "user5", "user6"],
 			threshold: 20,
 			cost: 20,
 
@@ -98,7 +98,7 @@ Meteor.startup(function() {
 			to: new Date("Oct. 12, 2016"),
                deadline: new Date("Aug. 10, 2016"),
 
-			travelers: ["user1", "user2", "user3"],
+			travelers: ["author4", "user1", "user2", "user3"],
 			threshold: 25,
 			cost: "850",
 

@@ -37,7 +37,7 @@ Template.groupCampPost.events({
 		to = $(".js-to").val();
 		deadline = $(".js-deadline").val();
 
-		travelers = [];
+		travelers = [author];
 		threshold = $(".js-threshold").val();
 
 		cost = $(".js-cost").val();
@@ -195,7 +195,7 @@ Template.groupCampPost.events({
 		to = $(".js-to").val();
 		deadline = $(".js-deadline").val();
 
-		travelers = [];
+		travelers = [author];
 		threshold = $(".js-threshold").val();
 
 		cost = $(".js-cost").val();

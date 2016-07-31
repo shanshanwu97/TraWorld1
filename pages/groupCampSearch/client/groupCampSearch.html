@@ -167,10 +167,16 @@
                               {{else}}
                                    <p class="text-right">
                                         <small>
-                                             {{#if trip.threshold}}
-                                                  {{getTravelersNeeded trip}} Travelers Needed
-                                                  &nbsp;
+                                             {{getTravelersNeeded trip}}
+
+                                             {{#if isPlural}}
+                                                  Travelers
+                                             {{else}}
+                                                  Traveler
                                              {{/if}}
+
+                                              Needed
+                                             &nbsp;
                                         </small>
                                    </p>
 
