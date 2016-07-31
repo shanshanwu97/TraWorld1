@@ -302,76 +302,99 @@
                               <p class = "text-right">
                                    <a href={{trip.link}}>Click Here</a> for more information.
                               </p>
-                              <br><br>
                          {{/if}}
 
                          {{#if amGoing}}
-                              <hr>
-
-                              <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
-                              <div class="alert alert-info alert">
-                                   {{#if isMine}}
-                                        <span class="text-primary">You</span>
-                                   {{else}}
-                                        <span class="text-info">{{trip.author}}</span>
-                                   {{/if}}
-                                   created the group.
-                              </div>
-
-                              {{#each message in trip.chat}}
-                                   {{#if message.alert}}
-                                        <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
-                                        {{#if message.isGoing}}
-                                             <div class="alert alert-info alert">
-                                                  {{#if isMe message.username}}
-                                                       <span class="text-primary">You</span>
-                                                  {{else}}
-                                                       <span class="text-info">{{message.username}}</span>
-                                                  {{/if}}
-                                                  joined the group.
-                                             </div>
-                                        {{else}}
-                                             <div class="alert alert-info">
-                                                  {{#if isMe message.username}}
-                                                       <span class="text-primary">You</span>
-                                                  {{else}}
-                                                       <span class="text-info">{{message.username}}</span>
-                                                  {{/if}}
-                                                  left the group.
-                                             </div>
-                                        {{/if}}
-                                   {{else}}
-                                        <p class="text-right">
-                                             <h6>
-                                                  {{#if isMe message.username}}
-                                                       <span class="text-primary">Me</span>
-                                                  {{else}}
-                                                       <span class="text-info">{{message.username}}</span>
-                                                  {{/if}}
-                                                  <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
-                                             </h6>
-                                        </p>
-
-                                        <div class="well well-sm">
-                                             {{message.text}}
-                                        </div>
-                                   {{/if}}
-                              {{/each}}
-                              <br>
-
-                              <form class="form">
-                                   <div class="input-group">
-                                        <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
-                                        <input type="text" class="js-postToChatText form-control">
-                                        <span class="input-group-btn">
-                                             <input class="js-postToChat btn btn-info" type="submit" value="Post">
-                                        </span>
-                                   </div>
-                              </form>
+                              <button id="openChat" class="form-control" type="button" data-toggle="modal" data-target="#chat-{{trip._id}}">Open Chat</button>
                          {{/if}}
                     </div>
                </div>
           </div>
      </div>
+
+
+     <!-- MODAL: Chat -->
+	<div id="chat-{{trip._id}}" class="modal fade" role="dialog">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+				<div class="modal-header">
+                         <button type="button" class="close" data-dismiss="modal">&times;</button>
+                         <p class="text-center">
+                              <h2>
+                                   <strong>{{trip.title}}</strong> <br>
+                                   <small>Chat</small>
+                              </h2>
+                         </p>
+
+				</div>
+
+				<div class="modal-body">
+                         <p class="text-right"><h6><small>{{trip.timestamp.toDateString}} at {{getTimeof trip.timestamp}}</small></h6></p>
+                         <div class="alert alert-info alert">
+                              {{#if isMine}}
+                                   <span class="text-primary">You</span>
+                              {{else}}
+                                   <span class="text-info">{{trip.author}}</span>
+                              {{/if}}
+                              created the group.
+                         </div>
+
+                         {{#each message in trip.chat}}
+                              {{#if message.alert}}
+                                   <p class="text-right"><h6><small>{{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small></h6></p>
+                                   {{#if message.isGoing}}
+                                        <div class="alert alert-info alert">
+                                             {{#if isMe message.username}}
+                                                  <span class="text-primary">You</span>
+                                             {{else}}
+                                                  <span class="text-info">{{message.username}}</span>
+                                             {{/if}}
+                                             joined the group.
+                                        </div>
+                                   {{else}}
+                                        <div class="alert alert-info">
+                                             {{#if isMe message.username}}
+                                                  <span class="text-primary">You</span>
+                                             {{else}}
+                                                  <span class="text-info">{{message.username}}</span>
+                                             {{/if}}
+                                             left the group.
+                                        </div>
+                                   {{/if}}
+                              {{else}}
+                                   <p class="text-right">
+                                        <h6>
+                                             {{#if isMe message.username}}
+                                                  <span class="text-primary">Me</span>
+                                             {{else}}
+                                                  <span class="text-info">{{message.username}}</span>
+                                             {{/if}}
+                                             <small>on {{message.timestamp.toDateString}} at {{getTimeof message.timestamp}}</small>
+                                        </h6>
+                                   </p>
+
+                                   <div class="well well-sm">
+                                        {{message.text}}
+                                   </div>
+                              {{/if}}
+                         {{/each}}
+				</div>
+
+				<div class="modal-footer">
+                         <form class="form">
+                              <div class="input-group">
+                                   <div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
+                                   <input type="text" class="js-postToChatText form-control">
+                                   <span class="input-group-btn">
+                                        <input class="js-postToChat btn btn-info" type="submit" value="Post">
+                                   </span>
+                              </div>
+                         </form>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 </template>
