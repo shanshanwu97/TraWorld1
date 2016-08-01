@@ -9,6 +9,7 @@
 Meteor.startup(function() {
 
      GroupCampTrips.remove({});
+     GroupCampUsers.remove({});
 
      if (GroupCampTrips.find().count() == 0) {
 
@@ -133,8 +134,8 @@ Meteor.startup(function() {
 			likes: 5,
           });
 
-         
-          
+
+
      }
 
 })
