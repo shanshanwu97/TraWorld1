@@ -18,7 +18,7 @@ Template.profiledisplay.helpers({
 	},
 	userNoName:function(){
 		var user=Meteor.users.findOne({_id:Meteor.userId()});
-		if (user.userName&&user==null){
+		if (user.userName&&user==null||!(user.userName&&user)){
 			return true;
 		}else{
 			return false;
@@ -111,14 +111,15 @@ Template.profiledisplay.events({
 })
 Template.editprofile.helpers({
 	hi:function(){
-		return UserProfiles.findOne();
+		return UserProfiles.findOne({user:Meteor.userId()});
 	},
+	userprof:function(){
+		return Meteor.users.findOne({_id:Meteor.userId()});
+	}
 	})
 Template.editprofile.events({
 	"click .js-submitin": function(event){
 		event.preventDefault();
-		const fname = $(".js-cname").val();
-		const email = $(".js-cemail").val();
 		const loc = $(".js-cloc").val();
 		var user= UserProfiles.findOne({user: Meteor.userId()});
 		var propic=user&&user.propic;

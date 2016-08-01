@@ -107,4 +107,34 @@ Meteor.startup(function() {
                chat: []
           });
      }
+          Trips.remove({});
+
+
+
+     if (Trips.find().count() == 0) {
+
+          // SKYDIVING
+          Trips.insert({
+            createdBy: null,
+			username:"....",
+
+			datecreated:new Date(),
+			title: "We love Boston!",
+			destination: ["boston, MA, united states", "new york city, NY, united states"],
+            arrival: "07/28/2016",
+
+			departure: "08/06/2016",
+			amountOfTraveler: 4,
+			expenses: 700,
+
+			// images: ""
+			description: "our trip in boston.",
+			textedit:[],
+			likes: 5,
+          });
+
+         
+          
+     }
+
 })

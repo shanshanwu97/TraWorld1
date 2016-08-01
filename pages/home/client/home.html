@@ -87,14 +87,14 @@
                         <div class="team-member">
                             <img id="popular" src="http://travelblog.goaheadtours.com/wp-content/uploads/Mount-Fuji-Tokyo-Japan-Cherry-Blossoms.jpg" width="100%" alt="Tokyo Japan"/>
                             <h3><strong class="tag">Tokyo, Japan </strong></h3>
-                            <input type="button" class="btn  js-gojapan" value="Read More">
+                            <input data-toggle="modal" data-target="#travelInfo" type="button" class="btn  js-gojapan" value="Read More">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="team-member">
                             <img id="popular" src="https://www.shoretrips.com/excursion-image/paris-france/private-transfer-from-paris-hotel-to-le-havre/118791_130625115936.jpg" width="100%" height="170px" alt="Eiffel Tower"/>
                             <h3><strong>Paris, France</strong></h3>
-                            <input type="button" class="btn  js-goparis" value="Read More">
+                            <input data-toggle="modal" data-target="#travelInfo" type="button" class="btn  js-goparis" value="Read More">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
@@ -102,14 +102,14 @@
                             <img id="popular" src="http://collections.uiowa.edu/web-images/internationalPrograms/ofsa/3603/logistics/sydney%20opera%20hours.jpg" width="100%" alt="Tokyo Japan"/>
                             <h3><strong id="aus">Sydney, Austrailia</strong></h3>
 
-                            <input type="button" class="btn  js-gosydney" value="Read More">
+                            <input data-toggle="modal" data-target="#travelInfo" type="button" class="btn  js-gosydney" value="Read More">
                         </div>
                     </div>
                     <div class="col-md-3 col-sm-3 col-xs-6">
                         <div class="team-member">
                             <img id="popular" src="http://media4.popsugar-assets.com/files/2014/04/08/792/n/1922441/d238667789add97f_shutterstock_139999093.xxxlarge_2x/i/London-England.jpg" alt="">
                             <h3><strong>London, England</strong></h3>
-                            <input type="button" class="btn  js-golondon" value="Read More">
+                            <input data-toggle="modal" data-target="#travelInfo" type="button" class="btn  js-golondon" value="Read More">
                         </div>
                     </div>
 
@@ -123,9 +123,32 @@
 
 
         </div>
+
     </section>
 
 
 
     </body>
+ {{>travelInfo}}   
+</template>
+<template name="travelInfo">
+    <div class="modal large fade" id="travelInfo" >
+        <div class="modal-dialog" style="width: 1200px; height:700px;">
+            <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                 <h4 class="modal-title" id="modelLabel">More Information</h4>
+            </div>
+             <!-- <form id="textform"> -->
+        <div class="modal-body">
+          <iframe src="{{cityinfo}}" width="100%" height="450px"></iframe>
+          </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+<!--       </form> -->
+    </div>
+  </div>
+</div>
 </template>
