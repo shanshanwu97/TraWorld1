@@ -107,7 +107,7 @@ Meteor.startup(function() {
                chat: []
           });
      }
-          Trips.remove({});
+          // Trips.remove({});
 
 
 

@@ -9,7 +9,7 @@ Template.map.onCreated(function () {
     Tracker.autorun(function() {
       map.instance.setCenter(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng))
       
-      markerCurrent.setPosition(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng));
+    
     });  
     
 
