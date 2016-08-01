@@ -51,7 +51,7 @@ Meteor.startup(function() {
 			to: new Date("Aug. 7, 2016"),
                deadline: new Date("Jul. 10, 2016"),
 
-			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "somebody"],
+			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "travis"],
 			threshold: 20,
 			cost: 900,
 
