@@ -54,7 +54,12 @@ Template.map.helpers({
 });
 
 Template.map.events({
-  
+  "click #currentloc":function(){
+    event.preventDefault();
+    console.log('clicked currentloc');
+    var currentloc=Session.get("latLng");
+    $("#from").val(currentloc.lat+", "+ currentloc.lng);
+  },
 
 
 

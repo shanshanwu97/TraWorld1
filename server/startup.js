@@ -107,7 +107,7 @@ Meteor.startup(function() {
                chat: []
           });
      }
-          Trips.remove({});
+          // Trips.remove({});
 
 
 
@@ -120,7 +120,7 @@ Meteor.startup(function() {
 
 			datecreated:new Date(),
 			title: "We love Boston!",
-			destination: ["boston, MA, united states", "new york city, NY, united states"],
+			destination: "boston, MA, united states", 
             arrival: "07/28/2016",
 
 			departure: "08/06/2016",
