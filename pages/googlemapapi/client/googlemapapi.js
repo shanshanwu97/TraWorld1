@@ -2,17 +2,14 @@ Template.map.onCreated(function () {
   Session.set("location",{lat:42,lng:-71})
   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
   GoogleMaps.ready('naviMap',function(map) {
-    var markerCurrent = new google.maps.Marker({
-        position: new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng),
-        map:map.instance
-      });
+    
     directionsService = new google.maps.DirectionsService();
     directionsDisplay = new google.maps.DirectionsRenderer;
     directionsDisplay.setMap(GoogleMaps.maps.naviMap.instance);
     Tracker.autorun(function() {
       map.instance.setCenter(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng))
       
-      markerCurrent.setPosition(new google.maps.LatLng(Session.get("location").lat,Session.get("location").lng));
+    
     });  
     
 
