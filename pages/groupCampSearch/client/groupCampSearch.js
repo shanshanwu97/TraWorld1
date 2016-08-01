@@ -185,7 +185,6 @@
 
           isOpen: function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
-               console.log(new Date(trip.deadline));
                if(new Date(trip.deadline) < new Date())
                     return false;
                else
