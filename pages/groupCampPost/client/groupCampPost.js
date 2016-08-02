@@ -38,6 +38,7 @@ Template.groupCampPost.events({
 		deadline = $(".js-deadline").val();
 
 		travelers = [author];
+		bookmarks = [];
 		threshold = $(".js-threshold").val();
 
 		cost = $(".js-cost").val();

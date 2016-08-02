@@ -38,6 +38,7 @@
                               <li class="js-seeAll"><a href="#">See All Available Trips</a></li>
                               <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
                               <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
+                              <li class="js-seeBookmarks"><a href="#">See Trips I've Bookmarked</a></li>
                               <li role="separator" class="divider"></li>
                               <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
                          </ul>
@@ -228,21 +229,36 @@
 
                <div class="col-md-3">
 
-                    {{#if isMine}}
-                         <button class = "btn-sm btn-danger btn-block" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</button>
-                    {{else}}
-                         {{#if isOpen}}
-                              {{#if amGoing}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                                   </button>
-                              {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                                   </button>
+                    <div class="btn-group btn-group-justified">
+                         {{#if isMine}}
+                                   <a href="#" class = "btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</a>
+                         {{else}}
+                              {{#if isOpen}}
+                                   {{#if amGoing}}
+                                        <a href="#" class = "js-changeAmGoing amGoing-color-{{trip._id}} btn btn-sm btn-{{getColor}}">
+                                             <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                        </a>
+                                   {{else}}
+                                        <a href="#" class = "js-changeAmGoing amGoing-color-{{trip._id}} btn btn-sm btn-default">
+                                             <span class="amGoing-text-{{trip._id}}">
+                                                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                             </span>
+                                        </a>
+
+                                        {{#if isBookmarked}}
+                                             <a href="#" class = "js-bookmark bookmark-color-{{trip._id}} btn btn-sm btn-{{getColor}}">
+                                                  <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                                             </a>
+                                        {{else}}
+                                             <a href="#" class = "js-bookmark bookmark-color-{{trip._id}} btn btn-sm btn-default">
+                                                  <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                                             </a>
+                                        {{/if}}
+                                   {{/if}}
+
                               {{/if}}
                          {{/if}}
-                    {{/if}}
+                    </div>
 
                     <small>
                          {{#if trip.destination}}

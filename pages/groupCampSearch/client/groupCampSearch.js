@@ -16,6 +16,8 @@
                     return (GroupCampTrips.find({author: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
                else if (Session.get("searchBy") == "going")
                     return (GroupCampTrips.find({travelers: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}).count() != 0);
+               else if (Session.get("searchBy") == "bookmarks")
+                    return (GroupCampTrips.find({bookmarks: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, deadline: {$gte: new Date()}}).count() != 0);
                else
                     return (GroupCampTrips.find({deadline: {$gte: new Date()}}).count() != 0);
           },
@@ -31,6 +33,8 @@
                     return GroupCampTrips.find({author: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
                else if (Session.get("searchBy") == "going")
                     return GroupCampTrips.find({travelers: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, to: {$gte: new Date()}, $or: [{deadline: {$gte: new Date()}}, {$where: "obj.travelers.length >= obj.threshold"}]}, {sort: {timestamp: -1}});
+               else if (Session.get("searchBy") == "bookmarks")
+                    return GroupCampTrips.find({bookmarks: Meteor.users.findOne({_id: Meteor.userId()}).profile.username, deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
                else
                     return GroupCampTrips.find({deadline: {$gte: new Date()}}, {sort: {timestamp: -1}});
           },
@@ -119,6 +123,13 @@
                Session.set("searchBy", "going");
                Session.set("searchField", null);
                $(".js-searchField").val("");
+          },
+
+          "click .js-seeBookmarks": function() {
+               event.preventDefault();
+               Session.set("searchBy", "bookmarks");
+               Session.set("searchField", null);
+               $(".js-searchField").val("");
           }
      });
 
@@ -135,6 +146,17 @@
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
                var index = travelers.indexOf(Meteor.users.findOne({_id: Meteor.userId()}).profile.username);
+
+               if (index == -1)
+                    return false;
+               else
+                    return true;
+          },
+
+          isBookmarked: function(){
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var bookmarks = trip && trip.bookmarks;
+               var index = bookmarks.indexOf(Meteor.users.findOne({_id: Meteor.userId()}).profile.username);
 
                if (index == -1)
                     return false;
@@ -252,26 +274,37 @@
           "click .js-changeAmGoing": function() {
                var trip = GroupCampTrips.findOne({_id:this.trip._id});
                var travelers = trip && trip.travelers;
-               console.log(travelers);
                var username = Meteor.user() && Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
                var index = travelers.indexOf(username);
 
                if (index == -1) {
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {travelers:username}});
-
-                    $('.amGoing-color-' + this.trip._id).removeClass('btn-warning').addClass('btn-default');
-                    $('.amGoing-text-' + this.trip._id).html('Remove Me!');
-
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: true, username: username, timestamp: new Date()}}});
+
+                    var bookmarks = trip && trip.bookmarks;
+                    var bookmarksIndex = bookmarks.indexOf(username);
+                    bookmarks.splice(bookmarksIndex, 1);
+                    GroupCampTrips.update({_id: this.trip._id}, {$set: {bookmarks: bookmarks}});
                }
                else {
                     travelers.splice(index, 1);
                     GroupCampTrips.update({_id: this.trip._id}, {$set: {travelers: travelers}});
-
-                    $('.amGoing-color-' + this.trip._id).removeClass('btn-default').addClass('btn-warning');
-                    $('.amGoing-text-' + this.trip._id).html('Add Me!');
-
                     GroupCampTrips.update({_id: this.trip._id}, {$push: {chat: {alert: true, isGoing: false, username: username, timestamp: new Date()}}});
+               }
+          },
+
+          "click .js-bookmark": function() {
+               var trip = GroupCampTrips.findOne({_id:this.trip._id});
+               var bookmarks = trip && trip.bookmarks;
+               var username = Meteor.user() && Meteor.users.findOne({_id: Meteor.userId()}).profile.username;
+               var index = bookmarks.indexOf(username);
+
+               if (index == -1) {
+                    GroupCampTrips.update({_id: this.trip._id}, {$push: {bookmarks: username}});
+               }
+               else {
+                    bookmarks.splice(index, 1);
+                    GroupCampTrips.update({_id: this.trip._id}, {$set: {bookmarks: bookmarks}});
                }
           },
 
