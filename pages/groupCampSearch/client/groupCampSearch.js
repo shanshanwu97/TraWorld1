@@ -70,6 +70,28 @@
      });
 
      Template.groupCampSearch.events({
+       "click .js-talk": function(event){
+           console.log("clicked it");
+           $(".js-talk").html("Listening...");
+           event.preventDefault();
+        // https://shapeshed.com/html5-speech-recognition-api/
+           const recognition = new webkitSpeechRecognition();
+           recognition.lang = 'en-US'
+           recognition.onresult = function(event) {
+               console.dir(event);
+               $(".js-talk").html("Got it!");
+               Session.set("transcript",event.results[0][0].transcript);
+               $(".js-searchField").val(Session.get("transcript"));
+
+
+     //        execute(Session.get("transcript"));
+             };
+             $(".js-searchField").val("");
+         recognition.start();
+        //      console.log("starting the recognizer")
+
+
+        },
           "click .js-search": function(event, instance) {
                event.preventDefault();
                search = $(".js-searchField").val().trim();
@@ -132,8 +154,53 @@
                $(".js-searchField").val("");
           },
 
-          "click .volume": function() {
+          "click .volume-1-alt": function() {
                console.log("clicked volume button");
+               var instruct=$(".js-instruct-1-alt").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
+          },
+          "click .volume-1": function() {
+               console.log("clicked volume button");
+               var instruct=$(".js-instruct-1").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
+          },
+          "click .volume-2": function() {
+               console.log("clicked volume button");
+               var instruct=$(".js-instruct-2").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
+          },
+          "click .volume-3": function() {
+               console.log("clicked volume button");
+               var instruct=$(".js-instruct-3").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
+          },
+          "click .volume-4": function() {
+               console.log("clicked volume button");
+               var instruct=$(".js-instruct-4").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
+          },
+          "click .volume-5": function() {
+               console.log("clicked volume button");
+               var instruct=$(".js-instruct-5").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
           }
      });
 
