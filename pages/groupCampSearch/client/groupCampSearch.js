@@ -4,6 +4,7 @@
                Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
                Session.set("volume", false);
+               Session.set("speachActive", false);
      	},
 
           hasTrips: function(){
@@ -41,6 +42,13 @@
           },
 
           getUsername: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username},
+
+          getSpeakIcon: function() {
+               if (Session.get("speachActive"))
+                    return "equalizer";
+               else
+                    return "volume-up";
+          },
 
           getSearchGlyph: function() {
                if (Session.get("searchOption") == "author")
@@ -86,14 +94,14 @@
      Template.groupCampSearch.events({
        "click .js-talk": function(event){
            console.log("clicked it");
-           $(".js-talk").html("Listening...");
+           Session.set("speachActive", true);
            event.preventDefault();
         // https://shapeshed.com/html5-speech-recognition-api/
            const recognition = new webkitSpeechRecognition();
            recognition.lang = 'en-US'
            recognition.onresult = function(event) {
                console.dir(event);
-               $(".js-talk").html("Got it!");
+               Session.set("speachActive", false);
                Session.set("transcript",event.results[0][0].transcript);
                $(".js-searchField").val(Session.get("transcript"));
 
