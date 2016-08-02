@@ -8,7 +8,9 @@
 
 Meteor.startup(function() {
 
+     Meteor.users.remove({});
      GroupCampTrips.remove({});
+     GroupCampUsers.remove({});
 
      if (GroupCampTrips.find().count() == 0) {
 
@@ -23,11 +25,12 @@ Meteor.startup(function() {
                tags: ["skydiving", "adventure", "thrills", "local"],
 
 			destination: "Airfield",
-			from: new Date("Aug. 4, 2016"),
-			to: new Date("Aug. 4, 2016"),
-               deadline: new Date("Aug. 2, 2016"),
+			from: new Date("Aug. 10, 2016"),
+			to: new Date("Aug. 10, 2016"),
+               deadline: new Date("Aug. 5, 2016"),
 
 			travelers: ["author1", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"],
+               bookmarks: [],
 			threshold: 10,
 			cost: 50,
 
@@ -52,6 +55,7 @@ Meteor.startup(function() {
                deadline: new Date("Jul. 10, 2016"),
 
 			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "travis"],
+               bookmarks: [],
 			threshold: 20,
 			cost: 900,
 
@@ -75,6 +79,7 @@ Meteor.startup(function() {
                deadline: new Date("Sept. 1, 2016"),
 
 			travelers: ["author3", "user1", "user2", "user3", "user4", "user5", "user6"],
+               bookmarks: [],
 			threshold: 20,
 			cost: 20,
 
@@ -99,6 +104,7 @@ Meteor.startup(function() {
                deadline: new Date("Aug. 10, 2016"),
 
 			travelers: ["author4", "user1", "user2", "user3"],
+               bookmarks: [],
 			threshold: 25,
 			cost: "850",
 
@@ -133,8 +139,8 @@ Meteor.startup(function() {
 			likes: 5,
           });
 
-         
-          
+
+
      }
 
 })

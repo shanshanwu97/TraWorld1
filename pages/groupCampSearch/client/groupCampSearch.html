@@ -1,4 +1,4 @@
-<template name="groupCampSearch"><div class = "container">
+<template name="groupCampSearch"><div class = "findYourTrip container">
      {{setUp}}
 
      <div class="page-header">
@@ -8,6 +8,15 @@
                <small>Find Your Trip</small>
           </h1>
      </div>
+
+     <script type="text/javascript">
+          $(document).ready(function(){
+               if (!GroupCampUsers.findOne({userID: Meteor.userId()})) {
+                    $("#demoModal1").modal('show');
+                    GroupCampUsers.insert({userID: Meteor.userId()});
+               }
+          });
+     </script>
 
      <form class="form-inline">
           <div class="input-group">
@@ -29,6 +38,7 @@
                               <li class="js-seeAll"><a href="#">See All Available Trips</a></li>
                               <li class="js-seeMine"><a href="#">See Trips I'm Heading</a></li>
                               <li class="js-seeAmGoing"><a href="#">See Trips I'm Going On</a></li>
+                              <li class="js-seeBookmarks"><a href="#">See Trips I've Bookmarked</a></li>
                               <li role="separator" class="divider"></li>
                               <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
                          </ul>
@@ -50,6 +60,141 @@
                </small></h2>
           </p>
      {{/if}}
+
+
+     <!-- MODAL: Travis's Demo I -->
+	<div id="demoModal1" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead">Hey, I’m Travis. I see this is your first time here at Group Camp. Let me give you a tour.</p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#demoModal2">Ok</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+     <!-- MODAL: Travis's Demo II -->
+	<div id="demoModal2" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead">
+                              Group camp was inspired by the idea behind summer camp: complete strangers gather to enjoy one another's company and to perform group activities. <br><br>
+
+                              The app is designed to allow members of the Brandeis community to  travel together, explore together, participate together, perform together, and especially, save together. Always wanted to try white water rafting? We'll find you a group of adventurous travelers to take with you. Want to see the museum? I'm sure you aren't the only one. Looking to perform at the commons? Brandeis is home to a wide range of talents you could take advantage of. Traveling home for the holidays and hoping for a group discount? We got you covered.
+                         </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#demoModal3">Awesome</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+     <!-- MODAL: Travis's Demo III -->
+	<div id="demoModal3" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead">
+                              On the main page, you will see a list of trips from other users. You can filter the listings by tag, author, and ID. You can also get more information about a trip by clicking on its title. Feel free to sign up for something. When you do, you can find it under the "Trips I'm Going On" section under the drop down menu. You will now all have access to the group's chat. Just click on the trip's title again and scroll down for the chat button.
+                         </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#demoModal4">Got It!</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+     <!-- MODAL: Travis's Demo IV -->
+	<div id="demoModal4" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead">
+                              If you want to create your own trip, simply click the "Design a Trip" option. This will take you to a special form to create your trip. Remember, you are the head of this trip and are responsible for arranging the details!
+                         </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#demoModal5">Got It!</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+     <!-- MODAL: Travis's Demo V -->
+	<div id="demoModal5" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead">
+                              One last note, Group Camp trips are designed to allow you to require that minimum number of travelers be signed up for your trip by a specified deadline — otherwise your trip will be canceled. This way, you can make sure you have enough people to participate in that group activity or to grab that discount you were looking for. You can also manually cancel any trip you are heading anytime from the main page.
+                         </p>
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Thanks, Travis</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
 
 </div></template>
 
@@ -84,21 +229,36 @@
 
                <div class="col-md-3">
 
-                    {{#if isMine}}
-                         <button class = "btn-sm btn-danger btn-block" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</button>
-                    {{else}}
-                         {{#if isOpen}}
-                              {{#if amGoing}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-default btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
-                                   </button>
-                              {{else}}
-                                   <button class = "js-changeAmGoing amGoing-color-{{trip._id}} btn-sm btn-{{getColor}} btn-block">
-                                        <span class="amGoing-text-{{trip._id}}">Add Me!</span>
-                                   </button>
+                    <div class="btn-group btn-group-justified">
+                         {{#if isMine}}
+                                   <a href="#" class = "btn btn-sm btn-danger" data-toggle="modal" data-target="#deleteWarningModal-{{trip._id}}">Cancel Trip!</a>
+                         {{else}}
+                              {{#if isOpen}}
+                                   {{#if amGoing}}
+                                        <a href="#" class = "js-changeAmGoing amGoing-color-{{trip._id}} btn btn-sm btn-{{getColor}}">
+                                             <span class="amGoing-text-{{trip._id}}">Remove Me!</span>
+                                        </a>
+                                   {{else}}
+                                        <a href="#" class = "js-changeAmGoing amGoing-color-{{trip._id}} btn btn-sm btn-default">
+                                             <span class="amGoing-text-{{trip._id}}">
+                                                  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+                                             </span>
+                                        </a>
+
+                                        {{#if isBookmarked}}
+                                             <a href="#" class = "js-bookmark bookmark-color-{{trip._id}} btn btn-sm btn-{{getColor}}">
+                                                  <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                                             </a>
+                                        {{else}}
+                                             <a href="#" class = "js-bookmark bookmark-color-{{trip._id}} btn btn-sm btn-default">
+                                                  <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span>
+                                             </a>
+                                        {{/if}}
+                                   {{/if}}
+
                               {{/if}}
                          {{/if}}
-                    {{/if}}
+                    </div>
 
                     <small>
                          {{#if trip.destination}}
@@ -148,9 +308,7 @@
                                    </p>
 
                                    <div class="progress">
-                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%">
-                                             This trip has enough people!
-                                        </div>
+                                        <div class="progress-bar progress-bar-success progress-bar-striped" role="progressbar" style="width: 100%"></div>
                                    </div>
                               {{else}}
                                    <p class="text-right">
@@ -177,7 +335,7 @@
                               {{#if hasEnoughTravelers}}
                                    <p class="text-right">
                                         <small>
-                                             <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                                             <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
                                              &nbsp;&nbsp;
                                         </small>
                                    </p>
@@ -210,9 +368,9 @@
 							Group Camp
 						</small>
 					</h4>
-					<h3 class="modal-title text-center">
+					<p class="modal-title text-center lead">
 						Warning!
-					</h3>
+					</p>
 				</div>
 				<div class="modal-body">
 					You are about to irreversably cancel one of your trips (<em>{{trip.title}}</em>). Are you sure you want to proceed?
