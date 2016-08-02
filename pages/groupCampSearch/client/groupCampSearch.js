@@ -70,6 +70,28 @@
      });
 
      Template.groupCampSearch.events({
+       "click .js-talk": function(event){
+           console.log("clicked it");
+           $(".js-talk").html("Listening...");
+           event.preventDefault();
+        // https://shapeshed.com/html5-speech-recognition-api/
+           const recognition = new webkitSpeechRecognition();
+           recognition.lang = 'en-US'
+           recognition.onresult = function(event) {
+               console.dir(event);
+               $(".js-talk").html("Got it!");
+               Session.set("transcript",event.results[0][0].transcript);
+               $(".js-searchField").val(Session.get("transcript"));
+
+
+     //        execute(Session.get("transcript"));
+             };
+             $(".js-searchField").val("");
+         recognition.start();
+        //      console.log("starting the recognizer")
+
+
+        },
           "click .js-search": function(event, instance) {
                event.preventDefault();
                search = $(".js-searchField").val().trim();
