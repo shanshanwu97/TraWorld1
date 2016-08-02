@@ -152,6 +152,10 @@
                Session.set("searchBy", "bookmarks");
                Session.set("searchField", null);
                $(".js-searchField").val("");
+          },
+
+          "click .volume": function() {
+               console.log("clicked volume button");
           }
      });
 
