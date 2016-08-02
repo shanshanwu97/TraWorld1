@@ -25,6 +25,9 @@
                <span class="input-group-btn">
 
                     <div class="js-searchGroup btn-group">
+                         <button class="js-talk btn btn-default" type="submit">
+                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                         </button>
                          <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
                          <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="caret"></span>
@@ -45,6 +48,10 @@
                     </div>
                </span>
           </div>
+          &nbsp;&nbsp;
+          <a href="#" data-toggle="modal" data-target="#demoModal1-alt">
+               <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
+          </a>
      </form>
 
      <br>
@@ -61,13 +68,15 @@
           </p>
      {{/if}}
 
-
-     <!-- MODAL: Travis's Demo I -->
-	<div id="demoModal1" class="modal fade" role="dialog" data-backdrop="static">
+     <!-- MODAL: Travis's Demo I — Alt -->
+	<div id="demoModal1-alt" class="modal fade" role="dialog" data-backdrop="static">
 		<div class="modal-dialog">
 
 			<div class="modal-content">
                     <div class="modal-header">
+                         <button type="button" class="volume-1-alt close">
+                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                         </button>
 					<h4 class="modal-title">
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -76,7 +85,37 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-                         <p class="lead">Hey, I’m Travis. I see this is your first time here at Group Camp. Let me give you a tour.</p>
+                         <p class="lead js-instruct-1-alt">Hey, I’m Travis. Welcome to Group Camp! Let me give you a tour.</p>
+                         {{playModal1alt}}
+				</div>
+				<div class="modal-footer">
+					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+					<button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#demoModal2">Ok</button>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+
+     <!-- MODAL: Travis's Demo I -->
+	<div id="demoModal1" class="modal fade" role="dialog" data-backdrop="static">
+		<div class="modal-dialog">
+
+			<div class="modal-content">
+                    <div class="modal-header">
+					<h4 class="modal-title">
+                              <button type="button" class="volume-1 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
+						<small>
+							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+							Group Camp
+						</small>
+					</h4>
+				</div>
+				<div class="modal-body">
+                         <p class="lead js-instruct-1">Hey, I’m Travis. I see this is your first time here at Group Camp. Let me give you a tour.</p>
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
@@ -94,6 +133,9 @@
 			<div class="modal-content">
                     <div class="modal-header">
 					<h4 class="modal-title">
+                              <button type="button" class="volume-2 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
 							Group Camp
@@ -101,7 +143,7 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-                         <p class="lead">
+                         <p class="lead js-instruct-2">
                               Group camp was inspired by the idea behind summer camp: complete strangers gather to enjoy one another's company and to perform group activities. <br><br>
 
                               The app is designed to allow members of the Brandeis community to  travel together, explore together, participate together, perform together, and especially, save together. Always wanted to try white water rafting? We'll find you a group of adventurous travelers to take with you. Want to see the museum? I'm sure you aren't the only one. Looking to perform at the commons? Brandeis is home to a wide range of talents you could take advantage of. Traveling home for the holidays and hoping for a group discount? We got you covered.
@@ -122,6 +164,9 @@
 
 			<div class="modal-content">
                     <div class="modal-header">
+                         <button type="button" class="volume-3 close">
+                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                         </button>
 					<h4 class="modal-title">
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -130,8 +175,8 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-                         <p class="lead">
-                              On the main page, you will see a list of trips from other users. You can filter the listings by tag, author, and ID. You can also get more information about a trip by clicking on its title. Feel free to sign up for something. When you do, you can find it under the "Trips I'm Going On" section under the drop down menu. You will now all have access to the group's chat. Just click on the trip's title again and scroll down for the chat button.
+                         <p class="lead js-instruct-3">
+                              On the main page, you will see a list of trips by other users. You can filter the listings by tag, author, and ID. You can also get more information about a trip by clicking on its title. Feel free to sign up for something. When you do, you can find it under the "Trips I'm Going On" section under the drop down menu. You will now all have access to the group's chat. Just click on the trip's title again and scroll down for the chat button.
                          </p>
 				</div>
 				<div class="modal-footer">
@@ -150,6 +195,9 @@
 			<div class="modal-content">
                     <div class="modal-header">
 					<h4 class="modal-title">
+                              <button type="button" class="volume-4 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
 							Group Camp
@@ -157,7 +205,7 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-                         <p class="lead">
+                         <p class="lead js-instruct-4">
                               If you want to create your own trip, simply click the "Design a Trip" option. This will take you to a special form to create your trip. Remember, you are the head of this trip and are responsible for arranging the details!
                          </p>
 				</div>
@@ -177,6 +225,9 @@
 			<div class="modal-content">
                     <div class="modal-header">
 					<h4 class="modal-title">
+                              <button type="button" class="volume-5 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
 							Group Camp
@@ -184,7 +235,7 @@
 					</h4>
 				</div>
 				<div class="modal-body">
-                         <p class="lead">
+                         <p class="lead js-instruct-5">
                               One last note, Group Camp trips are designed to allow you to require that minimum number of travelers be signed up for your trip by a specified deadline — otherwise your trip will be canceled. This way, you can make sure you have enough people to participate in that group activity or to grab that discount you were looking for. You can also manually cancel any trip you are heading anytime from the main page.
                          </p>
 				</div>
@@ -219,7 +270,7 @@
 
                </div>
 
-               <div class="col-md-3">
+               <div class="col-md-3" align="center">
                     {{#if trip.picture}}
                          <img src={{trip.picture}} class="img-thumbnail">
                     {{else}}
@@ -335,7 +386,7 @@
                               {{#if hasEnoughTravelers}}
                                    <p class="text-right">
                                         <small>
-                                             <span class="glyphicon glyphicon-ok-circle" aria-hidden="true"></span>
+                                             <span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span>
                                              &nbsp;&nbsp;
                                         </small>
                                    </p>
