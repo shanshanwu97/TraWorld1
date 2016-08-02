@@ -3,6 +3,7 @@
           setUp: function(){
                Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
+               Session.set("volume", false);
      	},
 
           hasTrips: function(){
@@ -66,6 +67,19 @@
                     return "success";
                else
                     return "danger";
+          },
+
+          playModal1alt: function() {
+               if (Session.get("volume")) {
+                    var instruct=$(".js-instruct-1-alt").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                    window.speechSynthesis.speak(msg);
+                    Session.set("volume", true);
+               }
+               else {
+                    // CODE TO STOP VOICE
+               }
           }
      });
 
@@ -156,11 +170,13 @@
 
           "click .volume-1-alt": function() {
                console.log("clicked volume button");
-               var instruct=$(".js-instruct-1-alt").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+
+               if (Session.get("volume")) {
+                    Session.set("volume", false);
+               }
+               else {
+                    Session.set("volume", true);
+               }
           },
           "click .volume-1": function() {
                console.log("clicked volume button");

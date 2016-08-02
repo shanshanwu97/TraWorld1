@@ -23,11 +23,11 @@
                <div class="input-group-addon"><span class="glyphicon glyphicon-{{getSearchGlyph}}" aria-hidden="true"></span></div>
                <input type="text" class="js-searchField form-control" size=25>
                <span class="input-group-btn">
-                    <input class="js-talk btn buttonblue btn-info" type="submit" value="Speak">
-               </span>
-               <span class="input-group-btn">
 
                     <div class="js-searchGroup btn-group">
+                         <button class="js-talk btn btn-default" type="submit">
+                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                         </button>
                          <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
                          <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="caret"></span>
@@ -86,6 +86,7 @@
 				</div>
 				<div class="modal-body">
                          <p class="lead js-instruct-1-alt">Hey, I’m Travis. Welcome to Group Camp! Let me give you a tour.</p>
+                         {{playModal1alt}}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
