@@ -172,6 +172,8 @@
                     var instruct=$(".js-instruct-1-alt").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -188,8 +190,11 @@
                     var instruct=$(".js-instruct-1").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                    var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
+                    console.log(voices);
                }
                else{
                     window.speechSynthesis.cancel();
@@ -204,6 +209,8 @@
                     var instruct=$(".js-instruct-2").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -220,6 +227,8 @@
                     var instruct=$(".js-instruct-3").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -236,6 +245,8 @@
                     var instruct=$(".js-instruct-4").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -252,6 +263,8 @@
                     var instruct=$(".js-instruct-5").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
