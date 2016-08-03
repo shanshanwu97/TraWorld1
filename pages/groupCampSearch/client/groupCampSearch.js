@@ -431,7 +431,14 @@
                else {
                     return (dateObj.getHours() - 12) + ":" + minutes + " PM";
                }
-          }
+          },
+
+          getChatSpeakIcon: function() {
+               if (Session.get("chatSpeachActive"))
+                    return "equalizer";
+               else
+                    return "volume-up";
+          },
      });
 
      Template.GroupCampListing.events({
@@ -493,5 +500,21 @@
 
                     $("#chat-" + this.trip._id).animate({ scrollTop: $('.chatInput').offset().top }, 500);
                }
+          },
+
+          "click .js-chatTalk": function() {
+               Session.set("chatSpeachActive", true);
+               event.preventDefault();
+               const recognition = new webkitSpeechRecognition();
+               recognition.lang = 'en-US'
+
+               recognition.onresult = function(event) {
+                    Session.set("chatSpeachActive", false);
+                    Session.set("transcript",event.results[0][0].transcript);
+                    $(".js-postToChatText").val(Session.get("transcript"));
+               };
+
+               $(".js-postToChatText").val("");
+               recognition.start();
           }
      });
