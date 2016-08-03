@@ -1,5 +1,5 @@
 Template.map.onCreated(function () {
-   Session.set("location",{lat:42,lng:-71})
+   Session.set("location",{lat:42,lng:-71});
   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
   GoogleMaps.ready('naviMap',function(map) {
 
@@ -62,12 +62,19 @@ Template.map.helpers({
 });
 
 Template.map.events({
-  "click #currentloc":function(){
+  "click #currentloc-from":function(){
     event.preventDefault();
     console.log('clicked currentloc');
     var currentloc=Session.get("latLng");
     $("#from").val(currentloc.lat+", "+ currentloc.lng);
   },
+
+"click #currentloc-to":function(){
+      event.preventDefault();
+      console.log('clicked currentloc');
+      var currentloc=Session.get("latLng");
+      $("#to").val(currentloc.lat+", "+ currentloc.lng);
+},
 
 
 
