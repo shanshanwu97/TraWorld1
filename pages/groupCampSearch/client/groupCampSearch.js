@@ -4,7 +4,7 @@
                Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
                Session.set("speachActive", false);
-               Session.set("setVolume",false);
+               Session.set("isPlaying",false);
      	},
 
           hasTrips: function(){
@@ -76,6 +76,13 @@
                else
                     return "danger";
           },
+
+          getPlayStopIcon: function() {
+               if (Session.get("isPlaying"))
+                    return "stop";
+               else
+                    return "play-circle";
+          }
 
      });
 
@@ -159,8 +166,8 @@
           },
 
           "click .volume-1-alt": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-1-alt").text();
                     console.log(instruct);
@@ -170,13 +177,13 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
           },
 
           "click .volume-1": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-1").text();
                     console.log(instruct);
@@ -186,13 +193,13 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
           },
 
           "click .volume-2": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-2").text();
                     console.log(instruct);
@@ -202,13 +209,13 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
           },
 
           "click .volume-3": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-3").text();
                     console.log(instruct);
@@ -218,13 +225,13 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
           },
 
           "click .volume-4": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-4").text();
                     console.log(instruct);
@@ -234,13 +241,13 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
           },
 
           "click .volume-5": function() {
-               if(Session.get("setVolume")==false){
-                    Session.set("setVolume",true);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
                     console.log("clicked volume button");
                     var instruct=$(".js-instruct-5").text();
                     console.log(instruct);
@@ -250,9 +257,14 @@
                }
                else{
                     window.speechSynthesis.cancel();
-                    Session.set("setVolume",false);
+                    Session.set("isPlaying",false);
                }
-        },
+          },
+
+          "click .leaveModal ": function() {
+               window.speechSynthesis.cancel();
+               Session.set("isPlaying",false);
+          }
      });
 
 
