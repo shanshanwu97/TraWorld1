@@ -21,6 +21,13 @@ Template.groupCampPost.helpers({
 		Session.set("ErrorMessage-to", null);
 		Session.set("ErrorMessage-deadline", null);
 		Session.set("ErrorMessage-threshold", null);
+
+		Session.set("ErrorMessage-tags", null);
+		Session.set("ErrorMessage-message", null);
+		Session.set("ErrorMessage-description", null);
+		Session.set("ErrorMessage-cost", null);
+		Session.set("ErrorMessage-link", null);
+		Session.set("ErrorMessage-picture", null);
 	},
 
 	trips:function(){
@@ -88,30 +95,36 @@ Template.groupCampPost.events({
 		if (!message){
 			filled = false;
 			$(".js-messageGroup").removeClass('has-success').addClass('has-warning');
+			Session.set("ErrorMessage-message", "Promote your trip to potential travelers.");
 		}
 		else {
 			$(".js-titleGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-message", null);
 		}
 
 		// DESCRIPTION
 		if (!description){
 			filled = false;
 			$(".js-descriptionGroup").removeClass('has-success').addClass('has-warning');
+			Session.set("ErrorMessage-description", "Give potential travelers a detailed summery of your trip.");
 		}
 		else {
 			$(".js-descriptionGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-description", null);
 		}
 
 		// TAGS
 		if (!rawTags){
 			filled = false;
 			$(".js-tagsGroup").removeClass('has-success').addClass('has-warning');
+			Session.set("ErrorMessage-tags", "Help potential travelers find your trip.");
 		}
 		else {
 			tags = $(".js-tags").val().split(",");
 			for (i = 0; i < tags.length; i++) 	{tags[i] = tags[i].trim();}
 			tags = tags.sort();
 			$(".js-tagsGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-tags", null);
 		}
 
 		// DESTINATION
@@ -185,7 +198,7 @@ Template.groupCampPost.events({
 			complete = false;
 			filled = false;
 			$(".js-deadlineGroup").removeClass('has-success').addClass('has-error');
-			Session.set("ErrorMessage-deadline", "You need to give other travelers a chance to sign up!");
+			Session.set("ErrorMessage-deadline", "You must give potential travelers a chance to sign up!");
 		}
 		else {
 			$(".js-deadlineGroup").removeClass('has-error').addClass('has-success');
@@ -215,27 +228,33 @@ Template.groupCampPost.events({
 			filled = false;
 			$(".js-costGroup").removeClass('has-success').addClass('has-warning');
 			cost = null;
+			Session.set("ErrorMessage-cost", "What does it cost to go? (Default: FREE)");
 		}
 		else {
 			$(".js-costGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-cost", null);
 		}
 
 		// LINK
 		if (!link){
 			filled = false;
 			$(".js-linkGroup").removeClass('has-success').addClass('has-warning');
+			Session.set("ErrorMessage-link", "Help potential travelers find out more about your trip!");
 		}
 		else {
 			$(".js-linkGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-link", null);
 		}
 
 		// PICTURE
 		if (!picture){
 			filled = false;
 			$(".js-pictureGroup").removeClass('has-success').addClass('has-warning');
+			Session.set("ErrorMessage-picture", "Entice potential travelers with a beautiful picture!");
 		}
 		else {
 			$(".js-pictureGroup").removeClass('has-warning').addClass('has-success');
+			Session.set("ErrorMessage-picture", null);
 		}
 
 
