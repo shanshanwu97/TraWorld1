@@ -3,7 +3,7 @@
           setUp: function(){
                Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
-               Session.set("volume", false);
+               Session.set("speachActive", false);
      	},
 
           hasTrips: function(){
@@ -42,6 +42,13 @@
 
           getUsername: function() {return Meteor.users.findOne({_id: Meteor.userId()}).profile.username},
 
+          getSpeakIcon: function() {
+               if (Session.get("speachActive"))
+                    return "equalizer";
+               else
+                    return "volume-up";
+          },
+
           getSearchGlyph: function() {
                if (Session.get("searchOption") == "author")
                     return "user";
@@ -69,31 +76,19 @@
                     return "danger";
           },
 
-          playModal1alt: function() {
-               if (Session.get("volume")) {
-                    var instruct=$(".js-instruct-1-alt").text();
-                    console.log(instruct);
-                    var msg = new SpeechSynthesisUtterance(instruct);
-                    window.speechSynthesis.speak(msg);
-                    Session.set("volume", true);
-               }
-               else {
-                    // CODE TO STOP VOICE
-               }
-          }
      });
 
      Template.groupCampSearch.events({
        "click .js-talk": function(event){
            console.log("clicked it");
-           $(".js-talk").html("Listening...");
+           Session.set("speachActive", true);
            event.preventDefault();
         // https://shapeshed.com/html5-speech-recognition-api/
            const recognition = new webkitSpeechRecognition();
            recognition.lang = 'en-US'
            recognition.onresult = function(event) {
                console.dir(event);
-               $(".js-talk").html("Got it!");
+               Session.set("speachActive", false);
                Session.set("transcript",event.results[0][0].transcript);
                $(".js-searchField").val(Session.get("transcript"));
 
@@ -170,14 +165,13 @@
 
           "click .volume-1-alt": function() {
                console.log("clicked volume button");
-
-               if (Session.get("volume")) {
-                    Session.set("volume", false);
-               }
-               else {
-                    Session.set("volume", true);
-               }
+               var instruct=$(".js-instruct-1-alt").text();
+               console.log(instruct);
+               var msg = new SpeechSynthesisUtterance(instruct);
+               window.speechSynthesis.speak(msg);
+               console.log(msg);
           },
+
           "click .volume-1": function() {
                console.log("clicked volume button");
                var instruct=$(".js-instruct-1").text();
@@ -186,6 +180,7 @@
                window.speechSynthesis.speak(msg);
                console.log(msg);
           },
+
           "click .volume-2": function() {
                console.log("clicked volume button");
                var instruct=$(".js-instruct-2").text();
@@ -194,6 +189,7 @@
                window.speechSynthesis.speak(msg);
                console.log(msg);
           },
+
           "click .volume-3": function() {
                console.log("clicked volume button");
                var instruct=$(".js-instruct-3").text();
@@ -202,6 +198,7 @@
                window.speechSynthesis.speak(msg);
                console.log(msg);
           },
+
           "click .volume-4": function() {
                console.log("clicked volume button");
                var instruct=$(".js-instruct-4").text();
@@ -210,6 +207,7 @@
                window.speechSynthesis.speak(msg);
                console.log(msg);
           },
+
           "click .volume-5": function() {
                console.log("clicked volume button");
                var instruct=$(".js-instruct-5").text();

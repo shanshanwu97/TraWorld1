@@ -26,7 +26,7 @@
 
                     <div class="js-searchGroup btn-group">
                          <button class="js-talk btn btn-default" type="submit">
-                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              <span class="glyphicon glyphicon-{{getSpeakIcon}}" aria-hidden="true"></span>
                          </button>
                          <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
                          <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,7 +75,7 @@
 			<div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="volume-1-alt close">
-                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                          </button>
 					<h4 class="modal-title">
 						<small>
@@ -86,7 +86,6 @@
 				</div>
 				<div class="modal-body">
                          <p class="lead js-instruct-1-alt">Hey, I’m Travis. Welcome to Group Camp! Let me give you a tour.</p>
-                         {{playModal1alt}}
 				</div>
 				<div class="modal-footer">
 					<button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
@@ -106,7 +105,7 @@
                     <div class="modal-header">
 					<h4 class="modal-title">
                               <button type="button" class="volume-1 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                               </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -134,7 +133,7 @@
                     <div class="modal-header">
 					<h4 class="modal-title">
                               <button type="button" class="volume-2 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                               </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -160,12 +159,12 @@
 
      <!-- MODAL: Travis's Demo III -->
 	<div id="demoModal3" class="modal fade" role="dialog" data-backdrop="static">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<div class="modal-content">
                     <div class="modal-header">
                          <button type="button" class="volume-3 close">
-                              <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                          </button>
 					<h4 class="modal-title">
 						<small>
@@ -176,7 +175,15 @@
 				</div>
 				<div class="modal-body">
                          <p class="lead js-instruct-3">
-                              On the main page, you will see a list of trips by other users. You can filter the listings by tag, author, and ID. You can also get more information about a trip by clicking on its title. Feel free to sign up for something. When you do, you can find it under the "Trips I'm Going On" section under the drop down menu. You will now all have access to the group's chat. Just click on the trip's title again and scroll down for the chat button.
+                              On the main page, you will see a list of trips by other users. You can filter the listings by tag, author, and ID.
+                         </p>
+
+                         <p class="text-center">
+                              <img src="images/Searchbar & Dropdown.png" width="400"/>
+                         </p>
+
+                         <p class="lead js-instruct-3">
+                              You can also get more information about a trip by clicking on its title. Feel free to sign up for something. When you do, you can find it under "Trips I'm Going On" in the drop down menu. You will now all have access to the group's chat. Just click on the trip's title and scroll down for the chat button.
                          </p>
 				</div>
 				<div class="modal-footer">
@@ -190,13 +197,13 @@
 
      <!-- MODAL: Travis's Demo IV -->
 	<div id="demoModal4" class="modal fade" role="dialog" data-backdrop="static">
-		<div class="modal-dialog">
+		<div class="modal-dialog modal-lg">
 
 			<div class="modal-content">
                     <div class="modal-header">
 					<h4 class="modal-title">
                               <button type="button" class="volume-4 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                               </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -207,6 +214,10 @@
 				<div class="modal-body">
                          <p class="lead js-instruct-4">
                               If you want to create your own trip, simply click the "Design a Trip" option. This will take you to a special form to create your trip. Remember, you are the head of this trip and are responsible for arranging the details!
+                         </p>
+
+                         <p class="text-center">
+                              <img src="images/Design Your Trip.png" width="750"/>
                          </p>
 				</div>
 				<div class="modal-footer">
@@ -226,7 +237,7 @@
                     <div class="modal-header">
 					<h4 class="modal-title">
                               <button type="button" class="volume-5 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-play-circle" aria-hidden="true"></span>
                               </button>
 						<small>
 							<span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
@@ -236,7 +247,9 @@
 				</div>
 				<div class="modal-body">
                          <p class="lead js-instruct-5">
-                              One last note, Group Camp trips are designed to allow you to require that minimum number of travelers be signed up for your trip by a specified deadline — otherwise your trip will be canceled. This way, you can make sure you have enough people to participate in that group activity or to grab that discount you were looking for. You can also manually cancel any trip you are heading anytime from the main page.
+                              One last note, Group Camp trips are designed to allow you to require that a minimum number of travelers be signed up for your trip by a specified deadline — otherwise your trip will be canceled.<br><br>
+
+                              This way, you can make sure you have enough people to participate in that group activity or to grab that discount you were looking for. You can also manually cancel any trip you are heading anytime from the main page.
                          </p>
 				</div>
 				<div class="modal-footer">

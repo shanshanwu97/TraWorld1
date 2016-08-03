@@ -1,38 +1,49 @@
 <template name="map"><div class="container">
      <br><br>
+
+     {{setup}}
      <form id="calculate-route" name="calculate-route" action="#" method="get">
           <div class="row">
-               <div class="col-md-6">
+               <div class="col-md-5">
                     <label>From</label>
                     <div class="input-group">
-                         <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
+                         <div class="input-group-addon">
+                              <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                         </div>
                          <input type="text" class="form-control" id="from" name="from"  placeholder="Enter Address">
-                         <span class="input-group-btn">
-                              <input class="js-talk btn buttonblue btn-info" type="submit" value="Speak">
-                         </span>
+
                          
+                         
+
                     </div>
 
                     <button id="currentloc" class="btn btn-info js-currentloc">Use Current Location</button>
                </div>
 
-               <div class="col-md-6">
+               <div class="col-md-2 text-center lead">
+                    —
+                    <a href="#" class="js-talk btn btn-lg btn-info" type="submit">
+                         <span class="glyphicon glyphicon-{{getMicrophoneGlyph}}" aria-hidden="true"></span>
+                    </a>
+                    —
+               </div>
+
+               <div class="col-md-5">
                     <label>To</label>
                     <div class="input-group">
-                         <div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
+                         <div class="input-group-addon">
+                              <span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span>
+                         </div>
                          <input type="text" class="form-control" id="to" name="to"  placeholder="Enter Address">
-                         <span class="input-group-btn">
-                              <input class="js-talk2 btn buttonblue btn-info" type="submit" value="Speak">
-                         </span>
                     </div>
                </div>
           </div>
+          <br>
 
           <form>
-               <br>
                <input type="submit" class="form-control btn-primary" id="clickme" value="Search">
           </form>
      </form>
-     <br><br>
+     <br>
      <div id="map-nav" style="height:500px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
 </div></template>
