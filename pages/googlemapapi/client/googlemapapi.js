@@ -1,5 +1,5 @@
 Template.map.onCreated(function () {
-  Session.set("location",{lat:42,lng:-71})
+   Session.set("location",{lat:42,lng:-71})
   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
   GoogleMaps.ready('naviMap',function(map) {
     

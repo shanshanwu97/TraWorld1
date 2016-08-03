@@ -1,5 +1,13 @@
 <template name="pastitin">
 	<div class="container">
+    <script type="text/javascript">
+          $(document).ready(function(){
+               if (!TripUsers.findOne({userID: Meteor.userId()})) {
+                    $("#tripdemo1").modal('show');
+                    TripUsers.insert({userID: Meteor.userId()});
+               }
+          });
+     </script>
 		<div class="page-header">
           <h1 class="text-center">
                <img src="http://www.cpawebsolutions.it/wp-content/uploads/2014/08/proximity-marketing.png" width="80">
@@ -30,6 +38,123 @@
        <!-- </li> -->
     {{/each}}
   </ul>
+  <!--MODAL: Trip Demo I -->
+  <div id="tripdemo1" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+                    <div class="modal-header">
+          <h4 class="modal-title">
+                              <button type="button" class="tdemo-1 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
+            <small>
+              <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
+              Past Itineraries
+            </small>
+          </h4>
+        </div>
+        <div class="modal-body">
+                         <p class="lead js-ttext-1">Hey, I’m Travis. I see this is your first time here at Past Itineraries. Let me give you a tour.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#tripdemo2">Ok</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--end-->
+
+  <!--MODAL: Trip Demo II -->
+  <div id="tripdemo2" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+                    <div class="modal-header">
+          <h4 class="modal-title">
+                              <button type="button" class="tdemo-2 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
+            <small>
+              <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
+              Past Itineraries
+            </small>
+          </h4>
+        </div>
+        <div class="modal-body">
+                         <p class="lead js-ttext-2">This is a sharing platform for users to post their past itineraries or current/future travel plans in the style of a blog. 
+
+                          Sometimes, making travel plans on your own may be difficult due to unfamiliarity(including physical, social, cultural, etc) with the destinations.
+                          This feature is designed so that some users can create their own itineraries through a form and edit the display of the blog straight on the page itself. Other users can refer to the successful travel plans made in the past. </p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#tripdemo3">Go on</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--end-->
+  <!--MODAL: Trip Demo II -->
+  <div id="tripdemo3" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+                    <div class="modal-header">
+          <h4 class="modal-title">
+                              <button type="button" class="tdemo-3 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
+            <small>
+              <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
+              Past Itineraries
+            </small>
+          </h4>
+        </div>
+        <div class="modal-body">
+                         <p class="lead js-ttext-3">To view any of the itineraries already created, click on the title of the itineraries. Otherwise, create your own by clicking the "create a new itinerary" in the upper right corner to access the form.</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-warning" data-dismiss="modal">Go Away, Travis</button>
+          <button type="button" class="btn btn-info" data-dismiss="modal" data-toggle="modal" data-target="#tripdemo4">Go on</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--end--> 
+  <!--MODAL: Trip Demo IV -->
+  <div id="tripdemo4" class="modal fade" role="dialog" data-backdrop="static">
+    <div class="modal-dialog">
+
+      <div class="modal-content">
+                    <div class="modal-header">
+          <h4 class="modal-title">
+                              <button type="button" class="tdemo-4 close">
+                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                              </button>
+            <small>
+              <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
+              Past Itineraries
+            </small>
+          </h4>
+        </div>
+        <div class="modal-body">
+                         <p class="lead js-ttext-4">Now, you are ready to get started!</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Thanks, Travis</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+  <!--end-->
+
+
         
     </div>
 

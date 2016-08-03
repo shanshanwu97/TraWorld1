@@ -1,39 +1,39 @@
-Template.showSearch.rendered = function(){
-  if(this.createdBy==Meteor.userId()){
+// Template.showSearch.rendered = function(){
+//   if(this.createdBy==Meteor.userId()){
   
-  $('#addTextForm').on('shown.bs.modal', function () {
-    $('#title').focus()
-  });
+//   $('#addTextForm').on('shown.bs.modal', function () {
+//     $('#title').focus()
+//   });
   
   
-}
-Template.showSearch.rendered= function(){
-var timelineBlocks = $('.cd-timeline-block'),
-    offset = 0.8;
+// }
+// Template.showSearch.rendered= function(){
+// var timelineBlocks = $('.cd-timeline-block'),
+//     offset = 0.8;
 
-  //hide timeline blocks which are outside the viewport
-  hideBlocks(timelineBlocks, offset);
+//   //hide timeline blocks which are outside the viewport
+//   hideBlocks(timelineBlocks, offset);
 
-  //on scolling, show/animate timeline blocks when enter the viewport
-$(window).on('scroll', function(){
-    (!window.requestAnimationFrame) 
-      ? setTimeout(function(){ showBlocks(timelineBlocks, offset); }, 100)
-      : window.requestAnimationFrame(function(){ showBlocks(timelineBlocks, offset); });
-  });
+//   //on scolling, show/animate timeline blocks when enter the viewport
+// $(window).on('scroll', function(){
+//     (!window.requestAnimationFrame) 
+//       ? setTimeout(function(){ showBlocks(timelineBlocks, offset); }, 100)
+//       : window.requestAnimationFrame(function(){ showBlocks(timelineBlocks, offset); });
+//   });
 
-  function hideBlocks(blocks, offset) {
-    blocks.each(function(){
-      ( $(this).offset().top > $(window).scrollTop()+$(window).height()*offset ) && $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
-    });
-  }
+//   function hideBlocks(blocks, offset) {
+//     blocks.each(function(){
+//       ( $(this).offset().top > $(window).scrollTop()+$(window).height()*offset ) && $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
+//     });
+//   }
 
-  function showBlocks(blocks, offset) {
-    blocks.each(function(){
-      ( $(this).offset().top <= $(window).scrollTop()+$(window).height()*offset && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
-    });
-  }
-}
-}
+//   function showBlocks(blocks, offset) {
+//     blocks.each(function(){
+//       ( $(this).offset().top <= $(window).scrollTop()+$(window).height()*offset && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
+//     });
+//   }
+// }
+// }
 // Template.showSearch.onCreated(function () {
 //   Session.set("mapid",{lat:42,lng:-71});
 //   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
@@ -49,23 +49,25 @@ $(window).on('scroll', function(){
 // });
 // });
 Template.showSearch.helpers({
-  
-  naviMapOptions: function(map) {
-    if (GoogleMaps.loaded()) {
-      const l=Session.get("mapid");
-      var markloc={lat:l.lat, lng:l.lng}
-      console.dir(markloc);
-      console.dir(l);
-      var markerCur= new google.maps.Marker({
-        position: markloc,
-        map:map,
-      });
-      return {
-        center: new google.maps.LatLng(l.lat,l.lng),
-        zoom:15
-      };
-    }
-  },  
+  saveuserid:function(){
+    Session.set("thistripid", this._id);
+  }
+  // naviMapOptions: function(map) {
+  //   if (GoogleMaps.loaded()) {
+  //     const l=Session.get("mapid");
+  //     var markloc={lat:l.lat, lng:l.lng}
+  //     console.dir(markloc);
+  //     console.dir(l);
+  //     var markerCur= new google.maps.Marker({
+  //       position: markloc,
+  //       map:map,
+  //     });
+  //     return {
+  //       center: new google.maps.LatLng(l.lat,l.lng),
+  //       zoom:15
+  //     };
+  //   }
+  // },  
 });
 Template.showSearch.events({
   "click .js-imgsss" : function(){
@@ -76,7 +78,7 @@ Template.showSearch.events({
     const title=$(".js-titletext").val();
     const txtdes=$(".js-textdesc").val();
     const txtdate=$(".js-txtdate").val();
-    const addtext={_id: new Meteor.Collection.ObjectID()._str, title, text:txtdes, type:"text", date:txtdate};
+    const addtext={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title, text:txtdes, type:"text", date:txtdate};
     Trips.update({_id:this._id},{$push:{textedit:addtext}});
     $("#addTextForm").modal('hide');
   },
@@ -102,7 +104,7 @@ Template.showSearch.events({
     const pictitle=$(".js-titlepic").val();
     const picdes=$(".js-picdesc").val();
     const date=$(".js-picdate").val();
-    const addpix={_id: new Meteor.Collection.ObjectID()._str,title:pictitle, text:picdes, type:"picture",pic:newpic, date};
+    const addpix={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title:pictitle, text:picdes, type:"picture",pic:newpic, date};
     Trips.update({_id:this._id},{$push:{textedit:addpix}});
     $("#addPicture").modal('hide');
 },
@@ -110,7 +112,7 @@ Template.showSearch.events({
     event.preventDefault();
     const locit=Session.get("locmap");
     const toloc=$(".js-locit").val();
-    const maploc={_id: new Meteor.Collection.ObjectID()._str,location:toloc, map:locit, type:"maploc"};
+    const maploc={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), location:toloc, map:locit, type:"maploc"};
     Trips.update({_id:this._id},{$push:{textedit:maploc}});
     $("#addMap").modal('hide');
   },
@@ -188,9 +190,51 @@ Template.showSearch.events({
 
 
 Template.showSearch.helpers({
-  
   isUser:function(){
       if(this.createdBy==Meteor.userId()){
+
+        return true;
+      }else{
+        return false;}
+  },
+  
+  bannerimage:function(){
+    return YourFileCollection.findOne({_id:this.image});
+  },
+  propic:function(){
+
+    var user =UserProfiles.findOne({user:this.createdBy});
+    const id= user&&user.propic;
+    return YourFileCollection.findOne({_id:id});
+
+  },
+  isNotUser:function(){
+      if(this.createdBy!=Meteor.userId()){
+
+        return true;
+      }else{
+        return false;}
+  },
+})
+Template.timelinedisplay.helpers({
+  naviMapOptions: function(map) {
+    if (GoogleMaps.loaded()) {
+      const l=Session.get("mapid");
+      var markloc={lat:l.lat, lng:l.lng}
+      console.dir(markloc);
+      console.dir(l);
+      var markerCur= new google.maps.Marker({
+        position: markloc,
+        map:map,
+      });
+      return {
+        center: new google.maps.LatLng(l.lat,l.lng),
+        zoom:15
+      };
+    }
+  }, 
+  isUser:function(){
+      if(this.t.author==Meteor.userId()){
 
         return true;
       }else{
@@ -226,21 +270,10 @@ Template.showSearch.helpers({
   savemapref:function(map){
     Session.set("mapid",map);
   },
-  bannerimage:function(){
-    return YourFileCollection.findOne({_id:this.image});
-  },
-  propic:function(){
-
-    var user =UserProfiles.findOne({user:this.createdBy});
-    const id= user&&user.propic;
-    return YourFileCollection.findOne({_id:id});
-
-  },
-  isNotUser:function(){
-      if(this.createdBy!=Meteor.userId()){
-
-        return true;
-      }else{
-        return false;}
-  },
+})
+Template.timelinedisplay.events({
+  "click .js-closet":function(){
+    var tripid=Session.get("thistripid");
+      Trips.update({_id: tripid}, {$pull:{textedit:{_id: this.t._id}}});
+  }
 })

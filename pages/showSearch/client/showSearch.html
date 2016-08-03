@@ -1,11 +1,8 @@
 <template name = "showSearch">
   <script>
-  function deletethis(obid){
-    const id=obid;
-    console.log(obid); console.log(this._id);
-    Trips.update({_id:this._id},{$pull:{textedit:{$elemMatch:{_id:obid}}}});
-  }
+  
   </script>
+  {{saveuserid}}
     <div id="bannerimage" style="background-image:url({{bannerimage.url}})" >
       {{#if isUser}}
       <div id="banbutton" class="banbutton">
@@ -77,75 +74,7 @@
   </div>
  -->  <section id="cd-timeline" class="cd-container">
     {{#each t in textedit}}
-    {{#if checkText t.type}}
-    
-    <div class="cd-timeline-block">
-      <div class="cd-timeline-img cd-picture">
-        <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture"> -->
-      </div> <!-- cd-timeline-img -->
-
-      <div class="cd-timeline-content">
-        {{#if isUser}}
-        <div class="header">
-          <input class="docid" value="{{t._id}}" style="display:none;">
-            <button type="button" class="close js-closet"  aria-label="Close" onclick="deletethis('{{t._id}}')"><span aria-hidden="true">&times;</span></button>
-          </div>
-          {{/if}}
-        <h2>{{t.title}}</h2>
-        <p>{{t.text}}</p>
-        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
-        <span class="cd-date">{{t.date}}</span>
-      </div> <!-- cd-timeline-content -->
-    </div> <!-- cd-timeline-block -->
-{{/if}}
-
-  {{#if checkPic t.type}}
-    <div class="cd-timeline-block">
-      <div class="cd-timeline-img cd-picture">
-        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture">
-      </div> <!-- cd-timeline-img -->
-
-      <div class="cd-timeline-content">
-        {{#if isUser}}
-        <div class="header">
-          <input class="docid" value="{{t._id}}" style="display:none;">
-            <button type="button" class="close js-closet"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          {{/if}}
-        <h2>{{t.title}}</h2>
-        
-        <div> {{savepicref t.pic}}
-        <a href="{{thispic.url}}" target="_blank"><img src="{{thispic.url}}" width= "100%" alt=""></a>
-      </div><p>{{t.text}}</p>
-        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
-        <span class="cd-date">{{t.date}}</span>
-      </div> <!-- cd-timeline-content -->
-    </div> <!-- cd-timeline-block -->
-  {{/if}}
-  {{#if checkMap t.type}}
-    <div class="cd-timeline-block">
-      <div class="cd-timeline-img cd-picture">
-        <img src="../images/cd-icon-location.svg" alt="Picture">
-      </div> <!-- cd-timeline-img -->
-
-      <div class="cd-timeline-content">
-        {{#if isUser}}
-        <div class="header">
-          <input class="docid" value="{{t._id}}" style="display:none;">
-            <button type="button" class="close js-closet"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
-          </div>
-          {{/if}}
-        <h2>{{t.location}}</h2>
-        
-        <div> {{savemapref t.map}}
-        <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
-      </div>
-        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
-        <!-- <span class="cd-date">{{t.date}}</span> -->
-      </div> <!-- cd-timeline-content -->
-    </div> <!-- cd-timeline-block -->
-
-  {{/if}}
+            {{>timelinedisplay t=t}}
 {{/each}}
 </section>
   {{#if isUser}}
@@ -277,3 +206,74 @@
   </div>
 </div>
 </template>
+<template name="timelinedisplay">
+    {{#if checkText t.type}}
+    
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <!-- <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture"> -->
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        {{#if isUser}}
+        <div class="header">
+          <!-- <input class="docid" value="{{t._id}}" style="display:none;"> -->
+            <button type="button" class="close js-closet"  aria-label="Close" onclick="deletethis('{{t._id}}')"><span aria-hidden="true">&times;</span></button>
+          </div>
+          {{/if}}
+        <h2>{{t.title}}</h2>
+        <p>{{t.text}}</p>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <span class="cd-date">{{t.date}}</span>
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+{{/if}}
+
+  {{#if checkPic t.type}}
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/148866/cd-icon-picture.svg" alt="Picture">
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        {{#if isUser}}
+        <div class="header">
+          <!-- <input class="docid" value="{{t._id}}" style="display:none;"> -->
+            <button type="button" class="close js-closet"  aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          {{/if}}
+        <h2>{{t.title}}</h2>
+        
+        <div> {{savepicref t.pic}}
+        <a href="{{thispic.url}}" target="_blank"><img src="{{thispic.url}}" width= "100%" alt=""></a>
+      </div><p>{{t.text}}</p>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <span class="cd-date">{{t.date}}</span>
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+  {{/if}}
+  {{#if checkMap t.type}}
+    <div class="cd-timeline-block">
+      <div class="cd-timeline-img cd-picture">
+        <img src="../images/cd-icon-location.svg" alt="Picture">
+      </div> <!-- cd-timeline-img -->
+
+      <div class="cd-timeline-content">
+        {{#if isUser}}
+        <div class="header">
+          <!-- <input class="docid" value="{{t._id}}" style="display:none;"> -->
+            <button type="button" class="close js-closet" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          </div>
+          {{/if}}
+        <h2>{{t.location}}</h2>
+        
+        <div> {{savemapref t.map}}
+        <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+      </div>
+        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
+        <!-- <span class="cd-date">{{t.date}}</span> -->
+      </div> <!-- cd-timeline-content -->
+    </div> <!-- cd-timeline-block -->
+
+  {{/if}}
+  </template>
