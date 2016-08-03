@@ -1,15 +1,16 @@
 Meteor.subscribe("theDestSearched");
 
-Template.groupCampPost.rendered = function(){
-	window.onload=function(){
-	     var autocomplete;
-	     var options = {types: ['(cities)']};
-
-		autocomplete = new google.maps.places.Autocomplete(
-     	/** @type {HTMLInputElement} */(document.getElementById('autocomplete')), options);
-		google.maps.event.addListener(autocomplete, 'place_changed', function() {});
-	};
-};
+Template.groupCampPost.rendered=function(){
+	this.autorun(function () {
+		if (GoogleMaps.loaded()) {
+			var autocomplete;
+			var options = {types: ['(cities)'] };
+			autocomplete = new google.maps.places.Autocomplete(
+			/** @type {HTMLInputElement} */(document.getElementById('autocomplete')), options);
+			google.maps.event.addListener(autocomplete, 'place_changed', function() {});
+		}
+	});
+}
 
 Template.groupCampPost.helpers({
 	setUp: function(){
