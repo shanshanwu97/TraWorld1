@@ -92,7 +92,7 @@ function send() {
         Router.go('map');
       }
       else if((!goPage.home)&&(!goPage.groupCamp)&&(!goPage.maps)){
-        Router.go('itineraries');
+        Router.go('pastitin');
       }
       else{
 
@@ -126,4 +126,3 @@ function setResponse(val) {
         $('.opaque-navbar').removeClass('opaque');
     }
 });
-
