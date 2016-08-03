@@ -28,9 +28,6 @@
                <span class="input-group-btn">
 
                     <div class="js-searchGroup btn-group">
-                         <button class="js-talk btn btn-default" type="submit">
-                              <span class="glyphicon glyphicon-{{getSpeakIcon}}" aria-hidden="true"></span>
-                         </button>
                          <input class="js-search btn btn-{{getSearchColor}}" type="submit" value="{{getSearchText}}">
                          <button type="button" class="btn btn-{{getSearchColor}} dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                               <span class="caret"></span>
@@ -49,6 +46,10 @@
                               <li onclick="event.preventDefault(); Router.go('groupCampPost')"><a href="#">Design a New Trip</a></li>
                          </ul>
                     </div>
+
+                    <button class="js-talk btn btn-default">
+                         <span class="glyphicon glyphicon-{{getSpeakIcon}}" aria-hidden="true"></span>
+                    </button>
                </span>
           </div>
           &nbsp;&nbsp;
@@ -57,7 +58,11 @@
           </a>
      </form>
 
-     <br>
+     <h1 class="text-right">
+          <small>
+               {{getSearchCatagory}}
+          </small>
+     </h1>
 
      {{#if hasTrips}}
           {{#each trip in getTrips}}

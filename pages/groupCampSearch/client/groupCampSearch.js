@@ -7,6 +7,23 @@
                Session.set("isPlaying",false);
      	},
 
+          getSearchCatagory: function() {
+               if (Session.get("searchBy") == "tag")
+                    return "Trips Tagged '" + Session.get("searchField") + "'";
+               else if (Session.get("searchBy") == "author")
+                    return "Trips by '" + Session.get("searchField") + "'";
+               else if (Session.get("searchBy") == "ID")
+                    return "Trip #" + Session.get("searchField");
+               else if (Session.get("searchBy") == "mine")
+                    return "Trips I'm Heading";
+               else if (Session.get("searchBy") == "going")
+                    return "Trips I'm Going On";
+               else if (Session.get("searchBy") == "bookmarks")
+                    return "Trips I've Bookmarked";
+               else
+                    return "All Available Trips";
+          },
+
           hasTrips: function(){
                if (Session.get("searchBy") == "tag")
                     return (GroupCampTrips.find({tags: Session.get("searchField"), deadline: {$gte: new Date()}}).count() != 0);

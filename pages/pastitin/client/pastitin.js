@@ -2,7 +2,7 @@ Template.pastitin.helpers({
 	resultData:function(){
 		return Trips.find();
 	},
-	
+
 })
 Template.pastitin.rendered=function(){
 	if (TripUsers.find({userID: Meteor.userId()}).count()===0) {
@@ -38,11 +38,11 @@ Template.searches.events({
 
 			UserFavorites.update({_id:userfav&&userfav._id},{$push:{favadded:favid}});
 		}
-		
+
 	},
 	"click .js-removefav":function(event){
 		var id=this.fav._id;
-		
+
 			var userfav1=UserFavorites.findOne({user:Meteor.userId()});
 
 			UserFavorites.update({_id:userfav1&&userfav1._id},{$pull:{favadded:id}});
@@ -52,7 +52,7 @@ Template.pastitin.events({
 	"click #newit":function(){
 		Router.go("itineraries");
 	},
-	
+
 	"click .tdemo-1": function() {
                demoTalk(".js-ttext-1");
           },
@@ -66,14 +66,14 @@ Template.pastitin.events({
                demoTalk(".js-ttext-4");
     },
 
-    
+
 })
 function demoTalk(text){
 				var instruct=$(text).text();
                console.log(instruct);
                var msg = new SpeechSynthesisUtterance(instruct);
                var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                window.speechSynthesis.speak(msg);
                console.log(msg);
     }
