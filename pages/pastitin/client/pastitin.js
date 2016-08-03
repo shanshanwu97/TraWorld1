@@ -72,6 +72,8 @@ function demoTalk(text){
 				var instruct=$(text).text();
                console.log(instruct);
                var msg = new SpeechSynthesisUtterance(instruct);
+               var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
                window.speechSynthesis.speak(msg);
                console.log(msg);
     }
