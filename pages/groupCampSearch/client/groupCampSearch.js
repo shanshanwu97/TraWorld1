@@ -172,8 +172,8 @@
                     var instruct=$(".js-instruct-1-alt").text();
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
-                     var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -191,7 +191,7 @@
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
                     var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                     console.log(voices);
@@ -210,7 +210,7 @@
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
                      var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -228,7 +228,7 @@
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
                      var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -246,7 +246,7 @@
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
                      var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
@@ -264,7 +264,7 @@
                     console.log(instruct);
                     var msg = new SpeechSynthesisUtterance(instruct);
                      var voices=window.speechSynthesis.getVoices();
-                    msg.voice=voices[22];
+                    msg.voice=voices[0];
                     window.speechSynthesis.speak(msg);
                     console.log(msg);
                }
