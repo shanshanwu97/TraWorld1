@@ -45,6 +45,9 @@
 							<div class="input-group-addon"><span class="glyphicon glyphicon-tent" aria-hidden="true"></span></div>
 							<input type="text" class="js-title form-control" placeholder="Name of Group Camp Trip">
 						</div>
+						<div class="text-center text-danger">
+							<small>{{getError "title"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -65,6 +68,9 @@
 							<div class="input-group-addon"><span class="glyphicon glyphicon-map-marker" aria-hidden="true"></span></div>
 							<input type="text" id="autocomplete" class="js-destination form-control" placeholder="Where Your Camp is Going to Go">
 						</div>
+						<div class="text-center text-danger">
+							<small>{{getError "destination"}}</small>
+						</div>
 					</div>
 				</div>
 			</div>	<br>
@@ -78,6 +84,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
 				               <input type="date" class="js-from form-control" placeholder="Departure Date">
 				          </div>
+						<div class="text-center text-danger">
+							<small>{{getError "from"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -88,6 +97,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
 				               <input type="date" class="js-to form-control" placeholder="Arival Date">
 				          </div>
+						<div class="text-center text-danger">
+							<small>{{getError "to"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -98,6 +110,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></div>
 				               <input type="date" class="js-deadline form-control" placeholder="Deadline">
 				          </div>
+						<div class="text-center text-danger">
+							<small>{{getError "deadline"}}</small>
+						</div>
 					</div>
 				</div>
 			</div> <br>
@@ -131,6 +146,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></div>
 				               <input type="number" class="js-threshold form-control">
 				          </div>
+						<div class="text-center text-danger">
+							<small>{{getError "threshold"}}</small>
+						</div>
 					</div>
 				</div>
 			</div>	<br>
