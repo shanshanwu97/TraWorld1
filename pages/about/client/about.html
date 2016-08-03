@@ -34,27 +34,21 @@
       		</div>
       		 <form id="textform">
         <div class="modal-body">
+          {{#if emptyTextForm}}
+      <div class="alert alert-danger" role="alert">
+        Cannot submit an empty text form.
+      </div>
+    {{/if}}
          
-          <div class="form-group">
+          <div class="txttitle form-group">
             <label for="title">Title</label>
             <input class="form-control js-titletext" id="title"  aria-describedby="feedbackEmailHelp">
-            <!-- <p id="feedbackEmailHelp" class="help-block">Enter your email address if you'd like a response.</p> -->
           </div>
-          <!-- <div class="form-group required">
-            <label for="feedbackType">Topic</label>
-            <select class="form-control" id="feedbackType" required>
-              <option>Information correction</option>
-              <option>Bug</option>
-              <option>Feature request</option>
-              <option>General feedback</option>
-              <option>Other</option>
-            </select>
-          </div> -->
-          <div class="form-group required">
+          <div class="txtdesc form-group required">
             <label for="feedbackComment">Description</label>
             <textarea class="form-control js-textdesc" rows="5" id="feedbackComment"></textarea>
           </div>
-          <div class="form-group required">
+          <div class="txtdate form-group required">
             <label for="date">Date</label>
             
                 <div class='input-group date' id='datetime1'><span class="input-group-addon">
@@ -63,19 +57,21 @@
                     <input type='text' class="js-txtdate form-control" />
                     
                 </div>
+              <!--   <div class="form-group">
+            <label for="date">Location</label>
+            
+                <div class='input-group date'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </span>
+                    <input type='text' class="js-txtdate form-control" />
+                    
+                </div> -->
             
         <script type="text/javascript">
             $(function () {
                 $('#datetime1').datepicker();
             });
           
-            // $(function () {
-    //         $('#datetime').datepicker({
-    //             icons: {
-    //                 date: "glyphicon glyphicon-calendar",
-    //             }
-    //         });
-    //     });
         </script>
             
         </div></div>
@@ -92,32 +88,52 @@
 <template name="addpicture"> 
   <div class="modal fade" id="addPicture" >
     <div class="modal-dialog">
+      <!-- <html>
+     <head>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
+        <script>
+            var autocomplete;
+            function initialize() {
+               var options = {
+ };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+              });
+            }
+        </script>
+        <style>
+        .pac-container {
+    z-index: 1051 !important;
+}</style>
+      </head> </html> -->
       <div class="modal-content">
       <div class="modal-header">
             <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
              <h4 class="modal-title" id="modelLabel">Text</h4>
           </div>
-           <form id="picform">
+           <!-- <form id="picform"> -->
         <div class="modal-body">
+          {{#if emptyPicForm}}
+      <div class="alert alert-danger" role="alert">
+        Cannot submit an empty form.
+      </div>
+    {{/if}}
          
           <div class="form-group">
             <label for="title">Title</label>
             <input class="form-control js-titlepic" id="pictitle"  aria-describedby="feedbackEmailHelp">
-            <!-- <p id="feedbackEmailHelp" class="help-block">Enter your email address if you'd like a response.</p> -->
+            
           </div>
           <div class="form-group required">
 <input class="your-upload-class" type="file">
 </div>
-          <!-- <div class="form-group required">
-            <label for="feedbackType">Topic</label>
-            <select class="form-control" id="feedbackType" required>
-              <option>Information correction</option>
-              <option>Bug</option>
-              <option>Feature request</option>
-              <option>General feedback</option>
-              <option>Other</option>
-            </select>
-          </div> -->
           <div class="form-group required">
             <label for="feedbackComment">Description</label>
             <textarea class="form-control js-picdesc" rows="5" id="feedbackComment"></textarea>
@@ -140,58 +156,132 @@
             });
             
         </script>
-        </div>  </div>
+
+        </div>  
+        <!-- <div class="form-group">
+            <label for="date">Location</label>
+            
+                <div class='input-group date'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </span>
+                    <input type='text' id="autocomplete" class="js-txtdate form-control" />
+                    <input style="display:none;" id="city" class="js-locname">
+                    <input style="display:none;" id="cityLat1" class="js-loclat">
+                    <input style="display:none;" id="cityLng1" class="js-loclng">
+                    
+                </div>
+            
+        </div> -->
+      </div>
+
         <div class="modal-footer">
           <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" class="btn btn-primary" id="submitpic">Submit</button>
+          <button type="button" class="btn btn-primary" id="submitpic">Submit</button>
         </div>
-      </form>
+     <!--  </form> -->
     </div>
   </div>
 </div>
 </template>
 <template name="addmap"> 
   <div class="modal fade" id="addMap" >
-    <div class="modal-dialog">
-      <div class="modal-content">
+    <div class="modal-dialog"><div class="modal-content"><html>
+     <head>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
+        <script>
+            var autocomplete;
+            function initialize() {
+               var options = {
+ };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+              });
+            }
+        </script>
+        <style>
+        .pac-container {
+    z-index: 1051 !important;
+}</style>
+      </head> </html>
+    
+      
       <div class="modal-header">
-            <button id="closeit" type="button" class="close js-closeit" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-             <h4 class="modal-title" id="modelLabel">Text</h4>
+           <!--  <a id="closeit" type="button" class="close js-closeit" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></a> -->
+             <h4 class="modal-title" id="modelLabel">Map</h4>
           </div>
           
-           <form id="mapform">
+           <!-- <form id="mapform"> -->
         <div class="modal-body">
+          {{#if emptyMapForm}}
+      <div class="alert alert-danger" role="alert">
+        Cannot submit an empty form.
+      </div>
+    {{/if}}
          
-          <div class="form-group" id="dirbuttons">
+          <!-- <div class="form-group" id="dirbuttons">
             <button type="button" class="btn btn-default js-mapit" >Add Location Map</button>
-          <!-- <button type="button" class="btn btn-default js-mapdir" >Add Directions</button> -->
+          <button type="button" class="btn btn-default js-mapdir" >Add Directions</button>
         </div>
           <div class="form-group" id="locmap">
             Location: <input class="js-locit">
-<button type ="button" class="js-addloc">Locate</button>
-<div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+<button type ="button" class="js-addloc">Locate</button></div> -->
+<!-- <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
 
-            <!-- <label for="title">Title</label>
-            <input class="form-control js-titletext" id="title"  aria-describedby="feedbackEmailHelp">
-            
-          </div>
-          
-          <div class="form-group required">
-            <label for="feedbackComment">Description</label>
-            <textarea class="form-control js-textdesc" rows="5" id="feedbackComment"></textarea>
-          </div>
           <div class="form-group required">
             <label for="date">Date</label>
             <input class="form-control js-date"  id="date">
-          </div>
-             -->
+          </div> -->
+            <div class="form-group">
+            <label for="date">Location</label>
+            
+                <div class='input-group date'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-map-marker"></span>
+                    </span>
+                    <input type='text' id="autocomplete" class="js-loc form-control" />
+                    <input style="display:none;" id="city2" class="js-locname">
+                    <input style="display:none;" id="cityLat" class="js-loclat">
+                    <input style="display:none;" id="cityLng" class="js-loclng">
+                    
+                </div>
+            
         </div>
+       <!--  <div class="form-group required">
+            <label for="feedbackComment">Description</label>
+            <textarea class="form-control js-mapdesc" rows="5" id="feedbackComment"></textarea>
+          </div>
+          <div class="form-group required">
+            <label for="date">Date</label>
+            
+        
+            
+                <div class='input-group date' id='mapdate'><span class="input-group-addon">
+                        <span class="glyphicon glyphicon-calendar"></span>
+                    </span>
+                    <input type='text' class="js-mapdate form-control" />
+                    
+                </div>
+            
+        <script type="text/javascript">
+            $(function () {
+                $('#mapdate').datepicker();
+            });
+            
+        </script>
+
+        </div>  --> 
         <div class="modal-footer">
-          <!-- <button id="closeit" type="button" class="btn btn-default js-closeit" data-dismiss="modal">Close</button> -->
-          <button type="submit" class="btn btn-primary" id="submitmap">Add</button>
+          <button id="closeit" type="button" class="btn btn-default js-closeit" data-dismiss="modal">Close</button>
+          <button  class="btn btn-primary js-submitmap" id="submitmap">Add</button>
         </div>
       </div>
-      </form>
+   <!--    </form> -->
     </div>
   </div>
 </div>

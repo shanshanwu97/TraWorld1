@@ -1,73 +1,29 @@
-// Template.showSearch.rendered = function(){
-//   if(this.createdBy==Meteor.userId()){
-  
-//   $('#addTextForm').on('shown.bs.modal', function () {
-//     $('#title').focus()
-//   });
-  
-  
-// }
-// Template.showSearch.rendered= function(){
-// var timelineBlocks = $('.cd-timeline-block'),
-//     offset = 0.8;
+Session.set('emptyTextForm', false);
+Session.set('emptyMapForm', false);
 
-//   //hide timeline blocks which are outside the viewport
-//   hideBlocks(timelineBlocks, offset);
-
-//   //on scolling, show/animate timeline blocks when enter the viewport
-// $(window).on('scroll', function(){
-//     (!window.requestAnimationFrame) 
-//       ? setTimeout(function(){ showBlocks(timelineBlocks, offset); }, 100)
-//       : window.requestAnimationFrame(function(){ showBlocks(timelineBlocks, offset); });
-//   });
-
-//   function hideBlocks(blocks, offset) {
-//     blocks.each(function(){
-//       ( $(this).offset().top > $(window).scrollTop()+$(window).height()*offset ) && $(this).find('.cd-timeline-img, .cd-timeline-content').addClass('is-hidden');
-//     });
-//   }
-
-//   function showBlocks(blocks, offset) {
-//     blocks.each(function(){
-//       ( $(this).offset().top <= $(window).scrollTop()+$(window).height()*offset && $(this).find('.cd-timeline-img').hasClass('is-hidden') ) && $(this).find('.cd-timeline-img, .cd-timeline-content').removeClass('is-hidden').addClass('bounce-in');
-//     });
-//   }
-// }
-// }
-// Template.showSearch.onCreated(function () {
-//   Session.set("mapid",{lat:42,lng:-71});
-//   GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
-//   GoogleMaps.ready('naviMap',function(map) {
-//     var markerCurrent = new google.maps.Marker({
-//         position: new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng),
-//         map:map&&map.instance
-//       });
-//     Tracker.autorun(function() {
-//       map.instance.setCenter(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng))
-//       markerCurrent.setPosition(new google.maps.LatLng(Session.get("mapid").lat,Session.get("mapid").lng));
-//     });  
-// });
-// });
 Template.showSearch.helpers({
   saveuserid:function(){
     Session.set("thistripid", this._id);
+  },
+  alreadyFav:function(){
+    var userfavor=UserFavorites.findOne({user:Meteor.userId()});
+    var userfavlist=userfavor.favadded;
+    // console.dir(userfavlist.indexOf(tripId));
+    if(userfavlist.indexOf(this._id)!=-1){
+      return true;
+    }else{
+      return false;
+    }
+  },
+  emptyTextForm:function(){
+    if (Session.get("emptyTextForm")){
+      return true;
+    }else{
+      return false;
   }
-  // naviMapOptions: function(map) {
-  //   if (GoogleMaps.loaded()) {
-  //     const l=Session.get("mapid");
-  //     var markloc={lat:l.lat, lng:l.lng}
-  //     console.dir(markloc);
-  //     console.dir(l);
-  //     var markerCur= new google.maps.Marker({
-  //       position: markloc,
-  //       map:map,
-  //     });
-  //     return {
-  //       center: new google.maps.LatLng(l.lat,l.lng),
-  //       zoom:15
-  //     };
-  //   }
-  // },  
+}
+  
+  
 });
 Template.showSearch.events({
   "click .js-imgsss" : function(){
@@ -78,9 +34,14 @@ Template.showSearch.events({
     const title=$(".js-titletext").val();
     const txtdes=$(".js-textdesc").val();
     const txtdate=$(".js-txtdate").val();
+    if(!title&&!txtdes&&!txtdate){
+        Session.set("emptyTextForm", true);
+        console.log("emptyform");
+    }else{
     const addtext={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title, text:txtdes, type:"text", date:txtdate};
     Trips.update({_id:this._id},{$push:{textedit:addtext}});
     $("#addTextForm").modal('hide');
+  }
   },
   "click .js-addstuff":function(event){
     if( $('.cd-stretchy-nav').length > 0 ) {
@@ -97,24 +58,48 @@ Template.showSearch.events({
   
   },
     
-  "submit #picform":function(){
+  "click #submitpic":function(){
       event.preventDefault();
       console.log("submittedpic");
     var newpic=Session.get("addpics");
     const pictitle=$(".js-titlepic").val();
     const picdes=$(".js-picdesc").val();
     const date=$(".js-picdate").val();
-    const addpix={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title:pictitle, text:picdes, type:"picture",pic:newpic, date};
+    const locname=$(".js-locname").val();
+    const loclat=$(".js-loclat").val();
+const loclng=$(".js-loclng").val();
+if(!pictitle&&!picdes&&!date&&!locname&&!loclat&&!loclng){
+        Session.set("emptyPicForm", true);
+        
+    }else{
+    const addpix={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title:pictitle, text:picdes, type:"picture",pic:newpic, date,locname, lat:loclat, lng:loclng};
     Trips.update({_id:this._id},{$push:{textedit:addpix}});
     $("#addPicture").modal('hide');
+  }
 },
-  "submit #mapform":function(){
+  "click .js-submitmap":function(){
     event.preventDefault();
-    const locit=Session.get("locmap");
-    const toloc=$(".js-locit").val();
-    const maploc={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), location:toloc, map:locit, type:"maploc"};
+    
+    const locname=$(".js-locname").val();
+    const loclat=$(".js-loclat").val();
+const loclng=$(".js-loclng").val();
+const mapdesc=$(".js-mapdesc").val();
+const mapdate=$(".js-mapdate").val();
+if(!locname&&!loclat&&!loclng&&!mapdesc&&!mapdate){
+        Session.set("emptyMapForm", true);
+        
+    }else{
+var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), locname, type:"maploc",lat:loclat, lng:loclng, description:mapdesc, date:mapdate}
+    // const locit=Session.get("locmap");
+    // const toloc=$(".js-locit").val();
+    // const maploc={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), location:toloc, map:locit, type:"maploc"};
+    
     Trips.update({_id:this._id},{$push:{textedit:maploc}});
     $("#addMap").modal('hide');
+  }
+  },
+  "click .js-lookmap":function(){
+
   },
   "click .js-addBanner":function(){
     $("#openBanner").modal('show');
@@ -162,30 +147,36 @@ Template.showSearch.events({
     Trips.update({_id:tripid}, {$set:{title, description,arrival, departure,amountOfTraveler,expenses}});
     $("#displaySet").modal('hide');
   },
-  // "click .js-mapdir":function(){
-  //   Router.go("map");
-  // }
-  // function deletethis(obid){
-  //   Trips.update({_id:this._id},{$pull:{textedit:{$elemMatch:{_id:obid}}}});
-  // },
+ 
  "click .js-addfav ":function(event){
-    console.log("clicked on the +"); //debug
-    console.dir(this);
     window.alert("Added to favorite!");
-    var favid= $(".js-favid").val()
-    var blog= Trips.findOne({_id: this._id});
-    console.dir(blog);
-    const fav =
+    var favid=this._id;
+   
+    if (UserFavorites.find({user:Meteor.userId()}).count()==0){
+      const fav =
     {user: Meteor.userId(),
     addedAt: new Date(),
-    favadded: blog
+    favadded: [favid],
     }
     Meteor.call("addFav", fav);
+    }else{
+      var userfav=UserFavorites.findOne({user:Meteor.userId()});
+
+      UserFavorites.update({_id:userfav&&userfav._id},{$push:{favadded:favid}});
+    }
+    
+  },
+  "click .js-removefav":function(event){
+    var id=this._id;
+    
+      var userfav1=UserFavorites.findOne({user:Meteor.userId()});
+
+      UserFavorites.update({_id:userfav1&&userfav1._id},{$pull:{favadded:id}});
   },
   "click .js-closet":function(event){
     const docid=$(".js-docid").val();
     Trips.update({_id: this._id}, {$pull:{textedit:{_id: docid}}});
-  }
+  },
 });
 
 
@@ -216,19 +207,33 @@ Template.showSearch.helpers({
         return false;}
   },
 })
+Template.timelinedisplay.events({
+  "click .js-lookmap":function(){
+  // Session.set("locmap",{lat:this.t.lat,lng:this.t.lng});
+  // console.log(this.t.lat);
+  // GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
+  // GoogleMaps.ready('naviMap',function(map) {
+  //   var markerCurrent = new google.maps.Marker({
+  //       position: new google.maps.LatLng(this.t.lat,this.t.lng),
+  //       map:map.instance
+  //     });
+  //   Tracker.autorun(function() {
+  //     map.instance.setCenter(new google.maps.LatLng(this.t.lat,this.t.lng))
+  //     // markerCurrent.setPosition(new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng));
+  //   });  
+// });
+  }
+})
 Template.timelinedisplay.helpers({
   naviMapOptions: function(map) {
     if (GoogleMaps.loaded()) {
-      const l=Session.get("mapid");
-      var markloc={lat:l.lat, lng:l.lng}
-      console.dir(markloc);
-      console.dir(l);
+      var markloc={lat:this.t.lat, lng:this.t.lng};
       var markerCur= new google.maps.Marker({
         position: markloc,
         map:map,
       });
       return {
-        center: new google.maps.LatLng(l.lat,l.lng),
+        center: new google.maps.LatLng(this.t.lat,this.t.lng),
         zoom:15
       };
     }
@@ -267,8 +272,9 @@ Template.timelinedisplay.helpers({
       return false;
     }
   },
-  savemapref:function(map){
-    Session.set("mapid",map);
+  savemapref:function(loclat,loclng){
+    var map={lat:loclat, lng :loclng}
+    Session.set("mapid", map);
   },
 })
 Template.timelinedisplay.events({

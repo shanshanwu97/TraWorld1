@@ -85,7 +85,7 @@
   padding-bottom:7px;
   border: dashed;
   border-color: #48D1CC;
- /* height:100%;*/
+  min-height: 170px;
 }
 #mappanel{
   padding-top: 10px;

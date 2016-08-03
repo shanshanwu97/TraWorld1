@@ -9,8 +9,8 @@
   {{else}}
 	<ul>
     <div>
-    {{#each r in userfavorites}}
-        {{> removeFav fav=r.favadded user=r._id}}
+    {{#each r in userfavorites.favadded}}
+        {{> removeFav fav=r idof=userfavorites._id}}
              
     {{/each}}
   </div>
@@ -19,16 +19,15 @@
 </div>
 </template>
 <template name="removeFav">
-    <li>
-    <div class="panel panel-success">
+    <div class="alert alert-info" role="alert">
       <div class="panel-body">
-          <a href="/showsearch/{{fav._id}}"><h3>{{fav.title}}</h3></a>
+          <a href="/showsearch/{{findfavtrip._id}}"><h3>{{findfavtrip.title}}</h3></a>
 		        <span class="js-deletefav glyphicon glyphicon-remove" aria-hidden="true"></span> Remove from Favorite
         </div>
-         <div class="panel-footer">by<a href="/showuser/{{fav.createdBy}}">{{fav.username}}</a> on {{fav.datecreated}}
+         <div class="panel-footer">by<a href="/showuser/{{fav.createdBy}}">{{findfavtrip.username}}</a> on {{findfavtrip.datecreated}}
          </div>
       </div>
-    </li>
+    
 </template>
 
 <template name = "showFavs">

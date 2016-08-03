@@ -1,11 +1,33 @@
 Session.set("userinput",0);
+Session.set("notCompleteAlert",false);
 Template.itineraries.helpers({
 	trips:function(){
 		// const dest= $(".js-dest").val();
 		return Trips.find();
-	}
+	},
+  notCompleteAlertNeeded: function() {
+    if (Session.get("notCompleteAlert"))
+      return true;
+    else
+      return false;
+  }
 })
+Template.itineraries.rendered=function(){
+  this.autorun(function () {
+             if (GoogleMaps.loaded()) {
 
+         var autocomplete;
+          var options = {types: ['(cities)'] };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                
+              });
+            
+    }
+ });
+}
 Template.itineraries.events({
 	"submit form": function(){
 		event.preventDefault();
@@ -23,13 +45,13 @@ Template.itineraries.events({
 		const arrive = $(".js-arrive").val();
 		const depart = $(".js-depart").val();
 		const amount = $(".js-trv").val();
-		if (!isNumeric($(".js-ex").val())){
-			alert("Please enter a valid number!");
+		// if (!isNumeric($(".js-ex").val())){
+		// 	alert("Please enter a valid number!");
 
-		}else if (!($(".js-title").val())){
-			alert("Please enter a valid title!");
+		// }else if (!($(".js-title").val())){
+		// 	alert("Please enter a valid title!");
 
-		}else{
+		// }else{
 			const expenses = Number($(".js-ex").val());
 			const desc= $(".js-descript").val();
 			const titleOf=$(".js-title").val();
@@ -43,17 +65,137 @@ Template.itineraries.events({
 			var imgs= Session.get("thumbpic");
       var likes=0;
 
-			const trip=
-			{createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, departure:depart, amountOfTraveler: amount, expenses: expenses, image: img, thumbpic:imgs, description: desc, textedit:txt,likes
-			}
-			Session.set("userinput",trip);
-			Meteor.call("insertTrip", trip);
+			
+      var complete = true;
+     var filled = true;
+
+
+    // TITLE
+    if (!titleOf){  // Required
+      complete = false;
+      filled = false;
+      $(".js-triptitle").removeClass('has-success').addClass('has-error');
+    }
+    else {
+      $(".js-triptitle").removeClass('has-error').addClass('has-success');
+    }
+
+    // DESTINATION
+    if (!desti){
+      complete = false;
+      filled = false;
+      $(".js-tripdest").removeClass('has-success').addClass('has-error');
+    }
+    else {
+      $(".js-tripdest").removeClass('has-error').addClass('has-success');
+    }
+
+    // DESCRIPTION
+    if (!desc){
+      filled = false;
+      $(".js-tripdesc").removeClass('has-success').addClass('has-warning');
+    }
+    else {
+      $(".js-tripdesc").removeClass('has-warning').addClass('has-success');
+    }
+
+    
+
+    // FROM
+    if (!arrive || isNaN(Date.parse(arrive)) || new Date(arrive) < new Date()){ // Required
+      complete = false;
+      filled = false;
+      $(".js-triparrive").removeClass('has-success').addClass('has-error');
+    }
+    else {
+      $(".js-triparrive").removeClass('has-error').addClass('has-success');
+    }
+
+    // TO
+    if (!depart || isNaN(Date.parse(depart)) || new Date(depart) < new Date(arrive) || new Date(depart) < new Date()){  // Required
+      complete = false;
+      filled = false;
+      $(".js-tripdepart").removeClass('has-success').addClass('has-error');
+    }
+    else {
+      $(".js-tripdepart").removeClass('has-error').addClass('has-success');
+    }
+
+    //DEADLINE
+    // if (!deadline || isNaN(Date.parse(deadline)) || new Date(deadline) > new Date(From) || new Date(deadline) < new Date()){  // Required
+    //   complete = false;
+    //   filled = false;
+    //   $(".js-deadlineGroup").removeClass('has-success').addClass('has-error');
+    // }
+    // else {
+    //   $(".js-deadlineGroup").removeClass('has-error').addClass('has-success');
+    // }
+
+    // THRESHOLD
+    if (!amount || amount < 1 || Math.floor(amount) != amount){ // Required
+      complete = false;
+      filled = false;
+      $(".js-tripppl").removeClass('has-success').addClass('has-error');
+    }
+    else {
+      $(".js-tripppl").removeClass('has-error').addClass('has-success');
+    }
+
+    // COST
+    if (!expenses || !$.isNumeric(expenses) || expenses < 0 || (Math.floor(expenses) != expenses && expenses.length != expenses.indexOf('.') + 3)){
+      filled = false;
+      complete=false;
+      $(".js-tripex").removeClass('has-success').addClass('has-error');
+      // cost = null;
+    }
+    else {
+      $(".js-tripex").removeClass('has-error').addClass('has-success');
+    }
+
+    // PICTURE
+    if (!imgs){
+      filled = false;
+      $(".js-tripbanpic").removeClass('has-success').addClass('has-warning');
+    }
+    else {
+      $(".js-tripbanpic").removeClass('has-warning').addClass('has-success');
+    }
+
+
+    if (filled) {
+       const trip=
+      {createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, departure:depart, amountOfTraveler: amount, expenses: expenses, image: imgs, description: desc, textedit:txt,likes
+      }
+      Session.set("userinput",trip);
+      Meteor.call("insertTrip", trip);
       var tripid=Session.get("temptripid");
       const goid='/showsearch/'+tripid;
-			Router.go(goid);
+      Router.go(goid);
+    }
+    else if (complete){
+      const trip=
+      {createdBy:Meteor.userId(), username: ur, datecreated: new Date(), title: titleOf, destination:dest, arrival: arrive, departure:depart, amountOfTraveler: amount, expenses: expenses, image: imgs, description: desc, textedit:txt,likes
+      }
+      Session.set("userinput",trip);
+      $("#warningUncomp").modal();
+    }
+    else{
+      Session.set("notCompleteAlert", true);
+    }
+   
 
-		}
+		// }
 	},
+  "click .js-tripmodalsubmit" : function(event){
+    $('.modal-backdrop').hide();
+    $('body').removeClass('modal-open');
+     $("#warningUncomp").modal('hide');
+    var trip=Session.get("userinput");
+    Meteor.call("insertTrip", trip);
+      var tripid=Session.get("temptripid");
+      const goid='/showsearch/'+tripid;
+      Router.go(goid);
+  },
 	'click #deleteFileButton ': function (event) {
         console.log("deleteFile button ", this);
         YourFileCollection.remove({_id:this._id});

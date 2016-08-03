@@ -1,40 +1,23 @@
 <template name="itineraries">
-	<html>
-      <head>
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
-        <script>
-            var autocomplete;
-            function initialize() {
-               var options = {
-  types: ['(cities)']
- };
-              autocomplete = new google.maps.places.Autocomplete(
-                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                  options);
-              google.maps.event.addListener(autocomplete, 'place_changed', function() {
-              });
-            }
-        </script>
-        
-      </head>
-      <body>
-        
-      </body>
-    </html>
+	
 	<div class="container">
 	<div class="page-header">
 		<h1>Itineraries</h1>
 	</div>
 	<h2>Share your experience!</h2>
+  {{#if notCompleteAlertNeeded}}
+      <div class="alert alert-danger" role="alert">
+        All required fields must be filled with appropreate values in order to submit.
+      </div>
+    {{/if}}
 
 	<form>
 	 	
-	  	<fieldset class="form-group">
+	  	<div class="js-triptitle form-group">
 	    	<label for="title">Title</label>
 	    	<input type="title" class="form-control js-title">
-	  	</fieldset>
-	  	<fieldset class="form-group">
+	  	</div>
+	  	<div class="js-tripdest form-group">
 	    	<label for="destination">Destination</label>
 	    	<input type="destination" id="autocomplete" class="form-control js-dest1">
 
@@ -44,8 +27,8 @@
             <button type="button" id= "add-input" class="btn btn-default addButton"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Additional Destinations</button>
             <small class="text-muted">Add up to 5 destinations.
 	    	</small>
-	  	</fieldset>
-	  	<fieldset class="form-group">
+	  	</div>
+	  	<div class="js-triparrive form-group">
 	   		<label for="arrival">Arrival Date</label>
 
                 <div class='input-group date' id='datetimepicker1'><span class="input-group-addon">
@@ -72,8 +55,8 @@
         </script>
 				 
 	
-	 	</fieldset>
-	  	<fieldset class="form-group">
+	 	</div>
+	  	<div class="js-tripdepart form-group">
 	    	<label for="depart">Departure Date</label>
 	    	<div class='input-group date' id='datetimepicker2'><span class="input-group-addon">
                         <span class="glyphicon glyphicon-calendar"></span>
@@ -81,21 +64,21 @@
                     <input type='text' class="js-depart form-control" />
                     
                 </div>
-	  	</fieldset>
-	  	<fieldset class="form-group">
+	  	</div>
+	  	<div class="js-tripppl form-group">
 	    	<label for="travellers">Amount of Travellers</label>
 	    	<input type="travel" class="form-control js-trv"  placeholder="Enter in digits">
-	  	</fieldset>
-	  	<fieldset class="form-group">
-	    	<label for="expense">Approximate Expense</label>
+	  	</div>
+	  	<div class="js-tripex form-group">
+	    	<label for="expense">Approximate Expense Per Person</label>
 	    	$<input type="expense" class="form-control js-ex"  placeholder="ex. 500 please enter valid number without $- (includes airfare, transportaion, food, lodging,etc)">
-	  	</fieldset>
-	  	<fieldset class="form-group">
+	  	</div>
+	  	<div class="js-tripbanpic form-group">
 	    	<label for="description">Banner Image:</label>
-	    	<input class="form-control js-img" id="exampleTextarea" placeholder="image links only!!!!">
+	    	<!-- <input class="form-control js-img" id="exampleTextarea" placeholder="image links only!!!!">
 	  	</fieldset>
 	  	<fieldset class="form-group">
-	  		<label for="description">Thumbnail Image:</label>
+	  		<label for="description">Thumbnail Image:</label> -->
         
 	  		<input class="your-upload-class" type="file"><button 
 id="deleteFileButton">delete</button>
@@ -103,11 +86,11 @@ id="deleteFileButton">delete</button>
  href="{{url}}">link</a></td><td>{{#if 
 isUploaded}}uploaded{{/if}}</td><td><button 
 id="deleteFileButton">delete</button> -->
-	  	</fieldset>
-	 	<fieldset class="form-group">
+	  	</div>
+	 	<div class="js-tripdesc form-group">
 	    	<label for="description">Description</label>
 	    	<textarea class="form-control js-descript" id="exampleTextarea" rows="3"></textarea>
-	  	</fieldset>
+	  	</div>
 	  	<fieldset class="form-group">
 	  		
 	    	<!-- <label for="exampleInputFile">Insert Image/File</label>
@@ -123,7 +106,35 @@ id="deleteFileButton">delete</button> -->
 	    	</small> -->
 	  <input type= "submit" class="js-submit btn btn-info" value="Submit">
 	</form>
+  <div id="warningUncomp" class="modal fade" role="dialog">
+    <div class="modal-dialog modal-sm">
+
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">
+            <small>
+              <span class="glyphicon glyphicon-tent" aria-hidden="true"></span>
+              Itineraries
+            </small>
+          </h4>
+          <h3 class="modal-title text-center lead">
+            Warning!
+          </h3>
+        </div>
+        <div class="modal-body">
+          One or more fields were left unfilled. Are you sure you want to proceed?
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Never Mind</button>
+          <button type="button" class="btn btn-danger js-tripmodalsubmit">Submit</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
 </div>
+
 </template>
 <template name='input'>
 	<html>

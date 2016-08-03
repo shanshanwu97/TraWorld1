@@ -1,26 +1,58 @@
 Template.pastitin.helpers({
 	resultData:function(){
 		return Trips.find();
+	},
+	
+})
+Template.pastitin.rendered=function(){
+	if (TripUsers.find({userID: Meteor.userId()}).count()===0) {
+                    $("#tripdemo1").modal('show');
+                    TripUsers.insert({userID: Meteor.userId()});
+               }
+}
+Template.searches.helpers({
+	alreadyFav:function(){
+		var userfavor=UserFavorites.findOne({user:Meteor.userId()});
+		var userfavlist=userfavor&&userfavor.favadded;
+		// console.dir(userfavlist.indexOf(tripId));
+		if(userfavlist.indexOf(this.fav._id)!=-1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+})
+Template.searches.events({
+	"click .js-addfav ":function(event){
+		window.alert("Added to favorite!");
+		var favid=this.fav._id;
+		if (UserFavorites.find({user:Meteor.userId()}).count()==0){
+			const fav =
+		{user: Meteor.userId(),
+		addedAt: new Date(),
+		favadded: [favid],
+		}
+		Meteor.call("addFav", fav);
+		}else{
+			var userfav=UserFavorites.findOne({user:Meteor.userId()});
+
+			UserFavorites.update({_id:userfav&&userfav._id},{$push:{favadded:favid}});
+		}
+		
+	},
+	"click .js-removefav":function(event){
+		var id=this.fav._id;
+		
+			var userfav1=UserFavorites.findOne({user:Meteor.userId()});
+
+			UserFavorites.update({_id:userfav1&&userfav1._id},{$pull:{favadded:id}});
 	}
 })
 Template.pastitin.events({
 	"click #newit":function(){
 		Router.go("itineraries");
 	},
-	"click .js-addfav ":function(event){
-		console.log("clicked on the +"); //debug
-		console.dir(this);
-		window.alert("Added to favorite!");
-		var favid= $(".js-favid").val()
-		var blog= Trips.findOne({_id: favid});
-		console.dir(blog);
-		const fav =
-		{user: Meteor.userId(),
-		addedAt: new Date(),
-		favadded: blog
-		}
-		Meteor.call("addFav", fav);
-	},
+	
 	"click .tdemo-1": function() {
                demoTalk(".js-ttext-1");
           },

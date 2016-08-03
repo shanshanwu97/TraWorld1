@@ -6,6 +6,27 @@ Template.home.helpers({
 	// 	return Trips.find({destination: loc},{sort:{datecreated: -1}});
 	// },
 })
+
+// Template.home.onCreated(function () {
+
+// });
+
+Template.home.rendered=function(){
+  this.autorun(function () {
+             if (GoogleMaps.loaded()) {
+
+         var autocomplete;
+          var options = {types: ['(cities)'] };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                
+              });
+            
+    }
+ });
+}
 Template.home.events({
 	"submit form": function(){
 		event.preventDefault();

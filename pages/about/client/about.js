@@ -68,66 +68,103 @@ Template.addpicture.events({
     });
   }
 })
-Template.addmap.events({
-  "click .js-mapit":function(event){
-    $("#locmap").toggle('show');
-    $("#dirbuttons").toggle('hide');
-    $("#submitmap").toggle('show');
-  },
-  "click .js-closeit":function(event){
-    $("#locmap").toggle('hide');
-    $("#dirbuttons").toggle('show');
-    $("#submitmap").toggle('hide');
+Template.addtext.helpers({
+  emptyTextForm:function(){
+    if (Session.get("emptyTextForm")){
+      return true;
+    }else{
+      return false;
   }
+}
+})
+Template.addmap.helpers({
+  emptyMapForm:function(){
+    if (Session.get("emptyMapForm")){
+      return true;
+    }else{
+      return false;
+  }
+}
+})
+Template.addpicture.helpers({
+  emptyPicForm:function(){
+    if (Session.get("emptyPicForm")){
+      return true;
+    }else{
+      return false;
+  }
+}
+})
+Template.addmap.events({
+  // "click .js-mapit":function(event){
+  //   $("#locmap").toggle('show');
+  //   $("#dirbuttons").toggle('hide');
+  //   $("#submitmap").toggle('show');
+  // },
+  // "click .js-closeit":function(event){
+  //   $("#locmap").toggle('hide');
+  //   $("#dirbuttons").toggle('show');
+  //   $("#submitmap").toggle('hide');
+  // }
 })
 Template.addmap.rendered=function(){
-  $("#locmap").toggle('hide');
-  $("#submitmap").toggle('hide');
-};
-Template.addmap.onCreated(function () {
-  Session.set("locmap",{lat:42,lng:-71})
-  GoogleMaps.load({ v: '3', key: 'AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c', libraries: '' });
-  GoogleMaps.ready('naviMap',function(map) {
-    var markerCurrent = new google.maps.Marker({
-        position: new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng),
-        map:map.instance
-      });
-    Tracker.autorun(function() {
-      map.instance.setCenter(new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng))
-      markerCurrent.setPosition(new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng));
-    });  
-});
-});
-    
-Template.addmap.helpers({
-  
-  naviMapOptions: function() {
-    if (GoogleMaps.loaded()) {
-      
-      return {
-        center: new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng),
-        zoom:15
-      };
-    }
-  },  
-});
-Template.addmap.events({
-  "click .js-addloc": function(event){
-    console.log("hey you clicked the button");
-    const location =$(".js-locit").val();
-    console.log(location);
-    $.ajax({
-      url:"https://maps.googleapis.com/maps/api/geocode/json",
-        data:{
-          "address":location,
-          "key": "AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c",
-        },
-        dataType:"json"
-    }).done(function( data ) {
-    if ( console && console.log ) {
-      Session.set( "locmap",data.results[0].geometry.location );
+  this.autorun(function () {
+             if (GoogleMaps.loaded()) {
 
+         var autocomplete;
+          var options = {types: ['(cities)'] };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+              });
+            
     }
-  })
-  }
-})
+ });
+}
+ //  this.autorun(function () {
+ //             if (GoogleMaps.loaded()) {
+
+ //         var autocomplete;
+ //         var options = {
+ // };
+ //              autocomplete = new google.maps.places.Autocomplete((document.getElementById('autocomplete')),
+ //                  {});
+ //              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+ //                var place = autocomplete.getPlace();
+ //            document.getElementById('city2').value = place.name;
+ //            document.getElementById('cityLat').value = place.geometry.location.lat();
+ //            document.getElementById('cityLng').value = place.geometry.location.lng();
+ //              });
+            
+ //    }
+ // });
+
+
+
+
+
+// Template.addmap.events({
+//   "click .js-addloc": function(event){
+//     console.log("hey you clicked the button");
+//     const location =$(".js-locit").val();
+//     console.log(location);
+//     $.ajax({
+//       url:"https://maps.googleapis.com/maps/api/geocode/json",
+//         data:{
+//           "address":location,
+//           "key": "AIzaSyB7-F_RespGrP0zUzQO4AglkouFbTeKp0c",
+//         },
+//         dataType:"json"
+//     }).done(function( data ) {
+//     if ( console && console.log ) {
+//       Session.set( "locmap",data.results[0].geometry.location );
+
+//     }
+//   })
+//   }
+// })

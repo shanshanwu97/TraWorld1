@@ -117,30 +117,30 @@ Meteor.startup(function() {
 
 
 
-     if (Trips.find().count() == 0) {
+   //   if (Trips.find().count() == 0) {
 
-          // SKYDIVING
-          Trips.insert({
-            createdBy: null,
-			username:"....",
+   //        // SKYDIVING
+   //        Trips.insert({
+   //          createdBy: null,
+			// username:"....",
 
-			datecreated:new Date(),
-			title: "We love Boston!",
-			destination: "boston, MA, united states", 
-            arrival: "07/28/2016",
+			// datecreated:new Date(),
+			// title: "We love Boston!",
+			// destination: "boston, MA, united states", 
+   //          arrival: "07/28/2016",
 
-			departure: "08/06/2016",
-			amountOfTraveler: 4,
-			expenses: 700,
+			// departure: "08/06/2016",
+			// amountOfTraveler: 4,
+			// expenses: 700,
 
-			// images: ""
-			description: "our trip in boston.",
-			textedit:[],
-			likes: 5,
-          });
+			// // images: ""
+			// description: "our trip in boston.",
+			// textedit:[],
+			// likes: 5,
+   //        });
 
 
 
-     }
+   //   }
 
 })

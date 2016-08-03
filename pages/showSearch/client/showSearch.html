@@ -1,4 +1,29 @@
 <template name = "showSearch">
+  <!-- <html>
+     <head>
+        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
+        <script>
+            var autocomplete;
+            function initialize() {
+               var options = {
+ };
+              autocomplete = new google.maps.places.Autocomplete(
+                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+                  options);
+              google.maps.event.addListener(autocomplete, 'place_changed', function() {
+                var place = autocomplete.getPlace();
+            document.getElementById('city2').value = place.name;
+            document.getElementById('cityLat').value = place.geometry.location.lat();
+            document.getElementById('cityLng').value = place.geometry.location.lng();
+              });
+            }
+        </script>
+        <style>
+        .pac-container {
+    z-index: 1051 !important;
+}</style>
+      </head> </html> -->
   <script>
   
   </script>
@@ -31,7 +56,12 @@
   <h4 id="usernname"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> {{username}}</h4>
   
   {{#if isNotUser}}
-  <button id="addfav" class="btn js-addfav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
+  
+  {{#if alreadyFav}}
+          <button id="addfav" class="btn js-removefav"><span class=" glyphicon glyphicon-heart" aria-hidden="true"></span> Remove from Favorite</button> 
+          {{else}}
+          <button id="addfav" class="btn js-addfav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
+          {{/if}}
  <!--  <button id="addshare" class="btn js-share"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</button> -->
   <button id="likebutton" class="btn"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> {{likes}}</button>
   {{/if}}
@@ -223,6 +253,7 @@
           {{/if}}
         <h2>{{t.title}}</h2>
         <p>{{t.text}}</p>
+
         <!-- <a href="#0" class="cd-read-more">Read more</a> -->
         <span class="cd-date">{{t.date}}</span>
       </div> <!-- cd-timeline-content -->
@@ -247,6 +278,7 @@
         <div> {{savepicref t.pic}}
         <a href="{{thispic.url}}" target="_blank"><img src="{{thispic.url}}" width= "100%" alt=""></a>
       </div><p>{{t.text}}</p>
+      <!-- <a href="#viewMap" data-toggle="modal" data-target="#viewMap" class="js-lookmap"><span class="glyphicon glyphicon-map-marker"></span> {{t.locname}}</a> -->
         <!-- <a href="#0" class="cd-read-more">Read more</a> -->
         <span class="cd-date">{{t.date}}</span>
       </div> <!-- cd-timeline-content -->
@@ -261,19 +293,39 @@
       <div class="cd-timeline-content">
         {{#if isUser}}
         <div class="header">
-          <!-- <input class="docid" value="{{t._id}}" style="display:none;"> -->
             <button type="button" class="close js-closet" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           </div>
           {{/if}}
-        <h2>{{t.location}}</h2>
+          <a href="#viewMap" data-toggle="modal" data-target="#viewMap" class="js-lookmap"><span class="glyphicon glyphicon-map-marker"></span> {{t.locname}}</a>
+        <!-- h2>{{t.location}}</h2>
         
         <div> {{savemapref t.map}}
         <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
-      </div>
-        <!-- <a href="#0" class="cd-read-more">Read more</a> -->
-        <!-- <span class="cd-date">{{t.date}}</span> -->
+      </div> -->
+        
       </div> <!-- cd-timeline-content -->
     </div> <!-- cd-timeline-block -->
+  <div class="modal fade" id="viewMap" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <!-- <h4 class="modal-title" id="modelLabel">Text</h4> -->
+          </div>
+          <!-- {{savemapref t.lat t.lng}} -->
+        <div class="modal-body">
+          <div id="map-nav" style="height:200px">{{> googleMap name="naviMap" options=naviMapOptions}}</div>
+          <p>{{t.description}}</p>
+        <span class="cd-date">{{t.date}}</span>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+
+     
+    </div>
+  </div>
+</div>
 
   {{/if}}
   </template>
