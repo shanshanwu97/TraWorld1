@@ -4,6 +4,7 @@
                Session.set("searchBy", null);
      		Session.set("searchOption", "tag");
                Session.set("speachActive", false);
+               Session.set("isPlaying",false);
      	},
 
           hasTrips: function(){
@@ -76,31 +77,32 @@
                     return "danger";
           },
 
+          getPlayStopIcon: function() {
+               if (Session.get("isPlaying"))
+                    return "stop";
+               else
+                    return "play-circle";
+          }
+
      });
 
      Template.groupCampSearch.events({
-       "click .js-talk": function(event){
-           console.log("clicked it");
-           Session.set("speachActive", true);
-           event.preventDefault();
-        // https://shapeshed.com/html5-speech-recognition-api/
-           const recognition = new webkitSpeechRecognition();
-           recognition.lang = 'en-US'
-           recognition.onresult = function(event) {
-               console.dir(event);
-               Session.set("speachActive", false);
-               Session.set("transcript",event.results[0][0].transcript);
-               $(".js-searchField").val(Session.get("transcript"));
+          "click .js-talk": function(event){
+               Session.set("speachActive", true);
+               event.preventDefault();
+               const recognition = new webkitSpeechRecognition();
+               recognition.lang = 'en-US'
 
+               recognition.onresult = function(event) {
+                    Session.set("speachActive", false);
+                    Session.set("transcript",event.results[0][0].transcript);
+                    $(".js-searchField").val(Session.get("transcript"));
+               };
 
-     //        execute(Session.get("transcript"));
-             };
-             $(".js-searchField").val("");
-         recognition.start();
-        //      console.log("starting the recognizer")
+               $(".js-searchField").val("");
+               recognition.start();
+          },
 
-
-        },
           "click .js-search": function(event, instance) {
                event.preventDefault();
                search = $(".js-searchField").val().trim();
@@ -164,57 +166,117 @@
           },
 
           "click .volume-1-alt": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-1-alt").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-1-alt").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
           },
 
           "click .volume-1": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-1").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-1").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                    var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+                    console.log(voices);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
           },
 
           "click .volume-2": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-2").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-2").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
           },
 
           "click .volume-3": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-3").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-3").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
           },
 
           "click .volume-4": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-4").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-4").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
           },
 
           "click .volume-5": function() {
-               console.log("clicked volume button");
-               var instruct=$(".js-instruct-5").text();
-               console.log(instruct);
-               var msg = new SpeechSynthesisUtterance(instruct);
-               window.speechSynthesis.speak(msg);
-               console.log(msg);
+               if (Session.get("isPlaying") == false){
+                    Session.set("isPlaying",true);
+                    console.log("clicked volume button");
+                    var instruct=$(".js-instruct-5").text();
+                    console.log(instruct);
+                    var msg = new SpeechSynthesisUtterance(instruct);
+                     var voices=window.speechSynthesis.getVoices();
+                    msg.voice=voices[22];
+                    window.speechSynthesis.speak(msg);
+                    console.log(msg);
+               }
+               else{
+                    window.speechSynthesis.cancel();
+                    Session.set("isPlaying",false);
+               }
+          },
+
+          "click .leaveModal ": function() {
+               window.speechSynthesis.cancel();
+               Session.set("isPlaying",false);
           }
      });
 
