@@ -39,6 +39,9 @@
 							<div class="input-group-addon"><span class="glyphicon glyphicon-tags" aria-hidden="true"></span></div>
 							<input type="text" class="js-tags form-control" placeholder="tag1, tag2, tag3">
 						</div>
+						<div class="text-center text-warning">
+							<small>{{getError "tags"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -107,6 +110,9 @@
 							<div class="input-group-addon"><span class="glyphicon glyphicon-comment" aria-hidden="true"></span></div>
 							<input type="text" class="js-message form-control" placeholder="Promote Your Camp">
 						</div>
+						<div class="text-center text-warning">
+							<small>{{getError "message"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -117,6 +123,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-usd" aria-hidden="true"></span></div>
 				               <input type="number" class="js-cost form-control">
 				          </div>
+						<div class="text-center text-warning">
+							<small>{{getError "cost"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-2">
@@ -138,6 +147,9 @@
 			<div class="js-descriptionGroup form-group">
 			 	<label>Description</label>
 				<textarea class="js-description form-control" rows=2></textarea>
+				<div class="text-center text-warning">
+					<small>{{getError "description"}}</small>
+				</div>
 			</div>	<br>
 
 			<div class="row">
@@ -149,6 +161,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-link" aria-hidden="true"></span></div>
 				               <input type="url" class="js-link form-control">
 				          </div>
+						<div class="text-center text-warning">
+							<small>{{getError "link"}}</small>
+						</div>
 					</div>
 				</div>
 				<div class="col-md-6">
@@ -159,6 +174,9 @@
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-picture" aria-hidden="true"></span></div>
 				               <input type="url" class="js-picture form-control">
 				          </div>
+						<div class="text-center text-warning">
+							<small>{{getError "picture"}}</small>
+						</div>
 					</div>
 				</div>
 			</div>	<br><br>
