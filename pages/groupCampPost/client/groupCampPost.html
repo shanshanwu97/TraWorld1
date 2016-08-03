@@ -66,11 +66,16 @@
 					  	<label>From<small>*</small></label>
 				          <div class="input-group">
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-				               <input type="date" class="js-from form-control" placeholder="Departure Date">
+				               <input type="text" class="js-from form-control" placeholder="Departure Date">
 				          </div>
 						<div class="text-center text-danger">
 							<small>{{getError "from"}}</small>
 						</div>
+						<script type="text/javascript">
+							$(function () {
+								$('.js-from').datepicker();
+							});
+						</script>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -79,11 +84,16 @@
 					  	<label>To<small>*</small></label>
 				          <div class="input-group">
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-calendar" aria-hidden="true"></span></div>
-				               <input type="date" class="js-to form-control" placeholder="Arival Date">
+				               <input type="text" class="js-to form-control" placeholder="Arival Date">
 				          </div>
 						<div class="text-center text-danger">
 							<small>{{getError "to"}}</small>
 						</div>
+						<script type="text/javascript">
+							$(function () {
+								$('.js-to').datepicker();
+							});
+						</script>
 					</div>
 				</div>
 				<div class="col-md-4">
@@ -92,11 +102,16 @@
 					  	<label>Deadline<small>*</small></label>
 				          <div class="input-group">
 				               <div class="input-group-addon"><span class="glyphicon glyphicon-hourglass" aria-hidden="true"></span></div>
-				               <input type="date" class="js-deadline form-control" placeholder="Deadline">
+				               <input type="text" class="js-deadline form-control" placeholder="Deadline">
 				          </div>
 						<div class="text-center text-danger">
 							<small>{{getError "deadline"}}</small>
 						</div>
+						<script type="text/javascript">
+							$(function () {
+								$('.js-deadline').datepicker();
+							});
+						</script>
 					</div>
 				</div>
 			</div> <br>
