@@ -42,7 +42,7 @@ Meteor.startup(function() {
           // TRIP HOME TO CHINA
           GroupCampTrips.insert({
                author: "author2",
-			timestamp: new Date("Jun. 3, 2016"),
+			timestamp: new Date("Jul. 3, 2016"),
 
 			title: "Trip Home to China",
 			description: "Arive at Logan Airport in Boston, MA at 2:30 PM on Aug. 5. ",
@@ -52,9 +52,9 @@ Meteor.startup(function() {
 			destination: "Beijing, China",
 			from: new Date("Aug. 6, 2016"),
 			to: new Date("Aug. 7, 2016"),
-               deadline: new Date("Jul. 10, 2016"),
+               deadline: new Date("Aug. 5, 2016"),
 
-			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "travis"],
+			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9"],
                bookmarks: [],
 			threshold: 20,
 			cost: 900,
@@ -126,7 +126,7 @@ Meteor.startup(function() {
 
 			// datecreated:new Date(),
 			// title: "We love Boston!",
-			// destination: "boston, MA, united states", 
+			// destination: "boston, MA, united states",
    //          arrival: "07/28/2016",
 
 			// departure: "08/06/2016",
