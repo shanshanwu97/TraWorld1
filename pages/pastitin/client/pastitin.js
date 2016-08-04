@@ -181,6 +181,10 @@ function demoTalk(text){
                var voices=window.speechSynthesis.getVoices();
                     msg.voice=voices[0];
                window.speechSynthesis.speak(msg);
+              	msg.onend=function(event){
+              		console.log("end")
+              		Session.set("playDemo", false);
+              	}
     }else{
            	window.speechSynthesis.cancel();
            	Session.set("playDemo", false);
