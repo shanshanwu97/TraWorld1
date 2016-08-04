@@ -119,12 +119,17 @@ Template.searches.helpers({
 		var userfavor=UserFavorites.findOne({user:Meteor.userId()});
 		var userfavlist=userfavor&&userfavor.favadded;
 		// console.dir(userfavlist.indexOf(tripId));
+		if(userfavlist){
+
 		if(userfavlist.indexOf(this.fav._id)!=-1){
 			return true;
 		}else{
 			return false;
 		}
+	}else{
+		return false;
 	}
+	},
 })
 Template.searches.events({
 	"click .js-addfav ":function(event){

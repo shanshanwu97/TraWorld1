@@ -58,6 +58,14 @@ findfavtrip:function(){
 })
 
 Template.showUser.helpers({
+	propicex:function(){
+		var user =UserFavorites.findOne({user:this._id});
+		if(user&&user.propic){
+			return true;
+		}else{
+			return false;
+		}
+	},
 	propic:function(){
 		var user =UserFavorites.findOne({user:this._id});
 		const id= user&&user.propic
@@ -71,7 +79,7 @@ Template.showUser.helpers({
 		return Trips.find({createdBy:this._id});
 	},
 	anyit:function(){
-		if (Trips.find({createdBy:this._id.count()==0})){
+		if (Trips.find({createdBy:this._id}).count()==0){
 			return true;
 		}else{
 			return false;

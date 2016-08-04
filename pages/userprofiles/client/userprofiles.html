@@ -6,12 +6,14 @@
 		<div class="panel panel-default">
 		
 		<!-- <div class="panel-body" style="min-height:220px;  overflow:hidden; background-position: center center;"> -->{{#if propicexist}}
-		<div class="panel-body" style="max-height:230px; min-height:229px; overflow:hidden; background-position: center center;">
+		
+    <div class="panel-body" style="max-height:230px; min-height:229px; overflow:hidden; background-position: center center;">
         <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%" height="" > </a></div>
       {{else}}
-      <br><br><br><br>
-      		You do not have profile picture! Click to add one.
-      		<button class="js-submitpropic btn btn-info" data-toggle="modal" data-target="#addPropic">    <span class="js-changepic glyphicon glyphicon-pencil" aria-hidden="true"> </span> Add Profile Picture</button> 
+      <div class="panel-body">
+      <div style="max-height:230px;  overflow:hidden">
+        <img src="../images/icon-user-default.png" width= "100%"> 
+      </div></div>
       {{/if}}
       <!-- </div> -->
       <div class="panel-body">
@@ -113,9 +115,15 @@
 			<div class="col-md-3">
 		<div class="panel panel-default">
 		<div class="panel-body">
+      {{#if propicex}}
 		<div style="max-height:230px;  overflow:hidden">
         <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%"> </a>
       </div>
+      {{else}}
+<div style="max-height:230px;  overflow:hidden">
+        <img src="../images/icon-user-default.png" width= "100%"> 
+      </div>
+      {{/if}}
       
       
 		<h4>Name:</h4> {{profile.first}} {{profile.last}}<br>
