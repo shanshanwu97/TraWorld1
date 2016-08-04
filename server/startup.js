@@ -8,7 +8,7 @@
 
 Meteor.startup(function() {
 
-     // Meteor.users.remove({});
+     Meteor.users.remove({});
      GroupCampTrips.remove({});
      GroupCampUsers.remove({});
 
