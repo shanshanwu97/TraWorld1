@@ -107,25 +107,25 @@ Template.addmap.events({
   //   $("#submitmap").toggle('hide');
   // }
 })
-Template.addmap.rendered=function(){
-  this.autorun(function () {
-             if (GoogleMaps.loaded()) {
+// Template.addmap.rendered=function(){
+//   this.autorun(function () {
+//              if (GoogleMaps.loaded()) {
 
-         var autocomplete;
-          var options = {types: ['(cities)'] };
-              autocomplete = new google.maps.places.Autocomplete(
-                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                  options);
-              google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var place = autocomplete.getPlace();
-            document.getElementById('city2').value = place.name;
-            document.getElementById('cityLat').value = place.geometry.location.lat();
-            document.getElementById('cityLng').value = place.geometry.location.lng();
-              });
+//          var autocomplete;
+//           var options = {types: ['(cities)'] };
+//               autocomplete = new google.maps.places.Autocomplete(
+//                   /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
+//                   options);
+//               google.maps.event.addListener(autocomplete, 'place_changed', function() {
+//                 var place = autocomplete.getPlace();
+//             document.getElementById('city2').value = place.name;
+//             document.getElementById('cityLat').value = place.geometry.location.lat();
+//             document.getElementById('cityLng').value = place.geometry.location.lng();
+//               });
             
-    }
- });
-}
+//     }
+//  });
+// }
  //  this.autorun(function () {
  //             if (GoogleMaps.loaded()) {
 

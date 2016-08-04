@@ -41,7 +41,9 @@ else{    Accounts.createUser({
         last: l,
         color: "bg-danger",
           username: e.split("@")[0],
+
       },
+     
       email: e,
       password: p,
 

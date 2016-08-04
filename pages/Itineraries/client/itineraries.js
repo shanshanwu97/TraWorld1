@@ -102,7 +102,7 @@ Template.itineraries.events({
     
 
     // FROM
-    if (!arrive || isNaN(Date.parse(arrive)) || new Date(arrive) < new Date()){ // Required
+    if (!arrive || isNaN(Date.parse(arrive)) || new Date(arrive) > new Date()){ // Required
       complete = false;
       filled = false;
       $(".js-triparrive").removeClass('has-success').addClass('has-error');
@@ -112,7 +112,7 @@ Template.itineraries.events({
     }
 
     // TO
-    if (!depart || isNaN(Date.parse(depart)) || new Date(depart) < new Date(arrive) || new Date(depart) < new Date()){  // Required
+    if (!depart || isNaN(Date.parse(depart)) || new Date(depart) < new Date(arrive)){  // Required
       complete = false;
       filled = false;
       $(".js-tripdepart").removeClass('has-success').addClass('has-error');

@@ -5,6 +5,20 @@ Template.layout.helpers({
           _id: liveUser
       });
   },
+  proexist:function(){
+    var userpro=UserFavorites.findOne({user:Meteor.userId()});
+    if(userpro&&userpro.propic){
+      return true;
+    }else{
+      return false;
+    }
+  },
+  propicbar:function(){
+    var user=UserFavorites.findOne({user:Meteor.userId()});
+    if(user&&user.propic){
+      return YourFileCollection.findOne({_id:user&&user.propic});
+    }
+  }
 })
 Template.layout.events({
     'click .logout': function(event){

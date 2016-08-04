@@ -1,59 +1,136 @@
-<template name="userprofiles">
-	<div class="container">
-		<div class="page-header">
-			<h1>My Profile</h1>
-		</div>
-		{{#if currentUser}}
-			{{#if profexist}}
-			<form>
-				<!-- {{#if userNoName}} -->
-			
-	 		<!-- <fieldset class="form-group">
-	   			<label for="username">Username: </label>
-	    		<input type="username" class="form-control js-username" placeholder="Can only choose once!">
-	    		<button class="js-check btn btn-success">Check Availability</button> 
-	  		</fieldset>
-	  		<button class="js-submitname btn btn-info">Submit Username</button> Can only choose once! -->
-	  	<!-- 	{{/if}} -->
 
-				Upload profile picture: <input class="your-upload-class" type="file">
-			 	
-			  	<fieldset class="form-group">
-			   		<label for="location">Current Location:</label>
-			    	<input type="location" class="form-control js-curloc"  placeholder="city, state, country" id="profloc">
-			 	</fieldset>
-			  <button class="js-submitinfo btn btn-info" id="submitbut">Submit</button> 
-			</form>
-			{{else}}
-				{{> profiledisplay}}
-			{{/if}}
-		{{else}}
-		Please log in to create profile!
-		{{/if}}
-	</div>
-</template>
 <template name= "profiledisplay">
 	<div class="container">
 		<div class="row">
-			<div class="col-md-3 bg-info">
-		<div style="width:100%;  overflow:hidden">
-        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%"> </a>
-      </div>
-      <div>
-      <span class="js-changepic glyphicon glyphicon-pencil" aria-hidden="true"> </span>Change Profile Picture</div>
+			<div class="col-md-3">
+		<div class="panel panel-default">
+		
+		<!-- <div class="panel-body" style="min-height:220px;  overflow:hidden; background-position: center center;"> -->{{#if propicexist}}
+		<div class="panel-body" style="max-height:230px; min-height:229px; overflow:hidden; background-position: center center;">
+        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%" height="" > </a></div>
+      {{else}}
+      <br><br><br><br>
+      		You do not have profile picture! Click to add one.
+      		<button class="js-submitpropic btn btn-info" data-toggle="modal" data-target="#addPropic">    <span class="js-changepic glyphicon glyphicon-pencil" aria-hidden="true"> </span> Add Profile Picture</button> 
+      {{/if}}
+      <!-- </div> -->
+      <div class="panel-body">
 		<h4>Name:</h4> {{userprof.profile.first}} {{userprof.profile.last}}<br>
-		<h4>Email:</h4> {{#each e in userprof.emails}} {{e.address}}{{/each}}<br>
-		<h4>Location:</h4> {{profile.location}} <br>
-		 <button class="js-submitedit btn btn-info" >Edit Profile</button> 
- 		<br>
- 	</div>
- 	<div class="col-md-8 bg-warning">
+		<h4>Email:</h4> {{#each e in userprof.emails}} {{e.address}}{{/each}}<br></div>
+		<div class="panel-footer">
+		 <button class="js-submitpropic btn btn-info" data-toggle="modal" data-target="#addPropic" >    <span class="js-changepic glyphicon glyphicon-pencil" aria-hidden="true"> </span> Change Profile Picture</button> 
+		 </div></div>
+		
+ 		
+ 	
+ </div>
+ 	<div class="col-md-8">
  		<h1> {{userprof.profile.first}} {{userprof.profile.last}}</h1>
  		<div>
 
   <!-- Nav tabs -->
   <ul class="nav nav-tabs" role="tablist">
-    <li role="presentation" class="active"><a href="#homeprof" aria-controls="home" role="tab" data-toggle="tab">Home</a></li>
+    
+    <li role="presentation"><a href="#fav" aria-controls="profile" role="tab" data-toggle="tab">Favorites</a></li>
+    <li role="presentation"><a href="#public" aria-controls="messages" role="tab" data-toggle="tab">Public Itineraries</a></li>
+    
+  </ul>
+
+  <!-- Tab panes -->
+  <div class="tab-content" style="height:100vh;">
+    
+    <div role="tabpanel" class="tab-pane active" id="fav">
+    	{{#if anyfav}}
+  You do not have any favorites yet!
+
+  {{else}}
+	<ul>
+    {{#each r in userfavorites.favadded}}
+      <!-- <div class="col-md-6"> --> {{>showfav r=r}}
+             
+    {{/each}}
+  </ul>
+  {{/if}}</div> 
+    <div role="tabpanel" class="tab-pane" id="public">
+    	{{#if anyit}}
+    	You have not created any itineraries yet!
+    	{{else}}
+    	<ul>
+    {{#each i in userit}}
+      <!-- <div class="col-md-6"> --> {{>showIt i=i}}
+             
+    {{/each}}
+  </ul>
+    	{{/if}}</div>
+    
+  </div>
+
+</div>
+
+
+ 	</div> 
+ </div>
+<div class="modal fade" id="addPropic" >
+    <div class="modal-dialog">
+      <div class="modal-content">
+      <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+             <h4 class="modal-title" id="modelLabel">Profile Picture</h4>
+          </div>
+           <form id="addPpic">
+        <div class="modal-body">
+         
+          <div class="form-group required">
+<input class="your-upload-class" type="file">
+</div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button  class="btn btn-primary js-uploadpro" id="uploadpro">Upload</button>
+        </div>
+       </div>  
+      </form>
+   
+    </div>
+  </div>
+</div>
+	</div>
+</template>
+<template name="showfav">
+	 <div class="alert alert-warning col-md-12">
+          <a href="/showsearch/{{r}}"><h4>{{findfavtrip.title}}</h4></a>
+        
+         by<a href="/showuser/{{findfavtrip.createdBy}}">  {{findfavtrip.username}}</a> on {{findfavtrip.datecreated}}
+         </div>
+	</template>
+	<template name="showIt">
+		<div class="alert alert-warning col-md-12">
+		<a href="/showsearch/{{i._id}}"><h4>{{i.title}}</h4></a>
+	</div>
+	</template>
+<template name="showUser">
+	<div class="container">
+		<div class="row">
+			<div class="col-md-3">
+		<div class="panel panel-default">
+		<div class="panel-body">
+		<div style="max-height:230px;  overflow:hidden">
+        <a href="{{propic.url}}" target="_blank"><img src="{{propic.url}}" width= "100%"> </a>
+      </div>
+      
+      
+		<h4>Name:</h4> {{profile.first}} {{profile.last}}<br>
+		<h4>Email:</h4> {{#each e in emails}} {{e.address}}{{/each}}<br></div>
+		
+ 		<br>
+ 	</div>
+ </div>
+ 	<div class="col-md-8">
+ 		<h1> {{profile.first}} {{profile.last}}</h1>
+ 		<div>
+
+  <!-- Nav tabs -->
+  <ul class="nav nav-tabs" role="tablist">
+    <!-- <li role="presentation" class="active"><a href="#homeprof" aria-controls="home" role="tab" data-toggle="tab">Home</a></li> -->
     <li role="presentation"><a href="#fav" aria-controls="profile" role="tab" data-toggle="tab">Favorites</a></li>
     <li role="presentation"><a href="#public" aria-controls="messages" role="tab" data-toggle="tab">Public Itineraries</a></li>
     <!-- <li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li> -->
@@ -61,11 +138,30 @@
 
   <!-- Tab panes -->
   <div class="tab-content" style="height:100vh;">
-    <div role="tabpanel" class="tab-pane active" id="homeprof">
+    <!-- <div role="tabpanel" class="tab-pane active" id="homeprof">
     	<div class="col-md-7">This user have not added anything to the profile</div>
-    	</div>
-    <div role="tabpanel" class="tab-pane" id="fav"><div class="col-md-6"></div> This user have no favorites yet!</div>
-    <div role="tabpanel" class="tab-pane" id="public">...</div>
+    	</div> -->
+    <div role="tabpanel" class="tab-pane active" id="fav"><div class="col-md-6"></div> {{#if anyfav}}
+  This user do not have any favorites yet!
+
+  {{else}}
+	<ul>
+    {{#each r in userfavorites.favadded}}
+      <!-- <div class="col-md-6"> --> {{>showfav r=r}}
+             
+    {{/each}}
+  </ul>
+  {{/if}}</div>
+    <div role="tabpanel" class="tab-pane" id="public">{{#if anyit}}
+    	This user have not created any itineraries yet!
+    	{{else}}
+    	<ul>
+    {{#each i in userit}}
+      <!-- <div class="col-md-6"> --> {{>showIt i=i}}
+             
+    {{/each}}
+  </ul>
+    	{{/if}}</div>
     <div role="tabpanel" class="tab-pane" id="settings">...</div>
   </div>
 
@@ -76,26 +172,4 @@
  </div>
 
 	</div>
-</template>
-<template name="editprofile">
-	<div class="container">
-		<div class="page-header">
-			<h1>Edit Profile</h1>
-		</div>
-		<form>
-			 	<!-- <fieldset class="form-group">
-			   		<label for="firstname">Name:</label>
-			    	<input type="firstname" class="form-control js-cname" id="prof" value="{{hi.name}}">
-			  	</fieldset>
-			  	<fieldset class="form-group">
-			    	<label for="email">Email: </label>
-			    	<input type="email" class="form-control js-cemail" id="profem" value="{{hi.email}}">
-			  	</fieldset> -->
-			  	<fieldset class="form-group">
-			   		<label for="location">Current Location:</label>
-			    	<input type="location" class="form-control js-cloc"  placeholder="city, state, country" id="profloc" value="{{hi.location}}">
-			 	</fieldset>
-			  <button class="js-submitin btn btn-info" id="submitbut">Submit</button> 
-			</form>
-	</div>
-</template>
+	</template>

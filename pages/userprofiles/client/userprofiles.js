@@ -1,13 +1,10 @@
-Template.userprofiles.helpers({
+Session.set("emptyform", false);
+// Template.userprofiles.helpers({
 
-})
+// })
 Template.profiledisplay.helpers({
-	profile:function(){
-		// const dest= $(".js-dest").val();
-		return UserProfiles.findOne({user:Meteor.userId()});
-	},
 	propic:function(){
-		var user =UserProfiles.findOne({user:Meteor.userId()});
+		var user =UserFavorites.findOne({user:Meteor.userId()});
 		const id= user&&user.propic
 		return YourFileCollection.findOne({_id:id});
 
@@ -23,50 +20,81 @@ Template.profiledisplay.helpers({
 		}else{
 			return false;
 		}
+	},
+	propicexist:function(){
+		var user =UserFavorites.findOne({user:Meteor.userId()});
+		if(user&&user.propic){
+			return true;
+		}else{
+			return false;
+		}
+	},
+	userfavorites:function(){
+		return UserFavorites.findOne({user:Meteor.userId()});
+		
+	},
+	anyfav:function(){
+		if(UserFavorites.find({user:Meteor.userId()}).count()==0||UserFavorites.findOne({user:Meteor.userId()}).favadded.length==0){
+		return true;}
+	},
+	userit:function(){
+		return Trips.find({createdBy:Meteor.userId()});
+	},
+	anyit:function(){
+		if (Trips.find({createdBy:Meteor.userId().count()==0})){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+})
+
+Template.showfav.helpers({
+findfavtrip:function(){
+	console.log(this);
+	return Trips.findOne({_id:this.r});
+}
+})
+
+Template.showUser.helpers({
+	propic:function(){
+		var user =UserFavorites.findOne({user:this._id});
+		const id= user&&user.propic
+		return YourFileCollection.findOne({_id:id});
+	},
+	userfavorites:function(){
+		return UserFavorites.findOne({user:this._id});
+	},
+	userit:function(){
+		console.log(this._id);
+		return Trips.find({createdBy:this._id});
+	},
+	anyit:function(){
+		if (Trips.find({createdBy:this._id.count()==0})){
+			return true;
+		}else{
+			return false;
+		}
 	}
 })
-Template.userprofiles.events({
-	"click .js-check": function(event){
+Template.profiledisplay.events({
+	// "click .js-submitedit": function(event ){
+	// 	event.preventDefault();
+	// 	Router.go('editprofile');
+	// },
+	"click .js-uploadpro":function(event ){
 		event.preventDefault();
-		const urname=$(".js-username").val();
-		var user=Meteor.users.findOne({_id:Meteor.userId()});
-		if (user.userName&&user!=null){
-			alert("You already have a username, you can only change it once!");
-		}
-		else if (Meteor.users.find({userName:urname}).count()==0){
-			alert("The username is available!");
+		const picid=Session.get("propic");
+		var userid=UserFavorites.findOne({user:Meteor.userId()});
+		if(!userid){
+			UserFavorites.insert({user:Meteor.userId(),propic:picid,favadded:[]});
 		}else{
-			alert("The username is not available! Please re-enter!");
-		}
+		UserFavorites.update({_id:userid&&userid._id},{$set:{propic:picid}});
+	}
+		$("#addPropic").modal('hide');
 	},
-	"click .js-submitname": function(event){
-		event.preventDefault();
-		var user=Meteor.users.findOne({_id:Meteor.userId()});
-		if (user.userName&&user!=null){
-			alert("You already have a username, you can only change it once!");
-		}else{
-			const finalname=$(".js-username").val();
-			Meteor.call("updateName", finalname);
-		}
-	},
-
-
-})
-Template.userprofiles.events({
-	"click .js-submitinfo": function(event){
-		event.preventDefault();
-		
-		const loc = $(".js-curloc").val();
-		
-		var propic= Session.get("propic");
-			const prof=
-			{user:Meteor.userId(), location:loc,propic}; 
-			console.log(prof);
-			Meteor.call("insertProf", prof);
-			Router.go('profiledisplay');
-			
-},
-      'change .your-upload-class': function (event, template) {
+	 'change .your-upload-class': function (event, template) {
     console.log("uploading...")
     FS.Utility.eachFile(event, function (file) {
       console.log("each file...");
@@ -85,49 +113,4 @@ Template.userprofiles.events({
       Session.set("propic",imgfile&&imgfile._id);
     });
   }
-});
-
-Template.userprofiles.helpers({
-	profexist:function(){
-		if(UserProfiles.find({user:Meteor.userId()}).count()==0){
-			return true;
-		}else{
-			return false;
-		}
-	},
-  theFiles: function () {
-    return YourFileCollection.find();
-  }
-});
-Template.profiledisplay.events({
-	"click .js-submitedit": function(event ){
-		event.preventDefault();
-		Router.go('editprofile');
-	},
-	"click .js-changepic":function(event ){
-		event.preventDefault();
-		
-	}
 })
-Template.editprofile.helpers({
-	hi:function(){
-		return UserProfiles.findOne({user:Meteor.userId()});
-	},
-	userprof:function(){
-		return Meteor.users.findOne({_id:Meteor.userId()});
-	}
-	})
-Template.editprofile.events({
-	"click .js-submitin": function(event){
-		event.preventDefault();
-		const loc = $(".js-cloc").val();
-		var user= UserProfiles.findOne({user: Meteor.userId()});
-		var propic=user&&user.propic;
-			const prof=
-			{user:Meteor.userId(), name:fname, email:email, location:loc,propic}; 
-			console.log(prof);
-			Meteor.call("updateProf", prof);
-			Router.go('profiledisplay');
-		},
-		
-	})

@@ -28,7 +28,7 @@
 	          <li role="presentation" id="itin">
 	     		<a href="{{pathFor 'pastitin'}}">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;
-					Itineraries
+					Past Itineraries
 				</a>
 
 	          </li>
@@ -60,11 +60,15 @@
 
 			<li role="presentation" class="dropdown topdrop">
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
-						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;
+						{{#if proexist}}
+						
+						<img id="propicbar" style="border:solid 0.4px; border-color:white" src="{{propicbar.url}}" width="28px" height="28px" class="img-circle" alt="" >&nbsp;
+						{{else}}
+						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{/if}} 
 					 {{userName.profile.username}}
 						<span class="caret"></span> </a>
 					<ul class="dropdown-menu thisdrop">
-						<li><a id="navtab" href="{{pathFor 'userprofiles'}}">My Profile</a></li>
+						<li><a id="navtab" href="{{pathFor 'profiledisplay'}}">My Profile</a></li>
 						<li role="separator" class="divider"></li>
 						<li><a id="navtab" href="{{pathFor 'itineraries'}}">Create Itinerary</a></li>
 						<li role="separator" class="divider"></li>

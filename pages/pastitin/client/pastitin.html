@@ -1,6 +1,6 @@
 <template name="pastitin">
 	<div class="container">
-    
+  {{startSet}}
 		<div class="page-header">
           <h1 class="text-center">
                <img src="http://www.cpawebsolutions.it/wp-content/uploads/2014/08/proximity-marketing.png" width="80">
@@ -10,12 +10,29 @@
           </a></small>
           </h1>
      </div>
+     <div>
      
-		<button style="float:right;" class="btn btn-info" id="newit">Create a New Itinerary </button>
+    <select class="js-refine">
+
+      <option selected="selected">Show All</option>
+      <option>Under $500</option>
+      <option>Under $1000</option>
+      <option>Under $2000</option>
+      <option>Under $3000</option>
+      <option>Under $4000</option>
+      <option>Under $5000</option>
+      <option>Over $5000</option>
+    </select>
+    <button style="float:right;" class="btn btn-info" id="newit">Create a New Itinerary </button>
+  </div>
+		{{#if checkIt resultData}}
+      <h2>No itineraries have been found! ^-^ you can search something else if you like or create one if you have been there!</h2>
+      {{else}}
 			<ul >
 				<br>
 				<br>
 				<br>
+
     {{#each fav in resultData}}
     {{>searches fav=fav}}
      <!--  <li> -->
@@ -25,6 +42,7 @@
        <!-- </li> -->
     {{/each}}
   </ul>
+  {{/if}}
   <!--MODAL: Trip Demo I -->
   <div id="tripdemo1" class="modal fade" role="dialog" data-backdrop="static">
     <div class="modal-dialog">
@@ -33,7 +51,7 @@
                     <div class="modal-header">
           <h4 class="modal-title">
                               <button type="button" class="tdemo-1 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-{{getIcon}}" aria-hidden="true"></span>
                               </button>
             <small>
               <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
@@ -62,7 +80,7 @@
                     <div class="modal-header">
           <h4 class="modal-title">
                               <button type="button" class="tdemo-2 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-{{getIcon}}" aria-hidden="true"></span>
                               </button>
             <small>
               <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
@@ -93,7 +111,7 @@
                     <div class="modal-header">
           <h4 class="modal-title">
                               <button type="button" class="tdemo-3 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                   <span class="glyphicon glyphicon-{{getIcon}}" aria-hidden="true"></span>
                               </button>
             <small>
               <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->
@@ -121,7 +139,7 @@
                     <div class="modal-header">
           <h4 class="modal-title">
                               <button type="button" class="tdemo-4 close">
-                                   <span class="glyphicon glyphicon-volume-up" aria-hidden="true"></span>
+                                  <span class="glyphicon glyphicon-{{getIcon}}" aria-hidden="true"></span>
                               </button>
             <small>
               <!-- <span class="glyphicon glyphicon-tent" aria-hidden="true"></span> -->

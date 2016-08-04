@@ -4,7 +4,7 @@ Template.userfavs.helpers({
 		return UserFavorites.findOne({user:Meteor.userId()});
 	},
 	anyfav: function(){
-	if(UserFavorites.find({user:Meteor.userId()}).count()==0){
+	if(UserFavorites.find({user:Meteor.userId()}).count()==0||UserFavorites.findOne({user:Meteor.userId()}).favadded.length==0){
 		return true;
 	}
 	

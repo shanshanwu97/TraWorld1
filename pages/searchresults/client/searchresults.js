@@ -1,6 +1,7 @@
-Session.set("budget", "Show All");
+
 
 Template.searchresults.onCreated(function(){
+	Session.set("budget", "Show All");
 	this.state= new ReactiveDict();
 	this.state.setDefault({
 		budget:"Show All",
@@ -61,6 +62,23 @@ Template.searchresults.events({
 		}
 		Meteor.call("addFav", fav);
 		//Comments.remove(this.comment._id);  //callback->this <--removes object created
+	},
+	"click .fa-star ":function(event){
+		window.alert("Added to favorite!");
+		var favid=this.fav._id;
+		if (UserFavorites.find({user:Meteor.userId()}).count()==0){
+			const fav =
+		{user: Meteor.userId(),
+		addedAt: new Date(),
+		favadded: [favid],
+		}
+		Meteor.call("addFav", fav);
+		}else{
+			var userfav=UserFavorites.findOne({user:Meteor.userId()});
+
+			UserFavorites.update({_id:userfav&&userfav._id},{$push:{favadded:favid}});
+		}
+
 	},
 
 })

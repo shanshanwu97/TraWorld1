@@ -194,7 +194,7 @@ Template.showSearch.helpers({
   },
   propic:function(){
 
-    var user =UserProfiles.findOne({user:this.createdBy});
+    var user =UserFavorites.findOne({user:this.createdBy});
     const id= user&&user.propic;
     return YourFileCollection.findOne({_id:id});
 

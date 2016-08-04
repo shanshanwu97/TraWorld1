@@ -1,29 +1,5 @@
 <template name = "showSearch">
-  <!-- <html>
-     <head>
-        <link type="text/css" rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,500">
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAScLVvC2ZiCBA_PEeXspeLOCKT0mimjTg&sensor=false&libraries=places&callback=initialize"></script>
-        <script>
-            var autocomplete;
-            function initialize() {
-               var options = {
- };
-              autocomplete = new google.maps.places.Autocomplete(
-                  /** @type {HTMLInputElement} */(document.getElementById('autocomplete')),
-                  options);
-              google.maps.event.addListener(autocomplete, 'place_changed', function() {
-                var place = autocomplete.getPlace();
-            document.getElementById('city2').value = place.name;
-            document.getElementById('cityLat').value = place.geometry.location.lat();
-            document.getElementById('cityLng').value = place.geometry.location.lng();
-              });
-            }
-        </script>
-        <style>
-        .pac-container {
-    z-index: 1051 !important;
-}</style>
-      </head> </html> -->
+  
   <script>
   
   </script>
@@ -41,14 +17,9 @@
     <div class="bannerimg" id="uploadbanner">
       <br>
 
-      <!-- <input  class="your-upload-class" type="file">
-      <button class="js-uploadban btn btn-info">Upload</button> -->
-      <!-- <span class="glyphicon glyphicon-remove js-removeupload" aria-hidden="true"></span> -->
-
     </div>
     {{/if}}
-        <!-- <div style="background-size: 100%; height: 100%;"><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
-  </div> -->
+        
   <div id="userntitle" class="container">
 
   <h1 id="titleofdisplay">{{title}}</h1> 
@@ -62,15 +33,13 @@
           {{else}}
           <button id="addfav" class="btn js-addfav"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> Add to Favorite</button>
           {{/if}}
- <!--  <button id="addshare" class="btn js-share"><span class="glyphicon glyphicon-share" aria-hidden="true"></span> Share</button> -->
+ 
   <button id="likebutton" class="btn"><span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span> {{likes}}</button>
   {{/if}}
   </div>
 </div>
 
   <div class="container">
-      <!-- <div class="row" id="display">
-    <div class="col-md-12  bg-info"> -->
       
       
       <div id="mappanel" class="col-md-12 desti "><h3 style="text-transform: capitalize;"><ul> 
