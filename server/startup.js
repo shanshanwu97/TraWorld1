@@ -39,6 +39,53 @@ Meteor.startup(function() {
                chat: []
           });
 
+          // WHITEWATER RAFTING
+          GroupCampTrips.insert({
+               author: "author5",
+			timestamp: new Date("Jul. 28, 2016"),
+
+			title: "Whitewater Rafting",
+			message: "Scream and splash on a ride of a lifetime with fellow Brandeis adventurers.",
+               tags: ["whitewater rafting", "adventure", "thrills", "local"],
+
+			destination: "Charlemont, MA",
+			from: new Date("Aug. 24, 2016"),
+			to: new Date("Aug. 24, 2016"),
+               deadline: new Date("Aug. 15, 2016"),
+
+			travelers: ["author5", "user1", "user2", "user3"],
+               bookmarks: [],
+			threshold: 8,
+			cost: 30,
+
+               picture: "http://www.rafting.com/wp-content/gallery/cherrycreek/cc05mr015-ed.jpg",
+
+               chat: []
+          });
+
+          // PROTEST
+          GroupCampTrips.insert({
+               author: "author6",
+			timestamp: new Date("Jun. 26, 2016"),
+
+			title: "Protest",
+			message: "Upset about the governer's new policy? So are we! Come and protest with us on Beacon Hill.",
+               tags: ["protest", "local"],
+
+			destination: "Boston, MA",
+			from: new Date("Aug. 13, 2016"),
+			to: new Date("Aug. 13, 2016"),
+               deadline: new Date("Aug. 11, 2016"),
+
+			travelers: ["author6", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"],
+               bookmarks: [],
+			threshold: 30,
+
+               picture: "http://riaclu.org/images/uploads/Protesters.jpg",
+
+               chat: []
+          });
+
           // TRIP HOME TO CHINA
           GroupCampTrips.insert({
                author: "author2",
