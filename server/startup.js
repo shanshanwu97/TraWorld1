@@ -8,7 +8,7 @@
 
 Meteor.startup(function() {
 
-     // Meteor.users.remove({});
+     //Meteor.users.remove({});
      GroupCampTrips.remove({});
      GroupCampUsers.remove({});
 
@@ -39,10 +39,57 @@ Meteor.startup(function() {
                chat: []
           });
 
+          // WHITEWATER RAFTING
+          GroupCampTrips.insert({
+               author: "author5",
+			timestamp: new Date("Jul. 28, 2016"),
+
+			title: "Whitewater Rafting",
+			message: "Scream and splash on a ride of a lifetime with fellow Brandeis adventurers.",
+               tags: ["whitewater rafting", "adventure", "thrills", "local"],
+
+			destination: "Charlemont, MA",
+			from: new Date("Aug. 24, 2016"),
+			to: new Date("Aug. 24, 2016"),
+               deadline: new Date("Aug. 15, 2016"),
+
+			travelers: ["author5", "user1", "user2", "user3"],
+               bookmarks: [],
+			threshold: 8,
+			cost: 30,
+
+               picture: "http://www.rafting.com/wp-content/gallery/cherrycreek/cc05mr015-ed.jpg",
+
+               chat: []
+          });
+
+          // PROTEST
+          GroupCampTrips.insert({
+               author: "author6",
+			timestamp: new Date("Jun. 26, 2016"),
+
+			title: "Protest",
+			message: "Upset about the governer's new policy? So are we! Come and protest with us on Beacon Hill.",
+               tags: ["protest", "local"],
+
+			destination: "Boston, MA",
+			from: new Date("Aug. 13, 2016"),
+			to: new Date("Aug. 13, 2016"),
+               deadline: new Date("Aug. 11, 2016"),
+
+			travelers: ["author6", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8"],
+               bookmarks: [],
+			threshold: 30,
+
+               picture: "http://riaclu.org/images/uploads/Protesters.jpg",
+
+               chat: []
+          });
+
           // TRIP HOME TO CHINA
           GroupCampTrips.insert({
                author: "author2",
-			timestamp: new Date("Jun. 3, 2016"),
+			timestamp: new Date("Jul. 3, 2016"),
 
 			title: "Trip Home to China",
 			description: "Arive at Logan Airport in Boston, MA at 2:30 PM on Aug. 5. ",
@@ -52,9 +99,9 @@ Meteor.startup(function() {
 			destination: "Beijing, China",
 			from: new Date("Aug. 6, 2016"),
 			to: new Date("Aug. 7, 2016"),
-               deadline: new Date("Jul. 10, 2016"),
+               deadline: new Date("Aug. 5, 2016"),
 
-			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9", "user10", "user11", "user12", "user13", "user14", "user15", "user16", "user17", "user18", "user19", "travis"],
+			travelers: ["author2", "user1", "user2", "user3", "user4", "user5", "user6", "user7", "user8", "user 9"],
                bookmarks: [],
 			threshold: 20,
 			cost: 900,
@@ -126,7 +173,7 @@ Meteor.startup(function() {
 
 			// datecreated:new Date(),
 			// title: "We love Boston!",
-			// destination: "boston, MA, united states", 
+			// destination: "boston, MA, united states",
    //          arrival: "07/28/2016",
 
 			// departure: "08/06/2016",

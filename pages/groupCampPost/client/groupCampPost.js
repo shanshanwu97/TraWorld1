@@ -98,7 +98,7 @@ Template.groupCampPost.events({
 			Session.set("ErrorMessage-message", "Promote your trip to potential travelers.");
 		}
 		else {
-			$(".js-titleGroup").removeClass('has-warning').addClass('has-success');
+			$(".js-messageGroup").removeClass('has-warning').addClass('has-success');
 			Session.set("ErrorMessage-message", null);
 		}
 
@@ -310,5 +310,17 @@ Template.groupCampPost.events({
 		$('body').removeClass('modal-open');
 		$('.modal-backdrop').hide();
 		Router.go("groupCampSearch");
+	},
+
+	"click .demoAutofill": function() {
+		$(".js-title").val("Weekend in DC");
+		$(".js-message").val("Spend a weekend exploring the nation's capital with a group of Brandeis students!");
+		$(".js-tags").val("dc, weekend trip");
+		$(".js-destination").val("Washington, DC");
+		$(".js-from").val("09/02/2016");
+		$(".js-to").val("09/05/2016");
+		$(".js-deadline").val("8/3/2016");
+		$(".js-threshold").val("10");
+		$(".js-picture").val("http://tinyurl.com/jjul8xz");
 	}
 })

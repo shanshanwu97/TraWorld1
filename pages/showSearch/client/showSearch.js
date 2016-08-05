@@ -22,8 +22,8 @@ Template.showSearch.helpers({
       return false;
   }
 }
-  
-  
+
+
 });
 Template.showSearch.events({
   "click .js-imgsss" : function(){
@@ -46,7 +46,7 @@ Template.showSearch.events({
   "click .js-addstuff":function(event){
     if( $('.cd-stretchy-nav').length > 0 ) {
     var stretchyNavs = $('.cd-stretchy-nav');
-    
+
     stretchyNavs.each(function(){
       var stretchyNav = $(this),
         stretchyNavTrigger = stretchyNav.find('.cd-nav-trigger');
@@ -55,9 +55,9 @@ Template.showSearch.events({
     });
 ( !$(event.target).is('.cd-nav-trigger') && !$(event.target).is('.cd-nav-trigger span') ) && stretchyNavs.removeClass('nav-is-visible');
 }
-  
+
   },
-    
+
   "click #submitpic":function(){
       event.preventDefault();
       console.log("submittedpic");
@@ -70,7 +70,7 @@ Template.showSearch.events({
 const loclng=$(".js-loclng").val();
 if(!pictitle&&!picdes&&!date&&!locname&&!loclat&&!loclng){
         Session.set("emptyPicForm", true);
-        
+
     }else{
     const addpix={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title:pictitle, text:picdes, type:"picture",pic:newpic, date,locname, lat:loclat, lng:loclng};
     Trips.update({_id:this._id},{$push:{textedit:addpix}});
@@ -80,7 +80,7 @@ if(!pictitle&&!picdes&&!date&&!locname&&!loclat&&!loclng){
 },
   "click .js-submitmap":function(){
     event.preventDefault();
-    
+
     const locname=$(".js-locname").val();
     const loclat=$(".js-loclat").val();
 const loclng=$(".js-loclng").val();
@@ -88,13 +88,13 @@ const mapdesc=$(".js-mapdesc").val();
 const mapdate=$(".js-mapdate").val();
 if(!locname&&!loclat&&!loclng&&!mapdesc&&!mapdate){
         Session.set("emptyMapForm", true);
-        
+
     }else{
 var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), locname, type:"maploc",lat:loclat, lng:loclng, description:mapdesc, date:mapdate}
     // const locit=Session.get("locmap");
     // const toloc=$(".js-locit").val();
     // const maploc={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), location:toloc, map:locit, type:"maploc"};
-    
+
     Trips.update({_id:this._id},{$push:{textedit:maploc}});
     $("#addMap").modal('hide');
   }
@@ -122,7 +122,7 @@ var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId()
         else {
           console.log("there was an error", err);
         }
-        
+
       });
       Session.set("bannerimg",banner&&banner._id);
     });
@@ -148,11 +148,11 @@ var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId()
     Trips.update({_id:tripid}, {$set:{title, description,arrival, departure,amountOfTraveler,expenses}});
     $("#displaySet").modal('hide');
   },
- 
+
  "click .js-addfav ":function(event){
     window.alert("Added to favorite!");
     var favid=this._id;
-   
+
     if (UserFavorites.find({user:Meteor.userId()}).count()==0){
       const fav =
     {user: Meteor.userId(),
@@ -165,11 +165,11 @@ var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId()
 
       UserFavorites.update({_id:userfav&&userfav._id},{$push:{favadded:favid}});
     }
-    
+
   },
   "click .js-removefav":function(event){
     var id=this._id;
-    
+
       var userfav1=UserFavorites.findOne({user:Meteor.userId()});
 
       UserFavorites.update({_id:userfav1&&userfav1._id},{$pull:{favadded:id}});
@@ -189,7 +189,7 @@ Template.showSearch.helpers({
       }else{
         return false;}
   },
-  
+
   bannerimage:function(){
     return YourFileCollection.findOne({_id:this.image});
   },
@@ -221,7 +221,7 @@ Template.timelinedisplay.events({
   //   Tracker.autorun(function() {
   //     map.instance.setCenter(new google.maps.LatLng(this.t.lat,this.t.lng))
   //     // markerCurrent.setPosition(new google.maps.LatLng(Session.get("locmap").lat,Session.get("locmap").lng));
-  //   });  
+  //   });
 // });
   }
 })
@@ -238,7 +238,7 @@ Template.timelinedisplay.helpers({
         zoom:15
       };
     }
-  }, 
+  },
   isUser:function(){
       if(this.t.author==Meteor.userId()){
 
