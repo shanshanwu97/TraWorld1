@@ -75,6 +75,7 @@ if(!pictitle&&!picdes&&!date&&!locname&&!loclat&&!loclng){
     const addpix={_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId(), title:pictitle, text:picdes, type:"picture",pic:newpic, date,locname, lat:loclat, lng:loclng};
     Trips.update({_id:this._id},{$push:{textedit:addpix}});
     $("#addPicture").modal('hide');
+    $('#addPicture').find('form')[0].reset();
   }
 },
   "click .js-submitmap":function(){
@@ -259,11 +260,10 @@ Template.timelinedisplay.helpers({
       return false;
     }
   },
-  savepicref:function(id){
-    Session.set("picid",id);
-  },
+  
   thispic:function(){
-    return YourFileCollection.findOne({_id:Session.get("picid")});
+
+    return YourFileCollection.findOne({_id:this.t.pic});
   },
   checkMap:function(type){
     if(type=="maploc"){

@@ -28,6 +28,7 @@ Template.itineraries.rendered=function(){
     }
  });
 }
+
 Template.itineraries.events({
 	"submit form": function(){
 		event.preventDefault();
