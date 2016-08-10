@@ -60,7 +60,7 @@ Template.itineraries.events({
 
 
 			const username=Meteor.users.findOne({_id:Meteor.userId()});
-			const ur=username&&username.profile&&username.profile.username;
+			const ur=username&&username.username;
 			const img=$(".js-img").val();
 			const txt=[];
 			var imgs= Session.get("thumbpic");

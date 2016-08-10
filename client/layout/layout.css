@@ -1,6 +1,12 @@
 /***********************************************************************
 *  OPAQUE NAVBAR SECTION
 ***********************************************************************/
+.signinbtn{
+  margin-top: 10px;
+}
+.signinh1{
+  color: black;
+}
 .navbar-brand{
   font-size: 40px;
   font-family: 'Pacifico', cursive;

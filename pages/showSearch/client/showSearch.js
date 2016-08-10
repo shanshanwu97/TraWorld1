@@ -30,7 +30,7 @@ Template.showSearch.events({
     console.log("clicked image");
   },
   "submit #textform": function(){
-    event.preventDefault();
+    // event.preventDefault();
     const title=$(".js-titletext").val();
     const txtdes=$(".js-textdesc").val();
     const txtdate=$(".js-txtdate").val();
@@ -59,7 +59,7 @@ Template.showSearch.events({
   },
 
   "click #submitpic":function(){
-      event.preventDefault();
+      // event.preventDefault();
       console.log("submittedpic");
     var newpic=Session.get("addpics");
     const pictitle=$(".js-titlepic").val();
@@ -79,7 +79,7 @@ if(!pictitle&&!picdes&&!date&&!locname&&!loclat&&!loclng){
   }
 },
   "click .js-submitmap":function(){
-    event.preventDefault();
+    // event.preventDefault();
 
     const locname=$(".js-locname").val();
     const loclat=$(".js-loclat").val();
@@ -137,7 +137,7 @@ var maploc= {_id: new Meteor.Collection.ObjectID()._str, author: Meteor.userId()
     Trips.update({_id:this._id},{$inc:{likes:1}});
   },
   "submit #basicsetting": function(){
-    event.preventDefault();
+    // event.preventDefault();
     const title=$(".js-titleset").val();
     const description=$(".js-descset").val();
     const arrival=$(".js-arriveset").val();

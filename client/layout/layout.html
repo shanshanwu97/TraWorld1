@@ -14,24 +14,25 @@
     </div>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="nav navbar-nav pull-right">
-
-        {{#if currentUser}}
-        	<li role="presentation">
+      	{{#if currentUser}}
+<li role="presentation">
 						<button id="navbut" class="js-goto btn buttonblue"><img  src="../images/whitemic.png"> Speak to Navigate</button> </li>
+						{{/if}}
 
-	  		<li role="presentation" title="Home">
+		<li role="presentation" title="Home">
 		          <a href="{{pathFor 'home'}}">
 		          	<span class="glyphicon glyphicon-home" aria-hidden="true"></span>
 				</a>
 	          </li>
-
-	          <li role="presentation" id="itin">
+	           <li role="presentation" id="itin">
 	     		<a href="{{pathFor 'pastitin'}}">
 					<span class="glyphicon glyphicon-time" aria-hidden="true"></span>&nbsp;
 					Past Itineraries
 				</a>
 
 	          </li>
+        {{#if currentUser}}
+        	
 
 
 			<!-- GROUP CAMP -->
@@ -62,10 +63,10 @@
 					<a class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
 						{{#if proexist}}
 						
-						<img id="propicbar" style="border:solid 0.4px; border-color:white" src="{{propicbar.url}}" width="28px" height="28px" class="img-circle" alt="" >&nbsp;
+						<img id="propicbar" style="border:solid 0.4px; border-color:white; object-fit:cover;" src="{{propicbar.url}}" width="28px" height="28px" class="img-circle" alt="" >&nbsp;
 						{{else}}
 						<span class="glyphicon glyphicon-user" aria-hidden="true"></span>&nbsp;{{/if}} 
-					 {{userName.profile.username}}
+					 {{userName.username}}
 						<span class="caret"></span> </a>
 					<ul class="dropdown-menu thisdrop">
 						<li><a id="navtab" href="{{pathFor 'profiledisplay'}}">My Profile</a></li>
@@ -102,7 +103,10 @@
 </nav>
 </li> -->
 			{{else}}
-					<li  class="pull-right" role="presentation">
+			<li  class="pull-right" role="presentation">
+						<button class="signinbtn btn btn-info" data-toggle="modal" data-target="#signInModal">Sign in / Sign Up</button>
+			</li>
+					<!-- <li  class="pull-right" role="presentation">
 						<a href="{{pathFor 'login'}}">
 							<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 							<h6>Sign in</h6>
@@ -113,7 +117,7 @@
 					<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					<h6>Sign up</h6>
 				</a>
-			</li>
+			</li> -->
 
 
 			{{/if}}
@@ -123,6 +127,6 @@
     </div>
   </div>
 </div>
-
+{{>login}}
 {{> yield}}
 </template>

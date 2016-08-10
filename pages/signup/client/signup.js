@@ -40,9 +40,10 @@ else{    Accounts.createUser({
         first: f,
         last: l,
         color: "bg-danger",
-          username: e.split("@")[0],
+          // username: e.split("@")[0],
 
       },
+      username: e.split("@")[0],
      
       email: e,
       password: p,
