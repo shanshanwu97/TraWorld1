@@ -4,3 +4,5 @@ node_modules/
 
 .meteor/dev_bundle/
 
+settings.json
+
